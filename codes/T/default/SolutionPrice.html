@@ -1,0 +1,27 @@
+				<div class='row'>
+					<div class='col col-4'>
+						<form action='' method='post'>
+							<select name='class'>
+								{foreach $prj.myclass as $val}
+								<option value='{$val.cid}'>{$val.cname}</option>
+								{/foreach}
+								<input class='col col-12' type='text' name='name' placeholder='请输入型号'>
+								<input class='col col-12' type='text' name='price' placeholder='请输入价格'>
+								<input class='col col-12' type='text' name='info' placeholder='请输入描述'>
+								<div>
+									<input class='button primary small' type='submit' name='submit' value='{$prj.subtype}'>
+								</div>
+							</select>
+						</form>
+					</div>
+					<div class='col col-8'>
+						<p>说明:</p>
+						<p>intel系列酷睿CPU使用i前缀，例如i7 6770k的型号应该是i6770k,i3 6100的型号是i6100,志强系列使用E前缀，例如E5 2650 V4,型号为E2650V4，E3 1230 V5型号为E1230V5，注意区分大小写。</p>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>

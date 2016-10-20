@@ -1,0 +1,40 @@
+		<div class='row'>
+			<div class='col col-12'>
+				<nav class="tabs" data-component="tabs" data-equals="true">
+				    <ul>
+				        <li class="active"><a href="#userAdd">添加账号</a></li>
+				        <li><a href="#userEdit">账号列表</a></li>
+				    </ul>
+				</nav>
+				
+				<div id="userAdd">
+					<form action='' method='post'>
+						<input type='text' name='uname' placeholder='请输入用户名'>
+						<input type='text' name='upass' placeholder='请输入密码'>
+						<input type='email' name='uemail' placeholder='请输入邮箱'>
+						<input type='number' name='uphone' placeholder='请输入电话'>
+						<input type='text' name='urename' placeholder='请输入真实姓名'>
+						<select name='udepart'>
+							{foreach $prj.departs as $val}
+							<option value='{$val.id}'>{$val.name}</option>
+							{/foreach}
+						</select>
+						<label><input type='radio' name='ulevel' value='0' />主管</label>
+						<label><input type='radio' name='ulevel' checked="checked" value='1' />员工</label>
+						<input class='button' type='submit' name='submit' value='添加'>
+					</form>
+				</div>
+				<div id="userEdit">
+					<table class='flat'>
+						<tbody>
+							<tr><th>ID</th><th>姓名</th><th>账号</th><th>邮箱</th><th>联系方式</th><th>操作</th></tr>
+							{foreach $prj.users as $val}
+							<tr><td>{$val.id}</td><td>{$val.urename}</td><td>{$val.uname}</td><td>{$val.umail}</td><td>{$val.uphone}</td><td><a href='{$smarty.const.URL}/Admin/UserChange'>编辑</a></td></tr>
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

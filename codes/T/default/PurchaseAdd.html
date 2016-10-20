@@ -1,0 +1,66 @@
+			<div class='col col-12'>
+			<h3>硕星配件入库</h3>
+				<form action='{$smarty.const.URL}/{$smarty.get.c}/AddCheck' method='post'>
+					<div class='row'>
+						<div class='form-item col col-6'>
+							<label>类型:</label>
+							<select name='type'>
+								{foreach $prj.myclass as $value}
+									<option value={$value.cid}>{$value.cname}</option>
+								{/foreach}
+							</select>		
+						</div>
+						<div class='form-item col col-12'>
+							<label>厂商:</label>
+								<input wdith=100% name='name' type='text'>
+						</div>
+						<div class='form-item col col-12'>
+							<label>型号:</label>
+								<input name='model' type='text'>
+						</div>
+						<div class='form-item col col-12'>
+							<label>SN:</label>
+							<input name='sn' type='text'>
+						</div>
+						<div class='form-item col col-12'>
+							<label>容量/主频/尺寸:</label>
+								<input name='cap' type='text'>
+						</div>
+						<div class='form-item col col-12'>
+							<label>单位:</label>
+							<input name='cap_type' type='text'>
+						</div>
+						<div class='form-item col col-12'>
+							<label>供货商:</label>
+							<input name='sup' type='text'>
+						</div>
+						<div class='form-item col col-12'>
+							<label>价格:</label>
+							<input name='price' type='text'>
+						</div>
+						<div class='form-item col col-12'>
+							<label>数量:</label>
+							<input name='count' type='number'>
+						</div>
+						<div class='form-item col col-12'>
+							<label>入库时间:</label>
+							<input name='indate' type='text'>
+						</div>
+						<div class='form-item col col-12'>
+							<label>备注:</label>
+							<input name='remark' type='text'>
+						</div>
+						<div class='form-item col col-12 text-right'>
+							<br>
+							<a class='button small' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
+							<input class='button small primary' type='submit' name='add' value='提交'>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>

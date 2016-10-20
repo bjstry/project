@@ -1,0 +1,17 @@
+<div class='row centered'>
+		<div class='col col-8'>
+			<div class='text-center'>
+				<h3 class='depart-title'>硕星内部系统-后台管理</h3>
+				<hr>
+			</div>
+			<div class='row'>
+				<div class='col col-3 hide-on-print'>
+					<div id="my-collapse" class='collapse'>
+						<ul>
+							{foreach $prj.left as $val}
+								<li><a href='{$val.url}'>{$val.name}</a></li>
+							{/foreach}
+						</ul>
+					</div>
+				</div>
+				<div class='col col-9'>

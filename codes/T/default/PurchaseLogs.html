@@ -1,0 +1,16 @@
+				<div class='col col-12'>
+				<table class='flat'>
+					<tbody>
+				<tr><th>操作人</th><th>时间</th><th>类型</th><th>数量</th><th>详细</th></tr>
+				{foreach $prj.logsshow as $value}
+				<tr><td>{$value.uid} </td><td>{$value.date} </td><td>{$value.type} </td><td>{$value.count} </td><td>{$value.content}</td></tr>
+				{/foreach}
+				</tbody>
+				</table>
+				<a class='button small' href='{$smarty.const.URL}/{$smarty.get.c}/'>返回</a>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

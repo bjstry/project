@@ -1,0 +1,12 @@
+<div class='row centered'>
+	<div class='col col-5'>
+		<p>{$prj.info}</p>
+		<p>你好，{$prj.user.urename} ! &nbsp;&nbsp;请选择功能区：</p>
+		{foreach $prj.departs as $value}
+		<a class='button' href="{$smarty.const.URL}/{$value.url}">{$value.name}</a>
+		{/foreach}
+<br><br>
+		<a class='button small red' href='{$smarty.const.URL}/Index/LoginOut'>注销</a>
+			{$prj.manager}
+	</div>
+</div>

@@ -1,0 +1,34 @@
+
+							<div class='col col-12'>
+								<form action='' method='post' class='form'>
+									<div class='form-item'>
+										<select name='class'>
+											{foreach $prj.myclass as $val}
+											<option value='{$val.cid}'>{$val.cname}</option>
+											{/foreach}
+										</select>	
+									</div>
+									<div class='form-item'>
+										<label for='sn'>序列号/SN:</label>
+										<input type='text' id='sn' name='sn'>
+									</div>
+									<div class='form-item end'>
+										<input class='button small primary' type='submit' name='submit' value='搜索'>
+										<a class='button small' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
+									</div>
+								</form>
+							
+								<table class='table'>
+									<tr><td>物品编号</td><td>厂商</td><td>型号</td><td>序列号/SN</td><td>供货商</td><td>库存数</td><td>出库数</td><td>操作</td></tr>
+									{foreach $prj.myparts as $val}
+									<form action='' method='post' class='form'>
+									<tr><td>{$val.id}<input type="hidden" name="id" value="{$val.id}"><input type="hidden" name="cid" value="{$val.cid}"></td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.sn}</td><td>{$val.supplier}</td><td>{$val.count}</td><td><input type='number' name='outcount'/></td><td><input class='button small' type='submit' name='outgo' value='出库'></td></tr>
+									</form>
+									{/foreach}
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>

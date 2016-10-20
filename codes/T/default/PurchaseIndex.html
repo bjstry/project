@@ -1,0 +1,19 @@
+
+					<div class='col col-12'>
+						<form action='' method='post'>
+							<h4 style='display:inline-block;'>配件库存情况</h4> <input class='button small' name='refresh' type='submit' value='刷新'>
+						</form>
+					</div>
+					{foreach $prj.myclass as $val}
+					<div class='col col-3'>
+						<p>{$val.cname} :<a href='{$smarty.const.URL}/{$smarty.get.c}/View/type/{$val.cid}'>{$val.count}</a></p>
+					</div>
+					{/foreach}
+					<div class='col col-12 down-hr'>
+						<hr>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

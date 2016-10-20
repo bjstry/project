@@ -1,0 +1,37 @@
+
+li{
+	list-style:none;
+	padding:5px;
+
+}
+li a {
+	color:#000;
+	text-decoration: none;
+	padding-right:50%;
+}
+li a:hover{
+	color:#999;
+}
+h3.depart-title{
+	padding-top:30px;
+}
+div.down-hr{
+	margin-top:30px;
+}
+form div{
+	margin:10px 0 10px;
+}
+div#price div{
+	margin-top:3px;
+}
+form div.partinfo{
+	position:relative;
+	width:900px;
+	display:none;
+}
+form:hover div.partinfo{
+	display:inline-block;
+}
+.hidden{
+	display:none;
+}

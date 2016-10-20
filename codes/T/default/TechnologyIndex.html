@@ -1,0 +1,25 @@
+				<div class='row'>
+					<div class='col col-12'>
+						<h4>未分配配件</h4>
+					</div>
+					{foreach $prj.myclass as $val}
+					<div class='col col-3'>
+						<p>{$val.cname} :<a href='{$smarty.const.URL}/{$smarty.get.c}/View/type/0/val/{$val.cid}'>{$val.count}</a></p>
+					</div>
+					{/foreach}
+					<div class='col col-12 down-hr'>
+						<hr>
+					</div>
+					<div class='col col-12'>
+						<h4>已分配配件</h4>
+					</div>
+					{foreach $prj.myunclass as $val}
+					<div class='col col-3'>
+						<p>{$val.cname} :<a href='{$smarty.const.URL}/{$smarty.get.c}/View/type/1/val/{$val.cid}'>{$val.count}</a></p>
+					</div>
+					{/foreach}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

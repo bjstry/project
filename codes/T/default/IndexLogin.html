@@ -1,0 +1,19 @@
+		<div class='row centered'>
+			<div class='col col-3'>
+				<h3>硕星管理系统-<small>登陆</small></h3>
+				<hr>
+				<form action='{$smarty.const.URL}/Index/LoginCheck' method='post' class='form'>
+					<div class='form-item'>
+						<label for='uname'>用户:</label>
+						<input type='text' id='uname' name='uname' placeholder='Username'>
+					</div>
+					<div class='form-item'>
+						<label for='upass'>密码:</label>
+						<input type='password' id='upass' name='upass' placeholder='Password'>
+					</div>
+					<div class='form-item text-right'>
+						<input class='button primary' type='submit' name='logincheck' value='登陆'>
+					</div>
+				</form>
+			</div>
+		</div>

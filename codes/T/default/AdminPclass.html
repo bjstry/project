@@ -1,0 +1,49 @@
+		<div class='row'>
+			<div class='col col-12'>
+				<div id='tabs' class='tabs' data-component="tabs">
+					<ul>
+						<li><a href='#manager'>管理</a></li>
+						<li><a href='#add'>添加</a></li>
+					</ul>
+				<div>
+				<table id='manager'>
+					<tr><td class='col col-8'>分类名称</td><td colspan=2 class='col col-2'><center>操作</center></td></tr>
+					{foreach $prj.myclass as $value}
+					<form action='' method='post' class='form'>
+					<tr><td>{$value.cname}<input type="hidden" name="cid" value="{$value.cid}"></td><td><!--<input name='edit' value='编辑' type='submit' class='button small outline'/></td><td>--><input name='delete' value='删除' type='submit' class='button small primary'/></td></tr>
+					</form>
+					{/foreach}
+				</table>
+				<form id='add' class='form' method='post' action='{$smarty.const.URL}/Admin/CreateCheck'>
+					<div class='form-item'>
+						<label for='fclass'>父类</label>
+						<select name='fid'>
+							<option value=0>无父类</option>
+							{foreach $prj.myclass as $value}
+								<option value={$value.cid}>{$value.cname}</option>
+							{/foreach}
+						</select>
+					</div>
+					<div class='form-item'>
+						<label for='cname'>分类名称</label>
+						<input type='text' id='cname' name='cname'>
+					</div>
+					<div class='form-item'>
+						<label for='department'>部门</label>
+						<select name='gid'>
+							<option value=1>采购部门</option>
+							<option value=2>行政部门</option>
+						</select>
+					</div>
+					<div class='form-item end'>
+						<input class='button small primary' type='submit' name='submit' value='添加分类'>
+					</div>
+				</form>
+				<form action='' method='post'>
+					<input class='button outline' type='submit' name='index' value='返回'>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+		

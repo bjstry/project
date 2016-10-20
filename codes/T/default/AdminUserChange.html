@@ -1,0 +1,38 @@
+
+				<h3>硕星管理系统-<small>修改资料</small></h3>
+				<hr>
+				<form action='' method='post' class='form'>
+					<div class='form-item'>
+						<label for='uname'>用户:</label>
+						<input type='text' id='uname' name='uname' value="{$prj.user.uname}" disabled>
+					</div>
+					<div class='form-item'>
+						<label for='oldupass'>旧密码:</label>
+						<input type='text' id='oldupass' name='oldupass' placeholder='Password'>
+					</div>
+					<div class='form-item'>
+						<label for='newupass'>新密码:</label>
+						<input type='password' id='newupass' name='newupass' placeholder='Password'>
+					</div>
+					<div class='form-item'>
+						<label for='newreupass'>重复密码:</label>
+						<input type='password' id='newreupass' name='newreupass' placeholder='Password'>
+					</div>
+					<div class='form-item'>
+						<label for='uemail'>邮箱:</label>
+						<input type='text' id='uemail' name='uemail' value='{$prj.user.umail}'>
+					</div>
+					<div class='form-item'>
+						<label for='uphone'>联系方式:</label>
+						<input type='text' id='uphone' name='uphone' value='{$prj.user.uphone}'>
+					</div>
+					<div class='form-item'>
+						<label for='urename'>真实姓名:</label>
+						<input type='text' id='urename' name='urename' value='{$prj.user.urename}'>
+					</div>
+					<div class='form-item text-right'>
+						<input class='button primary' type='submit' name='submit' value='修改'>
+					</div>
+				</form>
+		</div>
+	</div>

@@ -1,0 +1,13 @@
+
+				<table class='table'>
+									<tr><td>配件编号</td><td>厂商</td><td>型号</td><td>序列号/SN</td><td>供货商</td><td>数量</td><td>项目</td><td>负责人</td></tr>
+									{foreach $prj.myparts as $val}
+									<tr><td>{$val.id}<input type="hidden" name="id" value="{$val.id}"><input type="hidden" name="cid" value="{$val.cid}"></td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.sn}</td><td>{$val.supplier}</td><td>{$val.count}</td><td><a href='{$smarty.const.URL}/{$smarty.get.c}/GetParts/pid/{$val.id}'>{$val.project}</a></td><td>{$val.incharge}</td></tr>
+									{/foreach}
+								</table>
+								<a class='button small' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

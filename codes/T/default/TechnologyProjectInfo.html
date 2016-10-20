@@ -1,0 +1,40 @@
+			<div class='row'>
+				<div class='col col-12'>
+					<h4>{$prj.myprj.prjname1}{$prj.myprj.prjcustomer} &nbsp;<small>项目开始时间: {$prj.myprj.prjstart}</small> &nbsp;<a href='{$smarty.const.URL}/{$smarty.get.c}/Prjedit/pid/{$smarty.get.pid}'>{$prj.edit}</a>&nbsp;<a onClick=window.print() href=''><small>打印</small></a></h4>
+				</div>
+				<div class='col col-3'>
+					目前状态: {$prj.myprj.prjstatus}
+				</div>
+				<div class='col col-3'>
+					业务姓名: {$prj.myprj.prjsaleman}
+				</div>
+				<div class='col col-3'>
+					联系电话: {$prj.myprj.prjsalephone}
+				</div>
+				<div class='col col-3'>
+					项目负责人: {$prj.myprj.uid}
+				</div>
+				<div class='col col-12'>
+					<br>
+					<h5>操作记录</h5>
+					20161012 硬件出库，缺少主板
+					<br>20161013 硬件出库完成，开始组装
+					<br>20161014 硬件组装完成，开始安装windows操作系统，安装ansys软件
+				</div>
+				<div class='col col-12'>
+					<br>
+					<h5>配件列表</h5>
+					<table class='table'>
+						<tr><td>物品编号</td><td>厂商</td><td>型号</td><td>序列号/SN</td><td>数量</td><td>出库人</td><td>出库时间</td><td>检测结果</td></tr>
+						{foreach $prj.myparts as $val}
+						<form action='' method='post' class='form'>
+						<tr><td>{$val.id}<input type="hidden" name="id" value="{$val.id}"><input type="hidden" name="cid" value="{$val.cid}"></td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.sn}</td><td>{$val.count}</td><td>123</td><td>出库</td><td>合格</td></tr>
+						</form>
+						{/foreach}
+					</table>
+					<a class='button small' href='{$prj.backurl}'>返回</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

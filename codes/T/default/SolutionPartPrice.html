@@ -1,0 +1,106 @@
+
+				<div class='row'>
+					<div class='col col-12'>
+						CPU
+					</div>
+					{foreach $prj.mycpuprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+		
+					<div class='col col-12'>
+						主板、内存
+					</div>
+					{foreach $prj.myboardprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+				
+					{foreach $prj.mymemprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+			
+					<div class='col col-12'>
+						硬盘
+					</div>
+					{foreach $prj.mydiskprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+					<div class='col col-12'>
+						显卡
+					</div>
+					{foreach $prj.mycardprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+			
+					<div class='col col-12'>
+						电源
+					</div>
+					{foreach $prj.mypowerprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+					<div class='col col-12'>
+						机箱、显示器
+					</div>
+					{foreach $prj.myboxprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+			
+					{foreach $prj.myvgaprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+					<div class='col col-12'>
+						散热器、键鼠、光驱
+					</div>
+					{foreach $prj.mysrqprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+
+					{foreach $prj.mymouseprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+
+					{foreach $prj.mydvdprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+					<div class='col col-12'>
+						交换机、路由及其他配件
+					</div>
+					{foreach $prj.mynetprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+					
+					{foreach $prj.myoprice as $val}
+					<div class='col col-1'>
+						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}</div></form>
+					</div>
+					{/foreach}
+				</div>
+				<div class='message success' id='my-message'>添加成功！</div>
+				<button data-component='message' data-target='#my-message'>测试</button>
+			</div>
+		</div>
+	</div>
+</div>

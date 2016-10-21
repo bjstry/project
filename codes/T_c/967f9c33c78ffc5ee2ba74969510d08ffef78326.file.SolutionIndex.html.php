@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2016-10-20 21:18:11
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2016-10-21 02:19:32
          compiled from "codes/T/default/SolutionIndex.html" */ ?>
 <?php /*%%SmartyHeaderCode:12848346065808c413b21136-93716618%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '967f9c33c78ffc5ee2ba74969510d08ffef78326' => 
     array (
       0 => 'codes/T/default/SolutionIndex.html',
-      1 => 1476969471,
+      1 => 1476987519,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_5808c413c27f47_88047717',
   'variables' => 
   array (
     'prj' => 0,
     'val' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_5808c413c27f47_88047717',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5808c413c27f47_88047717')) {function content_5808c413c27f47_88047717($_smarty_tpl) {?>
 		<form action='<?php echo @constant('URL');?>
@@ -33,7 +33,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<div>
 						<h5>请选择送货地址：</h5>
 						<label><input type='radio' checked="checked" name='city' value=0 />本地</label>
-						<label><input type='radio' name='city' value=800 />外省</label>
+						<label><input type='radio' name='city' value=300 />外省</label>
 					</div>
 					<div>
 						<h5>请选择机箱类型：</h5>
@@ -53,7 +53,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['val']->key => $_smarty_tpl->tpl_vars[
 $_smarty_tpl->tpl_vars['val']->_loop = true;
 ?>
 						<div>
-							<label><input type='radio' name='cputype' value='<?php echo $_smarty_tpl->tpl_vars['val']->value['price'];?>
+							<label><input type='radio' name='cputype' value='<?php echo $_smarty_tpl->tpl_vars['val']->value['name'];?>
 ' /><?php echo $_smarty_tpl->tpl_vars['val']->value['info'];?>
 </label> 
 						</div>
@@ -66,7 +66,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['val']->key => $_smarty_tpl->tpl_vars[
 $_smarty_tpl->tpl_vars['val']->_loop = true;
 ?>
 						<div>
-							<label><input type='radio' name='cputype' value='<?php echo $_smarty_tpl->tpl_vars['val']->value['price'];?>
+							<label><input type='radio' name='cputype' value='<?php echo $_smarty_tpl->tpl_vars['val']->value['name'];?>
 ' /><?php echo $_smarty_tpl->tpl_vars['val']->value['info'];?>
 </label> 
 						</div>
@@ -80,8 +80,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['val']->key => $_smarty_tpl->tpl_vars[
 $_smarty_tpl->tpl_vars['val']->_loop = true;
 ?>
 						<div>
-							<label><input type='radio' name='cputype' value=<?php echo $_smarty_tpl->tpl_vars['val']->value['price'];?>
- /><?php echo $_smarty_tpl->tpl_vars['val']->value['info'];?>
+							<label><input type='radio' name='cputype' value='<?php echo $_smarty_tpl->tpl_vars['val']->value['name'];?>
+' /><?php echo $_smarty_tpl->tpl_vars['val']->value['info'];?>
 </label> 
 						</div>
 						<?php } ?>
@@ -93,7 +93,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['val']->key => $_smarty_tpl->tpl_vars[
 $_smarty_tpl->tpl_vars['val']->_loop = true;
 ?>
 						<div>
-							<label><input type='radio' name='cputype' value='<?php echo $_smarty_tpl->tpl_vars['val']->value['price'];?>
+							<label><input type='radio' name='cputype' value='<?php echo $_smarty_tpl->tpl_vars['val']->value['name'];?>
 ' /><?php echo $_smarty_tpl->tpl_vars['val']->value['info'];?>
 </label> 
 						</div>
@@ -101,68 +101,73 @@ $_smarty_tpl->tpl_vars['val']->_loop = true;
 					</div>
 					<div id='pcmem' class='hidden'>
 						<h5>请选择内存大小：</h5>
-						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D48GPC']['price'];?>
- />4GB</label>
-						<label><input type='radio' checked='checked' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D48GPC']['price']*2;?>
- />8GB</label>
-						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D48GPC']['price']*4;?>
- />16GB</label>
-					</div>
-					<div id='wsmem' class='hidden'>
-						<h5>请选择内存大小：</h5>
-						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416G']['price']*2;?>
- />32GB</label>
-						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416G']['price']*4;?>
- />64GB</label>
-						<label><input type='radio' checked='checked' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416G']['price']*8;?>
- />128GB</label>
-						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416G']['price']*16;?>
- />256GB</label>
-						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D432G']['price']*16;?>
- />512GB</label>
+						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D44GPC']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D44GPC']['info'];?>
+</label>
+						<label><input type='radio' checked='checked' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D48GPC']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D48GPC']['info'];?>
+</label>
+						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416GPC']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416GPC']['info'];?>
+</label>
 					</div>
 					<div id='memsize'>
 						<h5>请选择内存大小：</h5>
-						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416G']['price']*2;?>
- />32GB</label>
-						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416G']['price']*4;?>
- />64GB</label>
-						<label><input type='radio' checked='checked' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416G']['price']*8;?>
- />128GB</label>
-						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416G']['price']*16;?>
- />256GB</label>
-						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D432G']['price']*16;?>
- />512GB</label>
+						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416G']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D48G']['info'];?>
+</label>
+						<label><input type='radio' checked='checked' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416G']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416G']['info'];?>
+</label>
+						<label><input type='radio' name='memsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D416G']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['D432G']['info'];?>
+</label>
 					</div>
-					<div>
-						<h5>请选择固态硬盘大小：</h5>
-						<label><input type='radio' name='ssdsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['S128']['price'];?>
- />128GB</label>
-						<label><input type='radio' checked="checked" name='ssdsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['S256']['price'];?>
- />256GB</label>
-						<label><input type='radio' name='ssdsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['S512']['price'];?>
- />512GB</label>
-						<label><input type='radio' name='ssdsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['S1T']['price'];?>
- />1024GB</label>
-						<label><input type='radio' name='ssdsize' value=0 />不需要</label>
+					<div id='memcount'>
+						<h5>请选择内存数量：</h5>
+						<label><input type='number' name='memcount' value=1 />条</label>
+					</div>
+					<div id='ssdsize'>
+						<h5>请选择固态硬盘：</h5>
+						<label><input type='radio' checked="checked" name='ssdsize' value=0 />不需要</label>
+						<label><input type='radio' name='ssdsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['S128']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['S128']['info'];?>
+</label>
+						<label><input type='radio' name='ssdsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['S256']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['S256']['info'];?>
+</label>
+						<label><input type='radio' name='ssdsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['S512']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['S512']['info'];?>
+</label>
+						<label><input type='radio' name='ssdsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['S1T']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['S1T']['info'];?>
+</label>
+					</div>
+					<div id='ssdcount' class='hidden'>
+						<h5>请选择数量：</h5>
+						<label><input type='number' name='ssdcount' value=1 />块</label>
 					</div>
 					<div id='hddtype1'>
 						<h5>请选择单块硬盘大小：</h5>
-						<label><input type='radio' name='hddsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['H1T']['price'];?>
+						<label><input type='radio' name='hddsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['H1T']['name'];?>
  /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['H1T']['info'];?>
 </label>
-						<label><input type='radio' checked="checked" name='hddsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['H2T']['price'];?>
- />2TB</label>
-						<label><input type='radio' name='hddsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['H4T']['price'];?>
- />4TB</label>
+						<label><input type='radio' checked="checked" name='hddsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['H2T']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['H2T']['info'];?>
+</label>
+						<label><input type='radio' name='hddsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['H4T']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['H4T']['info'];?>
+</label>
 						<label><input type='radio' name='hddsize' value='0' />不需要</label>
 					</div>
 					<div id='hddtype2' class='hidden'>
 						<h5>请选择单块硬盘大小：</h5>
-						<label><input type='radio' checked="checked" name='hddsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['E2T']['price'];?>
- />2TBe</label>
-						<label><input type='radio' name='hddsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['E4T']['price'];?>
- />4TBe</label>
+						<label><input type='radio' checked="checked" name='hddsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['E2T']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['E2T']['info'];?>
+</label>
+						<label><input type='radio' name='hddsize' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['E4T']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['E4T']['info'];?>
+</label>
 						<label><input type='radio' name='hddsize' value='0' />不需要</label>
 					</div>
 					<div id='hddtype'>
@@ -174,63 +179,90 @@ $_smarty_tpl->tpl_vars['val']->_loop = true;
 						<h5>请选择硬盘数量：</h5>
 						<label><input type='number' name='hddcount' value=1 />块</label>
 					</div>
-					<div id='needotg'>
-						<h5>请选择独显：</h5>
-						<label><input type='radio' name='otg' value='0' />使用集显</label>
-						<label><input type='radio' checked="checked" name='otg' value='1' />使用独显</label>
+					<div id='gametype'>
+						<h5>请选择显卡：</h5>
+						<label><input type='radio' checked="checked" name='gamecard' value=0 />集显</label>
+						<label><input type='radio' name='gamecard' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['GT740']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['GT740']['info'];?>
+</label>
+						<label><input type='radio' name='gamecard' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['GTX1060']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['GTX1060']['info'];?>
+</label>
+						<label><input type='radio' name='gamecard' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['GTX1070']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['GTX1070']['info'];?>
+</label>
+						<label><input type='radio' name='gamecard' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['GTX1080']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['GTX1080']['info'];?>
+</label>
+					</div>
+					<div id='gamecount' class='hidden'>
+						<h5>请选择数量：</h5>
+						<label><input type='number' name='gamecount'  />块</label>
 					</div>
 					<div id='gtype'>
-						<h5>独显类型：</h5>
-						<label><input type='radio' checked="checked" name='gtype' value='0' />普通卡</label>
-						<label><input type='radio' name='gtype' value='1' />专业卡</label>
+						<h5>请选择图形卡：</h5>
+						<label><input type='radio' checked="checked" name='gcard' value=0 />不需要</label>
+						<label><input type='radio' name='gcard' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K620']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K620']['info'];?>
+</label>
+						<label><input type='radio' name='gcard' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K2200']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K2200']['info'];?>
+</label>
+						<label><input type='radio' name='gcard' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K6000']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K6000']['info'];?>
+</label>
+						<label><input type='radio' name='gcard' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['M6000']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['M6000']['info'];?>
+</label>
 					</div>
-					<div id='ggtype'>
-						<h5>请选择独显：</h5>
-						<label><input type='radio' checked="checked" name='card' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['GT740']['price'];?>
- />GT740</label>
-						<label><input type='radio' name='card' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['GTX1060']['price'];?>
- />GTX1060</label>
-						<label><input type='radio' name='card' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['GTX1070']['price'];?>
- />GTX1070</label>
-						<label><input type='radio' name='card' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['GTX1080']['price'];?>
- />GTX1080</label>
+					<div id='gcount' class='hidden'>
+						<h5>数量：</h5>
+						<label><input type='number' name='gcount' />块</label>
 					</div>
-					<div id='ogtype' class='hidden'>
-						<h5>请选择独显：</h5>
-						<label><input type='radio' checked="checked" name='card' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K620']['price'];?>
- />K620</label>
-						<label><input type='radio' name='card' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K2200']['price'];?>
- />K2200</label>
-						<label><input type='radio' name='card' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K6000']['price'];?>
- />K6000</label>
-						<label><input type='radio' name='card' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['M6000']['price'];?>
- />M6000</label>
+					<!--<div id='cgtype'>
+						<h5>请选择计算卡：</h5>
+						<label><input type='radio' checked="checked" name='ccard' value=0 />不需要</label>
+						<label><input type='radio' name='ccard' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K20']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K20']['info'];?>
+</label>
+						<label><input type='radio' name='ccard' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K40']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['k40']['info'];?>
+</label>
+						<label><input type='radio' name='ccard' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K80']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['K80']['info'];?>
+</label>
+						<label><input type='radio' name='ccard' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['P100']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['P100']['info'];?>
+</label>
 					</div>
-					<div id='otgcount'>
-						<h5>请选择显卡数量：</h5>
-						<label><input type='number' name='otgcount' value=1 />块</label>
-					</div>
+					<div id='ccount' class='hidden'>
+						<h5>数量：</h5>
+						<label><input type='number' name='ccount' />块</label>
+					</div>-->
 					<div id='powertype'>
 						<h5>请选择电源大小：</h5>
-						<label><input type='radio' checked="checked" name='powerprice' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['W550']['price'];?>
- /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['W550']['info'];?>
+						<label><input type='radio' checked="checked" name='powerprice' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['W500']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['W500']['info'];?>
 </label>
-						<label><input type='radio' name='powerprice' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['W750']['price'];?>
+						<label><input type='radio' name='powerprice' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['W750']['name'];?>
  /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['W750']['info'];?>
 </label>
-						<label><input type='radio' name='powerprice' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['W1000']['price'];?>
+						<label><input type='radio' name='powerprice' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['W1000']['name'];?>
  /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['W1000']['info'];?>
+</label>
+						<label><input type='radio' name='powerprice' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['W1200']['name'];?>
+ /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['W1250']['info'];?>
 </label>
 					</div>
 					<div id='displaytype'>
 						<h5>请选择显示器：</h5>
-						<label><input type='radio' checked="checked" name='dispirce' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['IN23']['price'];?>
+						<label><input type='radio' name='disprice' value=0 />无</label>
+						<label><input type='radio' checked="checked" name='disprice' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['IN23']['name'];?>
  /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['IN23']['info'];?>
 </label>
-						<label><input type='radio' name='dispirce' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['IN27']['price'];?>
+						<label><input type='radio' name='disprice' value=<?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['IN27']['name'];?>
  /><?php echo $_smarty_tpl->tpl_vars['prj']->value['prices']['IN27']['info'];?>
 </label>
-						<label><input type='radio' name='dispirce' value=0 />无</label>
 					</div>
 					<input class='button small primary' type='submit' name='submit' value='计算价格'>
 					<a class='button small' href='<?php echo @constant('URL');?>

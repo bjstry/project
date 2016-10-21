@@ -53,8 +53,6 @@ $(function(){
 							<label><input type='radio' name='cputype' value='w3' />Intel Xeon E5-1680 V4 8核心 16线程 3.4Ghz 缓存20M</label> \
 						</div>"
 		);**/
-		var wsmem = $("div#wsmem").html();
-		$('#memsize').html(wsmem);
 		/**$('#memsize').html("<h5>请选择内存大小：</h5>\
 						<label><input type='radio' name='memsize' value='2' />32GB</label>\
 						<label><input type='radio' checked='checked' name='memsize' value='4' />64GB</label>\
@@ -97,6 +95,30 @@ $(function(){
 	$("input[name='hddtype'][value='2']").click(function(){
 		$("div#hddtype1").hide();
 		$("div#hddtype2").show();
+	});
+	$("input[name='ssdsize'][value=0]").click(function(){
+		$("div#ssdcount").hide();
+	});
+	$("input[name='ssdsize'][value!=0]").click(function(){
+		$("div#ssdcount").show();
+	});
+	$("input[name='gamecard'][value=0]").click(function(){
+		$("div#gamecount").hide();
+	});
+	$("input[name='gamecard'][value!=0]").click(function(){
+		$("div#gamecount").show();
+	});
+	$("input[name='gcard'][value=0]").click(function(){
+		$("div#gcount").hide();
+	});
+	$("input[name='gcard'][value!=0]").click(function(){
+		$("div#gcount").show();
+	});
+	$("input[name='ccard'][value=0]").click(function(){
+		$("div#ccount").hide();
+	});
+	$("input[name='ccard'][value!=0]").click(function(){
+		$("div#ccount").show();
 	});
 	$("input[value='s']").click(function(){
 		var whtml = $("div#scpu").html();

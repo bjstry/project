@@ -77,7 +77,6 @@ class SolutionC extends C{
 			$Multiple;
 			$boxwhere;
 			$cpucount;
-			
 			$userinfo = session('uinfo');
 			$departurl = getDepartment($userinfo['cid'],'url');
 			if($departurl=='Sale'){
@@ -89,21 +88,20 @@ class SolutionC extends C{
 				$prj['left'][] = array('name'=>'新增报价','url'=>URL."/$_GET[c]/AddPrice");
 				$prj['left'][] = array('name'=>'返回首页','url'=>URL);
 			}
-	
-			
 			foreach($prices as $val){
 				$newprices[$val['name']]=$val;
 			}
 			if($_POST['product_type']!='p'){
-				$Multiple=1.8;
+				$Multiple=1.85;
 				$srqcount=2;
 				$cpucount=2;
 				$boardwhere="X10DRLI";
-				if($_POST['otgcount']>1){
+				if($_POST['gamecount'] + $_POST['gcount'] >1 ){
+					//echo '显卡大于1';
 					$boardwhere = "X10DAI";
 				}
-				$memprice = $newprices['D416G']['price']*8;
-				if($_POST['memsize']>$memprice){
+				//$memprice = $newprices['D416G']['price']*8;
+				if($_POST['memcount']>8){
 					$boardwhere = "X10DAI";
 				}
 				$srqwhere="R17";
@@ -120,7 +118,7 @@ class SolutionC extends C{
 				$Multiple=1.5;
 				$srqcount=1;
 				$cpucount=1;
-				if($_POST['cputype']==$newprices['i6600k']['price'] or $_POST['cputype']==$newprices['i6700k']['price']){
+				if($_POST['cputype']=='i6600k' or $_POST['cputype']=='i6700k'){
 					$boardwhere = "Z170";
 					$srqwhere="DST";
 				}else{
@@ -133,24 +131,62 @@ class SolutionC extends C{
 			$srqprice = $srqcount*$newprices[$srqwhere]['price'];
 			$boxprice = $newprices[$boxwhere]['price'];
 			$dvdprice = $newprices['DVDRW']['price'];
-			$pricecount=$_POST['city']+$_POST['cputype']*2+$_POST['memsize']+$_POST['ssdsize']+$_POST['hddsize']*$_POST['hddcount']+$_POST['card']+$_POST['powerprice']+$boxprice+$board+$_POST['dispirce']+$newprices['UMOUSE']['price']+$dvdprice+$srqprice;
-			$prj['price']['count']=$pricecount*$Multiple;
+			
+			$pricecount=$_POST['city']+$newprices[$_POST['cputype']]['price']*$cpucount+$newprices[$_POST['memsize']]['price']*$_POST['memcount']+$newprices[$_POST['ssdsize']]['price']*$_POST['ssdcount']+$newprices[$_POST['hddsize']]['price']*$_POST['hddcount']+$newprices[$_POST['gamecard']]['price']*$_POST['gamecount']+$newprices[$_POST['gcard']]['price']*$_POST['gcount']+$newprices[$_POST['powerprice']]['price']+$boxprice+$board+$newprices[$_POST['disprice']]['price']+$newprices['UMOUSE']['price']+$dvdprice+$srqprice;
+			//print_r($_POST);
+			$prj['money']=$pricecount*$Multiple;
 			//echo $Multiple;
-			$prj['price']['cpu']=$_POST['cputype']*2;
+			
+			
+			$prj['price']['CPU']=array("name"=>$_POST['cputype'],"count"=>$cpucount,'price'=>$newprices[$_POST['cputype']]['price']);
+			$prj['price']['散热器']=array("name"=>$srqwhere,"count"=>$srqcount,"price"=>$newprices[$srqwhere]['price']);
+			$prj['price']['主板']=array("name"=>$boardwhere,"count"=>1,"price"=>$newprices[$boardwhere]['price']);
+			$prj['price']['内存']=array("name"=>$newprices[$_POST['memsize']]['info'],"count"=>$_POST['memcount'],'price'=>$newprices[$_POST['memsize']]['price']);
+			if(!$_POST['ssdsize']==0){
+				$prj['price']['固态硬盘']=array("name"=>$newprices[$_POST['ssdsize']]['info'],"count"=>$_POST['ssdcount'],'price'=>$newprices[$_POST['ssdsize']]['price']);
+			}
+			if(!$_POST['hddsize']==0){
+				$prj['price']['机械硬盘']=array("name"=>$newprices[$_POST['hddsize']]['info'],"count"=>$_POST['hddcount'],'price'=>$newprices[$_POST['hddsize']]['price']);
+			}
+			if(!$_POST['gamecard']==0){
+				$prj['price']['显卡']=array("name"=>$_POST['gamecard'],"count"=>$_POST['gamecount'],'price'=>$newprices[$_POST['gamecard']]['price']);
+			}
+			if(!$_POST['gcard']==0){
+				$prj['price']['图形卡']=array("name"=>$_POST['gcard'],"count"=>$_POST['gcount'],'price'=>$newprices[$_POST['gcard']]['price']);
+			}
+			$prj['price']['电源']=array("name"=>$newprices[$_POST['powerprice']]['info'],"count"=>1,'price'=>$newprices[$_POST['powerprice']]['price']);
+			
+			$prj['price']['机箱']=array("name"=>$newprices[$boxwhere]['info'],"count"=>1,"price"=>$newprices[$boxwhere]['price']);
+			
+			$prj['price']['键鼠']=array("name"=>$newprices['UMOUSE']['info'],"count"=>1,"price"=>$newprices['UMOUSE']['price']);
+			if(!$_POST['disprice']==0){
+				$prj['price']['显示器']=array("name"=>$newprices[$_POST['disprice']]['info'],"count"=>1,'price'=>$newprices[$_POST['disprice']]['price']);
+			}else{
+				echo '1111111111111111111111';
+			}
+			$prj['price']['光驱']=array("name"=>"DVD-RW","count"=>1,"price"=>$newprices["DVDRW"]['price']);
+			if(!$_POST['city']==0){
+				$prj['price']['其他'] = array("name"=>"运费","count"=>1,"price"=>$_POST['city']);
+			}
+			
+			
+			/**$prj['price']['cpu']=$newprices[$_POST['cputype']]['price']*2;
 			$prj['price']['board']=$board;
-			$prj['price']['ssd']=$_POST['ssdsize'];
-			$prj['price']['hdd']=$_POST['hddsize']*$_POST['hddcount'];
-			$prj['price']['power']=$_POST['powerprice'];
+			$prj['price']['ssd']=$newprices[$_POST['ssdsize']]['price']*$_POST['ssdcount'];
+			$prj['price']['hdd']=$newprices[$_POST['hddsize']]['price']*$_POST['hddcount'];
+			$prj['price']['power']=$newprices[$_POST['powerprice']]['price'];
 			$prj['price']['srq']=$srqprice;
 			$prj['price']['box']=$boxprice;
-			$prj['price']['mem']=$_POST['memsize'];
-			$prj['price']['card']=$_POST['card'];
+			$prj['price']['mem']=$newprices[$_POST['memsize']]['price']*$_POST['memcount'];
+			$prj['price']['gamecard']=$newprices[$_POST['gamecard']]['price']*$_POST['gamecount'];
+			$prj['price']['gcard']=$newprices[$_POST['gcard']]['price']*$_POST['gcount'];
 			$prj['price']['mouse']=$newprices['UMOUSE']['price'];
-			$prj['price']['display']=$_POST['dispirce'];
-			$prj['price']['dvd']=$dvdprice;
+			$prj['price']['display']=$newprices[$_POST['dispirce']]['price'];
+			$prj['price']['dvd']=$dvdprice;*/
 			
 			//$prj['price']['config']=array("CPU"=>$new);
-			print_r($prj['price']);
+			//print_r($_POST);
+			//print_r($prj['price']);
 			$prj['myjs'] = "<script src='"._P_."/js/solution.js'></script>";
 			$prj['title']='方案价-硕星信息，西安硕星信息技术有限公司';
 			$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";

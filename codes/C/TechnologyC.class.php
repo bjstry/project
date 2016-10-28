@@ -3,6 +3,27 @@ class TechnologyC extends C{
 	//public function __construct(){
 	//	echo 1;
 	//}
+	public function Sign(){
+		$class = M('class');
+		$parts = M('Parts');
+		$userinfo = session('uinfo');
+		$departurl = getDepartment($userinfo['cid'],'url');
+		if($departurl=='Sale'){
+			$prj['left'][] = array('name'=>'主页','url'=>URL."/$departurl");
+			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+		}else{
+			$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
+			$prj['left'][] = array('name'=>'项目管理','url'=>URL."/$_GET[c]/ProjectManager");
+			$prj['left'][] = array('name'=>'新增项目','url'=>URL."/$_GET[c]/Add");
+			$prj['left'][] = array('name'=>'档案管理','url'=>URL."/$_GET[c]/DocManager");
+			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+		}
+		$prj['myclass'] = $myclass;
+		$prj['title']='技术部-硕星信息，西安硕星信息技术有限公司';
+		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
+		$this->assign('prj',$prj);
+		$this->display();
+	}
 	public function Index(){
 		$departid=4;
 		$newmyclass;
@@ -148,7 +169,7 @@ class TechnologyC extends C{
 		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
 		
 		if(isset($_POST[submit])){
-			$prjs->where("id=$pid")->update("prjname1='$_POST[prjname1]',prjname2='$_POST[prjname2]',prjcustomer='$_POST[prjcustomer]',prjsaleman='$_POST[prjsaleman]',prjsalephone=$_POST[prjsalephone],prjstart='$_POST[prjstart]',prjstatus=$_POST[prjstatus]");
+			$prjs->where("id=$pid")->update("sn='$_POST[sn]',prjname1='$_POST[prjname1]',prjname2='$_POST[prjname2]',prjcustomer='$_POST[prjcustomer]',prjsaleman='$_POST[prjsaleman]',prjsalephone=$_POST[prjsalephone],prjstart='$_POST[prjstart]',prjstatus=$_POST[prjstatus]");
 			$this->url('更新成功','/Technology');
 		}
 		

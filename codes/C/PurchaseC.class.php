@@ -129,7 +129,11 @@ class PurchaseC extends C{
 	public function Logs(){
 		$logs = M('logs');
 		$user = M('user');
-		$prj['logsshow'] = $logs->where("uid=".$_SESSION['uinfo']['id'])->select();
+		if($_SESSION['uinfo']['id']==1){
+			$prj['logsshow'] = $logs->select();
+		}else{
+			$prj['logsshow'] = $logs->where("uid=".$_SESSION['uinfo']['id'])->select();
+		}
 		//$logs_arr = $prj['logs'];
 		foreach($prj['logsshow'] as $key=>$value){
 			//print_r($value);

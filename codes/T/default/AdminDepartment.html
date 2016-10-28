@@ -1,0 +1,60 @@
+				<div class='row'>
+					<div class='col col-12'>
+						<h4 class='text-center'>部门列表</h4>
+					</div>
+					<div class='col col-12'>
+						<table class='table'>
+							<tr>
+								<th>部门名称</th><th>上级部门</th><th>部门链接</th><th>功能</th><th>操作</th>
+							</tr>
+							{foreach $prj.departs as $val}
+							<tr>
+								<td>{$val.name}</td><td>{$val.fname}</td><td>{$val.url}</td><td>{foreach $prj.depart.function as $vaal}{$vaal.name} {/foreach}</td><td>{foreach $prj.depart.action as $vval}<a href='{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/action/{$vval.action}/id/{$val.id}'>{$vval.name}</a> {/foreach}</td>
+							</tr>
+							{/foreach}
+						</table>
+						
+						<h4 class='text-center'>{$prj.depart.edit}</h4>
+						<form class='form' action='' method='post'>
+							<div class='row'>
+								<div class='col col-10'>
+									<div class='row'>
+										<div class='col col-4'>
+											<div class='form-item'>
+												<label>部门名称</label>
+												<input type='text' name='dename' placeholder='部门名称' value='{$prj.depart.editrow.name}'>
+											</div>
+										</div>
+										<div class='col col-4'>
+											<div class='form-item'>
+												<label>链接地址</label>
+												<input type='text' name='deurl' placeholder='链接地址' value='{$prj.depart.editrow.url}'>
+											</div>
+										</div>
+										<div class='col col-4'>
+											<div class='form-item'>
+												<label>上级部门</label>
+												<select name='defid'>
+													<option value='0'>无</option>
+													{foreach $prj.departs as $val}
+													<option value='{$val.id}' {$val.select}>{$val.name}</option>
+													{/foreach}
+												</select>
+											</div>			
+										</div>
+									</div>
+								</div>
+								<div class='col col-2'>
+									<div class='form-item'>
+										<br>
+										<input class='button primary' type='submit' name='departedit' value={$prj.depart.type}>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -91,7 +91,7 @@ class SolutionC extends C{
 			foreach($prices as $val){
 				$newprices[$val['name']]=$val;
 			}
-			if($_POST['product_type']!='p'){
+			if($_POST['product_type']=='s'){
 				$Multiple=1.85;
 				$srqcount=2;
 				$cpucount=2;
@@ -105,16 +105,12 @@ class SolutionC extends C{
 					$boardwhere = "X10DAI";
 				}
 				$srqwhere="R17";
-				if($_POST['product_type']=='w'){
-					$srqcount=1;
-					$cpucount=1;
-				}
 				if($_POST['boxtype']==1){
 					$boxwhere='LZ9K';
 				}else if($_POST['boxtype']==2){
 					$boxwhere='LZ4550';
 				}
-			}else{
+			}else if($_POST['product_type']=='p'){
 				$Multiple=1.5;
 				$srqcount=1;
 				$cpucount=1;
@@ -126,6 +122,17 @@ class SolutionC extends C{
 					$srqwhere="XB400";
 				}
 				$boxwhere='GX900';
+			}else if($_POST['product_type']=='w'){
+				$Multiple=1.85;
+				$srqcount=1;
+				$cpucount=1;
+				$boardwhere="X10SRA";
+				$srqwhere="R17";
+				if($_POST['boxtype']==1){
+					$boxwhere='LZ9K';
+				}else if($_POST['boxtype']==2){
+					$boxwhere='LZ4550';
+				}
 			}
 			$board=$newprices[$boardwhere]['price'];
 			$srqprice = $srqcount*$newprices[$srqwhere]['price'];
@@ -220,10 +227,10 @@ class SolutionC extends C{
 		if(isset($_POST['submit'])){
 			$return = $price->where("name='$_POST[name]'")->find();
 			if(!empty($return)){
-				$price->where("name='$_POST[name]'")->update("cid=$_POST[class],price=$_POST[price],info='$_POST[info]'");
+				$price->where("name='$_POST[name]'")->update("cid=$_POST[class],price=$_POST[price],info='$_POST[info]',`desc`='$_POST[desc]'");
 				$this->url('更新成功！');
 			}else{
-				$price->insert("'',$_POST[class],'$_POST[name]',$_POST[price],'$_POST[info]'");
+				$price->insert("'',$_POST[class],'$_POST[name]',$_POST[price],'$_POST[info]','$_POST[desc]'");
 				$this->url('添加成功！');
 			}
 		}

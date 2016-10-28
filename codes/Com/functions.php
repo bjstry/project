@@ -19,6 +19,9 @@ function getDepartment($cid,$key){
 			}
 		}
 	}
+	if(!$return){
+		$return = '无';
+	}
 	return $return;
 }
 function getRename($id){

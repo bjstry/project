@@ -26,6 +26,7 @@ div#price div{
 }
 form div.partinfo{
 	position:relative;
+	left:10px;
 	width:900px;
 	display:none;
 }

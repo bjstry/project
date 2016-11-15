@@ -120,7 +120,9 @@ class AdminC extends C{
 	public function Department(){
 		$prj['title']='部门管理-硕星信息，西安硕星信息技术有限公司';
 		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
+		$prj['myjs'] = "<script type='text/javascript' src='".ROOT."/Public/default/admin.js'></script>";
 		
+		$myextend = M('de_extend');
 	
 		$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
 		$prj['left'][] = array('name'=>'部门管理','url'=>URL."/$_GET[c]/Department");
@@ -133,6 +135,8 @@ class AdminC extends C{
 		$prj['depart']['action'][] = array("action"=>"delete","name"=>"删除");
 		for($i=0;$i<count($row);$i++){
 			$row[$i]['fname']=getDepartment($row[$i]['fid'],'name');
+			$did=$row[$i][id];
+			$row[$i]['extend'] = $myextend->where("did=$did")->select();
 			if(!empty($_GET['id'])){
 				if($row[$i]['id']==getDepartment($_GET[id],'fid')){
 					$row[$i]['select']='selected';
@@ -146,7 +150,8 @@ class AdminC extends C{
 			$prj['depart']['editrow'] = $departrow;
 			if(isset($_POST['departedit'])){
 				$departs->where("id=$_GET[id]")->update("name='$_POST[dename]',url='$_POST[deurl]',fid=$_POST[defid]");
-				$this->url('修改成功！','/Admin/Department');
+				print_r($_POST['departedit']);
+				//$this->url('修改成功！','/Admin/Department');
 			}
 		}else{
 			$prj['depart']['edit']='部门添加';

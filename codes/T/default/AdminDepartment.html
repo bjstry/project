@@ -9,7 +9,7 @@
 							</tr>
 							{foreach $prj.departs as $val}
 							<tr>
-								<td>{$val.name}</td><td>{$val.fname}</td><td>{$val.url}</td><td>{foreach $prj.depart.function as $vaal}{$vaal.name} {/foreach}</td><td>{foreach $prj.depart.action as $vval}<a href='{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/action/{$vval.action}/id/{$val.id}'>{$vval.name}</a> {/foreach}</td>
+								<td>{$val.name}</td><td>{$val.fname}</td><td>{$val.url}</td><td>{foreach $val.extend as $vaal}<a href='{$smarty.const.URL}/{$val.url}/{$vaal.url}'>{$vaal.name}</a> {/foreach}</td><td>{foreach $prj.depart.action as $vval}<a href='{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/action/{$vval.action}/id/{$val.id}'>{$vval.name}</a> {/foreach}</td>
 							</tr>
 							{/foreach}
 						</table>
@@ -44,9 +44,13 @@
 										</div>
 									</div>
 								</div>
-								<div class='col col-2'>
+								<div class='col col-2 putextend'>
+									<br>
+									<br>
+									<a class='button de_extend'>添加功能</a>
+								</div>
+								<div class='col col-12'>
 									<div class='form-item'>
-										<br>
 										<input class='button primary' type='submit' name='departedit' value={$prj.depart.type}>
 									</div>
 								</div>

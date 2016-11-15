@@ -115,7 +115,14 @@ class TechnologyC extends C{
 			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
 			$prj['backurl']=URL.'/'.$_GET['c'];
 		}
-		$projects = $prjs->where("uid=$uid or prjsaleman='$userinfo[urename]'")->select();
+		//echo $uid;
+		if($uid!=1){
+			//echo 1;
+			$projects = $prjs->where("uid=$uid or prjsaleman='$userinfo[urename]'")->select();
+		}else{
+			//echo 2;
+			$projects = $prjs->select();
+		}
 		foreach($projects as $val){
 			$val['uid']=getRename($val[uid]);
 			$val['prjstatus']=getPjstatus($val[prjstatus]);
@@ -134,7 +141,9 @@ class TechnologyC extends C{
 		$prjs = M('projects');
 		$userinfo = session('uinfo');
 		$departurl = getDepartment($userinfo['cid'],'url');
-		if($departurl=='Sale'){
+		//echo $departurl;
+		$prjuid = getFieldValue('projects',array('id',$pid),'uid');
+		if($departurl!='Technology'){
 			$prj['left'][] = array('name'=>'主页','url'=>URL."/$departurl");
 			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
 			$prj['backurl']=URL.'/'.$departurl;
@@ -144,8 +153,19 @@ class TechnologyC extends C{
 			$prj['left'][] = array('name'=>'新增项目','url'=>URL."/$_GET[c]/Add");
 			$prj['left'][] = array('name'=>'档案管理','url'=>URL."/$_GET[c]/DocManager");
 			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
-			$prj[edit]='编辑';
+			//print_r($userinfo);
+			if($prjuid == $userinfo[id]){
+				$prj[edit]="<a href='".URL."/".$_GET[c]."/Prjedit/pid/$pid'>编辑</a>";
+				$prj[actionadd] = "<a href='".URL."/$_GET[c]/prjaca/pid/$_GET[pid]' class='button small primary'>增加</a>";
+			}
 			$prj['backurl']=URL.'/'.$_GET['c'];
+		}
+		
+		$myaction = M('prjaction');
+		$prj['actions'] = $myaction->where("pid=$pid")->select();
+		//print_r($prj['actions']);
+		for($i=0;$i<count($prj['actions']);$i++){
+			$prj['actions'][$i]['uid'] = getFieldValue('user',array('id',$prj[actions][$i][uid]),'urename');
 		}
 		$myprj = $prjs->where("id=$pid")->find();
 		$myprj['prjstatus']=getPjstatus($myprj[prjstatus]);
@@ -169,6 +189,9 @@ class TechnologyC extends C{
 		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
 		
 		if(isset($_POST[submit])){
+			if($_POST[prjstatus]==5){
+				$_POST['sn'] = getSN($pid); 
+			}
 			$prjs->where("id=$pid")->update("sn='$_POST[sn]',prjname1='$_POST[prjname1]',prjname2='$_POST[prjname2]',prjcustomer='$_POST[prjcustomer]',prjsaleman='$_POST[prjsaleman]',prjsalephone=$_POST[prjsalephone],prjstart='$_POST[prjstart]',prjstatus=$_POST[prjstatus]");
 			$this->url('更新成功','/Technology');
 		}
@@ -224,6 +247,33 @@ class TechnologyC extends C{
 		$prj['myprojects'] = $myprojects;
 		$prj['title'] = "配件领用-硕星系统";
 		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
+		$this->assign('prj',$prj);
+		$this->display();
+	}
+	public function Prjaca(){
+		if(!$_GET['pid']){
+			exit('feifafangwen');
+		}
+		$actions = M('prjaction');
+		
+		$user = M('projects');
+		$userinfo = session('uinfo');
+		$departurl = getDepartment($userinfo['cid'],'url');
+
+		$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
+		$prj['left'][] = array('name'=>'项目管理','url'=>URL."/$_GET[c]/ProjectManager");
+		$prj['left'][] = array('name'=>'新增项目','url'=>URL."/$_GET[c]/Add");
+		$prj['left'][] = array('name'=>'档案管理','url'=>URL."/$_GET[c]/DocManager");
+		$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+
+		$prj['title']='技术部-硕星信息，西安硕星信息技术有限公司';
+		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
+		
+		if($_POST['submit']){
+			//getprint_r($_POST);
+			$actions->insert("'',$userinfo[id],$_GET[pid],'$_POST[actime]','$_POST[accontent]',".mktime().",'$_POST[acremark]'");
+			$this->url('添加成功！','/Technology/ProjectManager');
+		}
 		$this->assign('prj',$prj);
 		$this->display();
 	}

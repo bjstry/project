@@ -176,8 +176,6 @@ class SolutionC extends C{
 			$prj['price']['键鼠']=array("name"=>$newprices['UMOUSE']['info'],"count"=>1,"price"=>$newprices['UMOUSE']['price']);
 			if(!$_POST['disprice']==0){
 				$prj['price']['显示器']=array("name"=>$newprices[$_POST['disprice']]['info'],"count"=>1,'price'=>$newprices[$_POST['disprice']]['price']);
-			}else{
-				echo '1111111111111111111111';
 			}
 			$prj['price']['光驱']=array("name"=>"DVD-RW","count"=>1,"price"=>$newprices["DVDRW"]['price']);
 			if(!$_POST['city']==0){
@@ -233,6 +231,17 @@ class SolutionC extends C{
 				$price->insert("'',$_POST[class],'$_POST[name]',$_POST[price],'$_POST[info]','$_POST[desc]'");
 				$this->url('添加成功！');
 			}
+		}
+		
+		if(!empty($_GET['id'])){
+			for($i=0;$i<count($prj['myclass']);$i++){
+				//echo $prj['myclass'][$i]['cid'].'===='.getClass($_GET['id'],'cid').'<br>';
+				if($prj['myclass'][$i]['cid']==getClass($_GET['id'],'cid')){
+					$prj['myclass'][$i]['select'] = 'selected';
+				}
+			}
+			$prj['myclass']['price']=$price->where("id=$_GET[id]")->find();
+			$prj['myclass']['price']['back'] = "<input class='button small' onClick=history.go(-1) type='button' value='返回'>";
 		}
 
 		$this->assign('prj',$prj);

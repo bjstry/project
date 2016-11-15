@@ -1,6 +1,9 @@
 <?php
-function getDepartment($cid,$key){
-	$depart = M('departs');
+function getDepartment($cid,$key,$field){
+	if(empty($field)){
+		$field = 'departs';
+	}
+	$depart = M("$field");
 	$return;
 	$row;
 	if($cid==0){
@@ -21,6 +24,25 @@ function getDepartment($cid,$key){
 	}
 	if(!$return){
 		$return = '无';
+	}
+	return $return;
+}
+function getFieldValue($table,$key,$rekey){
+	$tablerow = M($table);
+	$return = $tablerow->where("$key[0]='$key[1]'")->find($rekey);
+	return $return[$rekey];
+}
+function getClass($cid,$key){
+	//echo $cid.'--'.$key.'<br>';
+	$myclass = M('class');
+	$myparts = M('partprice');
+	$return;
+	$mypart = $myparts->where("id=$cid")->find();
+	$row = $myclass->where("cid=$mypart[cid]")->find();
+	if(empty($key)){
+		$return = $row;
+	}else{
+		$return = $row[$key];
 	}
 	return $return;
 }
@@ -66,5 +88,67 @@ function getPjstatus($id){
 			break;
 	}
 	return $return;
+}
+function getSN($pid){
+	$part = M('parts');
+	$project = M('projects');
+	$myproject = $project->where("id=$pid")->find();
+	if(empty($myproject['sn'])){
+		$parts = $part->where("project=$pid")->select();
+		$title = 'SX';
+		for($i=0;$i<count($parts);$i++){
+			if($parts[$i]['cid']==1){
+				$cpuname=$parts[$i]['name'];
+				$cpuinfo=$parts[$i]['model'];
+				if(strstr($cpuinfo,'I')){
+					$type='P';
+				}else{
+					if(strstr($cpuinfo,'16')){
+						$type='W';
+					}else{
+						$type='S';
+					}
+				}
+				break;
+			}
+			if($parts[$i]['cid']==11){
+				if($parts[$i]['name']=='NVIDIA'){
+					$graphics = 'N';
+				}else{
+					$graphics = 'A';
+				}
+			}
+			if($parts[$i]['cid']==32){
+				$ssd='S';
+			}
+		}
+		if($type=='P'){
+			$cpuinfo = $cpuinfo[3].$cpuinfo[4];
+		}else{
+			$cpuinfo = $cpuinfo[5].$cpuinfo[6];
+		}
+		$prodate = date('ynd');
+		$ssd;
+		$pronumber;
+		$key1 = $type;
+		if($cpuname=='Intel'){
+			$key2 = 'I';
+		}else{
+			$key2 = 'A';
+		}
+		$key3 = $cpuinfo;
+		if(empty($ssd)){
+			$key4 = 0;
+		}else{
+			$key4 = 'S';
+		}
+		$key5 = $graphics;
+		$key6 = $prodate;
+		$key7 = $pid;
+		$sn = $title.$key1.$key2.$key3.$key4.$key5.$key6.$key7;
+	}else{
+		$sn = $myproject['sn'];
+	}
+	return $sn;
 }
 ?>

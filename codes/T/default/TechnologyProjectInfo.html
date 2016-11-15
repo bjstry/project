@@ -1,6 +1,6 @@
 			<div class='row'>
 				<div class='col col-12'>
-					<h4>{$prj.myprj.prjname1}{$prj.myprj.prjcustomer} &nbsp;序列号: {$prj.myprj.sn}&nbsp;<small>项目开始时间: {$prj.myprj.prjstart}</small> &nbsp;<a href='{$smarty.const.URL}/{$smarty.get.c}/Prjedit/pid/{$smarty.get.pid}'>{$prj.edit}</a>&nbsp;<a onClick=window.print() href=''><small>打印</small></a></h4>
+					<h4>{$prj.myprj.prjname1}{$prj.myprj.prjcustomer} &nbsp;序列号: {$prj.myprj.sn}&nbsp;<small>项目开始时间: {$prj.myprj.prjstart} &nbsp; {$prj.edit} &nbsp;<a onClick=window.print() href=''>打印</small></a></h4>
 				</div>
 				<div class='col col-3'>
 					目前状态: {$prj.myprj.prjstatus}
@@ -16,10 +16,17 @@
 				</div>
 				<div class='col col-12'>
 					<br>
-					<h5>操作记录</h5>
-					20161012 硬件出库，缺少主板
-					<br>20161013 硬件出库完成，开始组装
-					<br>20161014 硬件组装完成，开始安装windows操作系统，安装ansys软件
+					<h5>操作记录 <small>{$prj.actionadd}</small></h5>
+					<table class='flat'>
+						<tr>
+							<th>操作时间</th><th>操作记录</th><th>操作事故</th><th>操作人</td>
+						</tr>
+						{foreach $prj.actions as $val}
+						<tr>
+							<td>{$val.adate}</td><td>{$val.avalue}</td><td>{$val.remark}</td><td>{$val.uid}</td>
+						</tr>
+						{/foreach}
+					</table>
 				</div>
 				<div class='col col-12'>
 					<br>

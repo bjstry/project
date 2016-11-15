@@ -3,14 +3,15 @@
 						<form action='' method='post'>
 							<select name='class'>
 								{foreach $prj.myclass as $val}
-								<option value='{$val.cid}'>{$val.cname}</option>
+								<option value='{$val.cid}' {$val.select}>{$val.cname}</option>
 								{/foreach}
-								<input class='col col-12' type='text' name='name' placeholder='请输入型号'>
-								<input class='col col-12' type='text' name='price' placeholder='请输入价格'>
-								<input class='col col-12' type='text' name='info' placeholder='请输入描述'>
-								<input class='col col-12' type='text' name='desc' placeholder='请输入方案信息'>
+								<input class='col col-12' type='text' name='name' value='{$prj.myclass.price.name}' placeholder='请输入型号'>
+								<input class='col col-12' type='text' name='price' value='{$prj.myclass.price.price}' placeholder='请输入价格'>
+								<input class='col col-12' type='text' name='info' value='{$prj.myclass.price.info}' placeholder='请输入描述'>
+								<input class='col col-12' type='text' name='desc' value='{$prj.myclass.price.desc}' placeholder='请输入方案信息'>
 								<div>
 									<input class='button primary small' type='submit' name='submit' value='{$prj.subtype}'>
+									{$prj.myclass.price.back}
 								</div>
 							</select>
 						</form>

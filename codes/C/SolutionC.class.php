@@ -28,6 +28,26 @@ class SolutionC extends C{
 		$this->assign('prj',$prj);
 		$this->display();
 	}
+	public function Solution(){
+		$userinfo = session('uinfo');
+		$departurl = getDepartment($userinfo['cid'],'url');
+		if($departurl=='Sale'){
+			$prj['left'][] = array('name'=>'主页','url'=>URL."/$departurl");
+			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+		}else{
+			$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
+			$prj['left'][] = array('name'=>'价格管理','url'=>URL."/$_GET[c]/PartPrice");
+			$prj['left'][] = array('name'=>'新增报价','url'=>URL."/$_GET[c]/AddPrice");
+			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+		}
+		$prj['myjs'] = "<script src='"._P_."/js/solution.js'></script>";
+		$prj['title']='方案部-硕星信息，西安硕星信息技术有限公司';
+		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
+		$partprice = M('partprice');
+		
+		$this->assign('prj',$prj);
+		$this->display();
+	}
 	public function PartPrice(){
 		$prj['title']='价格管理-硕星信息，西安硕星信息技术有限公司';
 		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
@@ -156,9 +176,10 @@ class SolutionC extends C{
 			if(!$_POST['ssdsize']==0){
 				$prj['price']['固态硬盘']=array("name"=>$newprices[$_POST['ssdsize']]['info'],"count"=>$_POST['ssdcount'],'price'=>$newprices[$_POST['ssdsize']]['price']);
 			}
+
 			if(!$_POST['hddsize']==0){
-				if($_POST['hddtype'==1]){
-					$prj['price']['机械硬盘']=array("name"=>$newprices[$_POST['hddsize']]['info'],"count"=>$_POST['hddcount'],'price'=>$newprices[$_POST['hddsize']]['price']);
+				if($_POST['hddtype']==1){
+					$prj['price']['机械硬盘']=array("name"=>$newprices[$_POST['hddsize']]['info'].' 消费级硬盘',"count"=>$_POST['hddcount'],'price'=>$newprices[$_POST['hddsize']]['price']);
 				}else{
 					$prj['price']['机械硬盘']=array("name"=>$newprices[$_POST['hddsize']]['info'].' 企业级硬盘',"count"=>$_POST['hddcount'],'price'=>$newprices[$_POST['hddsize']]['price']);
 				}
@@ -182,7 +203,12 @@ class SolutionC extends C{
 				$prj['price']['其他'] = array("name"=>"运费","count"=>1,"price"=>$_POST['city']);
 			}
 			
-			
+			//for($i=0;$i<count($prj['price']);$i++){
+				//if($userinfo['gid'] !=0 and $userinfo['cid'] != 7){
+					//$a['price'] = '***';
+					//echo 1;
+				//}
+			//}
 			/**$prj['price']['cpu']=$newprices[$_POST['cputype']]['price']*2;
 			$prj['price']['board']=$board;
 			$prj['price']['ssd']=$newprices[$_POST['ssdsize']]['price']*$_POST['ssdcount'];

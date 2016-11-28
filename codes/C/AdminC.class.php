@@ -93,24 +93,29 @@ class AdminC extends C{
 		$this->display();
 	}
 	public function UserChange(){
-		$myuser = M('User');
-		$user = $_SESSION['uinfo'];
-		$prj['user'] = $user;
-		if(isset($_POST['submit'])){
-			if(md5($_POST['oldupass']) == $user['upass']){
-				if($_POST['newupass'] == $_POST['newreupass']){
-					if($_POST['newupass'] != $_POST['oldupass']){
-						$myuser->where("id=$user[id]")->update("upass='".md5($_POST['newupass'])."',umail='$_POST[uemail]',uphone=$_POST[uphone],urename='$_POST[urename]'");
-						$this->url('修改成功！','/Index/LoginOut');
+		if($_GET['uid']){
+			$uid = $_GET['uid'];
+			$myuser = M('User');
+			$user = $myuser->where("id=$uid")->find();
+			$prj['user'] = $user;
+			if(isset($_POST['submit'])){
+				if(md5($_POST['oldupass']) == $user['upass']){
+					if($_POST['newupass'] == $_POST['newreupass']){
+						if($_POST['newupass'] != $_POST['oldupass']){
+							$myuser->where("id=$uid")->update("upass='".md5($_POST['newupass'])."',umail='$_POST[uemail]',uphone=$_POST[uphone],urename='$_POST[urename]'");
+							$this->url('修改成功！','/Admin/User');
+						}else{
+							$this->url('新旧密码不能一样!');
+						}
 					}else{
-						$this->url('新旧密码不能一样!');
+						$this->url('两次密码不一致！');
 					}
 				}else{
-					$this->url('两次密码不一致！');
+					$this->url('密码错误!');
 				}
-			}else{
-				$this->url('密码错误!');
 			}
+		}else{
+			exit('非法访问!');
 		}
 		$prj['title']='用户管理-硕星信息，西安硕星信息技术有限公司';
 		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";

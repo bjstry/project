@@ -36,3 +36,10 @@ form:hover div.partinfo{
 .hidden{
 	display:none;
 }
+#ptable td{
+	border:1px solid #999;
+	padding:12px;
+}
+#ptable td.title{
+	background:#999;
+}

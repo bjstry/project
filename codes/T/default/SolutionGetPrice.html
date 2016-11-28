@@ -6,7 +6,7 @@
 									<th>配件</th><th>型号</th><th>数量</th><th>单价(元)</th><th>合计(元)</th>
 								</tr>
 								{foreach $prj.price as $key=>$val}
-								<tr><td>{$key}</td><td>{$val.name}</td><td>{$val.count}</td><td>{$val.price}</td><td>{$val.price*$val.count}</td></tr>
+								<tr><td>{$key}</td><td>{$val.name}</td><td>{$val.count}</td><td>{if $smarty.session.uinfo.gid eq 0 or $smarty.session.uinfo.cid eq 7 or $smarty.session.uinfo.cid eq 4}{$val.price}{else}***{/if}</td><td>***</td></tr>
 								{/foreach}
 							</table>
 						</div>

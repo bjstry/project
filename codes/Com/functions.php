@@ -109,9 +109,10 @@ function getSN($pid){
 						$type='S';
 					}
 				}
-				break;
-			}
+			}	
+			
 			if($parts[$i]['cid']==11){
+			
 				if($parts[$i]['name']=='NVIDIA'){
 					$graphics = 'N';
 				}else{
@@ -122,6 +123,7 @@ function getSN($pid){
 				$ssd='S';
 			}
 		}
+		$key1 = $type;
 		if($type=='P'){
 			$cpuinfo = $cpuinfo[3].$cpuinfo[4];
 		}else{
@@ -130,7 +132,6 @@ function getSN($pid){
 		$prodate = date('ynd');
 		$ssd;
 		$pronumber;
-		$key1 = $type;
 		if($cpuname=='Intel'){
 			$key2 = 'I';
 		}else{
@@ -141,6 +142,12 @@ function getSN($pid){
 			$key4 = 0;
 		}else{
 			$key4 = 'S';
+		}
+		if(empty($key1)){
+			$key1 = 'S';
+		}
+		if(empty($key3)){
+			$key3 = '00';
 		}
 		$key5 = $graphics;
 		$key6 = $prodate;

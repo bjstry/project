@@ -1,65 +1,21 @@
 $(function(){
+	var gcounthtml = $("div#gcount").html();
+	var gamecounthtml = $("div#gamecount").html();
+	$("div#gcount").html("");
+	$("div#gamecount").html("");
 	$("input[value='p']").click(function(){
-		/**$("#cputype").html("<div> \
-						<label><input type='radio' name='cputype' value='p1' />Intel Core I3 6100  2核心 4线程 3.7Ghz 缓存3M</label> \
-						</div> \
-						<div> \
-							<label><input type='radio' name='cputype' value='p2' />Intel Core I3 6300  2核心 4线程 3.8Ghz 缓存4M</label> \
-						</div> \
-						<div> \
-							<label><input type='radio' name='cputype' value='p21' />Intel Core I5 6400  4核心 4线程 3.3Ghz 缓存6M</label> \
-						</div> \
-						<div> \
-							<label><input type='radio' name='cputype' value='p22' />Intel Core I5 6500  4核心 4线程 3.6Ghz 缓存6M</label> \
-						</div> \
-						<div> \
-							<label><input type='radio' name='cputype' value='p23' />Intel Core I5 6600  4核心 4线程 3.9Ghz 缓存6M</label> \
-						</div> \
-						<div> \
-							<label><input type='radio' name='cputype' value='p31' />Intel Core I7 6700  4核心 8线程 4.0Ghz 缓存8M</label> \
-						</div> \
-						<div> \
-							<label><input type='radio' name='cputype' value='p32' />Intel Core I7 6700K 4核心 8线程 4.0Ghz 缓存8M</label> \
-						</div>"
-		);**/
+
 		var pchtml = $("div#pccpu").html();
 		$("#cputype").html(pchtml);
 		
 		var pcmem = $("div#pcmem").html();
 		$('#memsize').html(pcmem);
-		/**$('#memsize').html("<h5>请选择内存大小：</h5>\
-						<label><input type='radio' name='memsize' value='1' />8GB</label>\
-						<label><input type='radio' name='memsize' value='2' />16GB</label>\
-						<label><input type='radio' checked='checked' name='memsize' value='4' />32GB</label>\
-						<label><input type='radio' name='memsize' value='8' />64GB</label>"
-		);**/
+
 	});
 	$("input[value='w']").click(function(){
 		var whtml = $("div#wcpu").html();
 		$("#cputype").html(whtml);
-		/**$("#cputype").html("<div> \
-						<label><input type='radio' name='cputype' value='w1' />Intel Xeon E5-1620 V4  4核心 8线程 3.5Ghz 缓存10M</label> \
-						</div> \
-						<div> \
-							<label><input type='radio' name='cputype' value='w2' />Intel Xeon E5-1630 V4  4核心 8线程 3.7Ghz 缓存10M</label> \
-						</div> \
-						<div> \
-							<label><input type='radio' name='cputype' value='w2' />Intel Xeon E5-1650 V4  6核心 12线程 3.6Ghz 缓存15M</label> \
-						</div> \
-						<div> \
-							<label><input type='radio' name='cputype' value='w2' />Intel Xeon E5-1660 V4  8核心 16线程 3.2Ghz 缓存20M</label> \
-						</div> \
-						<div> \
-							<label><input type='radio' name='cputype' value='w3' />Intel Xeon E5-1680 V4 8核心 16线程 3.4Ghz 缓存20M</label> \
-						</div>"
-		);**/
-		/**$('#memsize').html("<h5>请选择内存大小：</h5>\
-						<label><input type='radio' name='memsize' value='2' />32GB</label>\
-						<label><input type='radio' checked='checked' name='memsize' value='4' />64GB</label>\
-						<label><input type='radio' name='memsize' value='8' />128GB</label>\
-						<label><input type='radio' name='memsize' value='16' />256GB</label>\
-						<label><input type='radio' name='memsize' value='32' />512GB</label>"
-		);**/
+
 	});
 	$("input[name='hddsize'][value='0']").click(function(){
 		$("div#hddtype").hide();
@@ -102,18 +58,21 @@ $(function(){
 	$("input[name='ssdsize'][value!=0]").click(function(){
 		$("div#ssdcount").show();
 	});
-	$("input[name='gamecard'][value=0]").click(function(){
-		$("div#gamecount").hide();
+	$("select.gamecard").change(function(){
+		if(this.value=='0'){
+			$("div#gamecount").html("");
+		}else{
+			$("div#gamecount").html(gamecounthtml);
+		}
 	});
-	$("input[name='gamecard'][value!=0]").click(function(){
-		$("div#gamecount").show();
+	$("select.gcard").change(function(){
+		if(this.value=='0'){
+			$("div#gcount").html("");
+		}else{
+			$("div#gcount").html(gcounthtml);
+		}
 	});
-	$("input[name='gcard'][value=0]").click(function(){
-		$("div#gcount").hide();
-	});
-	$("input[name='gcard'][value!=0]").click(function(){
-		$("div#gcount").show();
-	});
+
 	$("input[name='ccard'][value=0]").click(function(){
 		$("div#ccount").hide();
 	});

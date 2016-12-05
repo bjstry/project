@@ -115,13 +115,48 @@ class TechnologyC extends C{
 			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
 			$prj['backurl']=URL.'/'.$_GET['c'];
 		}
-		//echo $uid;
-		if($uid!=1){
-			//echo 1;
-			$projects = $prjs->where("uid=$uid or prjsaleman='$userinfo[urename]'")->select();
+		if($userinfo['id']==1){
+			$projects = $prjs->where("prjstatus!=7")->select();
+		}else if($userinfo['cid']==4 && $userinfo['gid']==0){
+			$projects = $prjs->where("prjstatus!=7")->select();
 		}else{
-			//echo 2;
-			$projects = $prjs->select();
+			$projects = $prjs->where("(uid=$uid or prjsaleman='$userinfo[urename]') and prjstatus!=7")->select();
+		}
+		foreach($projects as $val){
+			$val['uid']=getRename($val[uid]);
+			$val['prjstatus']=getPjstatus($val[prjstatus]);
+			$myprojects[]=$val;
+		}
+		$prj['myprojects'] = $myprojects;
+		$this->assign('prj',$prj);
+		$this->display();
+	}
+	public function DocManager(){
+		$myprojects;
+		$prj['title']='技术部-硕星信息，西安硕星信息技术有限公司';
+		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
+		$prjs = M('projects');
+		$uid=$_SESSION[uinfo][id];
+		$userinfo = session('uinfo');
+		$departurl = getDepartment($userinfo['cid'],'url');
+		if($departurl=='Sale'){
+			$prj['left'][] = array('name'=>'主页','url'=>URL."/$departurl");
+			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+			$prj['backurl']=URL.'/'.$departurl;
+		}else{
+			$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
+			$prj['left'][] = array('name'=>'项目管理','url'=>URL."/$_GET[c]/ProjectManager");
+			$prj['left'][] = array('name'=>'新增项目','url'=>URL."/$_GET[c]/Add");
+			$prj['left'][] = array('name'=>'档案管理','url'=>URL."/$_GET[c]/DocManager");
+			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+			$prj['backurl']=URL.'/'.$_GET['c'];
+		}
+		if($userinfo['id']==1){
+			$projects = $prjs->where("prjstatus=7")->select();
+		}else if($userinfo['cid']==4 && $userinfo['gid']==0){
+			$projects = $prjs->where("prjstatus=7")->select();
+		}else{
+			$projects = $prjs->where("(uid=$uid or prjsaleman='$userinfo[urename]') and prjstatus=7")->select();
 		}
 		foreach($projects as $val){
 			$val['uid']=getRename($val[uid]);
@@ -141,7 +176,6 @@ class TechnologyC extends C{
 		$prjs = M('projects');
 		$userinfo = session('uinfo');
 		$departurl = getDepartment($userinfo['cid'],'url');
-		//echo $departurl;
 		$prjuid = getFieldValue('projects',array('id',$pid),'uid');
 		if($departurl!='Technology'){
 			$prj['left'][] = array('name'=>'主页','url'=>URL."/$departurl");

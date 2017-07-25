@@ -162,9 +162,9 @@ function getSN($pid){
 	}
 	return $sn;
 }
-/*(function getArr($key){
+function getArr($key){
 	if(is_array($key)){
-		$array = M("$key[0]")1;
+		$array = M("$key[0]");
 		$return = $array->where("$key[1] = '$key[2]'")->find();
 		if($key[3]){
 			return $return["$key[3]"];
@@ -175,5 +175,5 @@ function getSN($pid){
 		die('参数错误！ --function getArr');
 	}
 	
-}*/
+}
 ?>

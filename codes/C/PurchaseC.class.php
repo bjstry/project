@@ -158,9 +158,9 @@ class PurchaseC extends C{
 		$logs = M('logs');
 		$user = M('user');
 		if($_SESSION['uinfo']['gid']==0){
-			$prj['logsshow'] = $logs->where("type='出库' or type='入库'")->order('id')->select("$pagecl,$pagenb");
+			$prj['logsshow'] = $logs->where("type='出库' or type='入库' or type='撤销入库'")->order('id')->select("$pagecl,$pagenb");
 		}else{
-			$prj['logsshow'] = $logs->where("(type='出库' or type='入库') and uid=".$_SESSION['uinfo']['id'])->select("$pagecl,$pagenb");
+			$prj['logsshow'] = $logs->where("(type='出库' or type='入库' or type='撤销入库') and uid=".$_SESSION['uinfo']['id'])->select("$pagecl,$pagenb");
 		}
 		//$logs_arr = $prj['logs'];
 		foreach($prj['logsshow'] as $key=>$value){
@@ -203,12 +203,11 @@ class PurchaseC extends C{
 		}else{
 			$logs = M('logs');
 			$parts = M('parts');
-			$parts->where("id=$_GET[pid]")->update("location=0");
-			getFieldValue('parts',array("id,$_GET[pid]"),'count');
-			$this->url('撤销入库成功！','/Purchase');
-			//if($logs->insert('id,type,count,date,uid,content,remark',"'','撤销入库',$_POST[count],'".date('Y-m-d H:i:s')."',$_SESSION[uid],'$_POST[name] $_POST[model] $_POST[cap]$_POST[cap_type] SN:$_POST[sn]',''")){
-				//
-			//}
+			$thepart = getArr(array('parts','id',$_GET['pid']));
+			if($logs->insert('id,type,count,date,uid,content,remark',"'','撤销入库',$thepart[count],'".date('Y-m-d H:i:s')."',$_SESSION[uid],'$thepart[name] $thepart[model] $thepart[cap] $thepart[cap_type] SN:$thepart[sn]',''")){
+				$parts->where("id=$_GET[pid]")->update("location=0");
+				$this->url('撤销入库成功！','/Purchase');
+			}
 		}
 	}
 	
@@ -240,7 +239,7 @@ class PurchaseC extends C{
 			$myexparts = $exparts->where("eid=$_GET[eid]")->select();
 			$myprice;
 			foreach($myexparts as $val){
-				$mypart = $parts->where("id=$val[pid]")->select();
+				$mypart = $parts->where("id=$val[pid] and location!=0")->select();
 				//print_r($mypart);
 				$myprice+=$mypart[0]['price']*$mypart[0]['count'];
 			}
@@ -282,6 +281,7 @@ class PurchaseC extends C{
 		$parts = M('parts');
 		$exppt = M('exppart');
 		$explist = M('explist');
+		$tmpparts;
 		$prj['title'] = "报销-硕星系统";
 		$prj['logs'] = "<li><a href='".URL."/Purchase/Logs'>操作记录</a></li>";
 		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
@@ -292,10 +292,16 @@ class PurchaseC extends C{
 			//print_r($prj['exparts']);
 			for($i=0;$i<count($myexppt);$i++){
 				$mywhere = $myexppt[$i][pid];
-				$prj['exparts'][] = $parts->where("id=$mywhere")->find();
+				$tmpparts[] = $parts->where("id=$mywhere")->find();
 			}
 			
-			for($i=0;$i<count($myexppt);$i++){
+			for($i=0;$i<count($tmpparts);$i++){
+				if($tmpparts[$i]['location']!=0){
+					$prj['exparts'][] = $tmpparts[$i];
+				}
+			}
+			
+			for($i=0;$i<count($prj['exparts']);$i++){
 				$prj['exparts'][$i]['cid'] = getFieldValue('class',array('cid',$prj['exparts'][$i][cid]),'cname');
 				if($prj['exparts'][$i][kpstatus] == 0){
 					$prj['exparts'][$i][kpstatus] = '无票';
@@ -303,8 +309,6 @@ class PurchaseC extends C{
 					$prj['exparts'][$i][kpstatus] = '有票';
 				}
 			}
-			
-			//print_r($prj['exparts']);
 		}else{
 			exit('非法访问！');
 		}

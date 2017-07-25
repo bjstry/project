@@ -1,5 +1,11 @@
 <?php
 class IndexC extends C{
+	protected $_arrinit = ['Login','LoginCheck'];
+	public function Speekinit(){
+		if(empty($_SESSION['uid'])){
+			$this->url('请登录','/index/login');
+		}
+	}
 	public function Index(){
 		if(!file_exists(PATH.'/install.sock')){
 			$this->url('尚未安装','/Install/Index');

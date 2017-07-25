@@ -4,10 +4,9 @@
 		                    <li class="prev"><a href="{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/page/{$prj.mypages.pre.url}">&larr;</a></li>
 		                    <li>
 		                        <ul>
-		                        	{foreach $prj.mypages.con as $value}
+		                            {foreach $prj.mypages.con as $value}
 		                        	<li class='{$value.0}'><a href="{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/page/{$value.1}">{$value.1}</a></li>
 		                        	{/foreach}
-	
 		                        </ul>
 		                    </li>
 		                    <li class="next"><a href="{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/page/{$prj.mypages.nex.url}">&rarr;</a></li>

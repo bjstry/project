@@ -1,5 +1,61 @@
 <?php
 class SolutionC extends C{
+	public function Speekinit(){
+		if(empty($_SESSION['uid'])){
+			$this->url('请登录','/index/login');
+		}
+	}
+	public function Logs(){
+		$pagenb = 10;
+		$pagekey = 'page';
+		if(empty($_GET[$pagekey])){
+			$_GET[$pagekey] = 1;
+		}
+		$page = $_GET[$pagekey];
+		$pagecl = ($page-1)*$pagenb;
+		$logs = M('logs');
+		$user = M('user');
+		$userinfo = session('uinfo');
+		$departurl = getDepartment($userinfo['cid'],'url');
+		if($departurl=='Sale'){
+			$prj['left'][] = array('name'=>'主页','url'=>URL."/$departurl");
+			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+		}else{
+			$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
+			$prj['left'][] = array('name'=>'价格管理','url'=>URL."/$_GET[c]/PartPrice");
+			$prj['left'][] = array('name'=>'新增报价','url'=>URL."/$_GET[c]/AddPrice");
+			if($userinfo['gid']==0){
+				$prj['left'][] = array('name'=>'操作日志','url'=>URL."/$_GET[c]/Logs");
+			}
+			$prj['left'][] = array('name'=>'返回功能区','url'=>URL);
+		}
+
+		$prj['title']='方案部-硕星信息，西安硕星信息技术有限公司';
+		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
+		
+		if($_SESSION['uinfo']['gid']==0){
+			$prj['logsshow'] = $logs->where("type='更新' or type='添加'")->order('id')->select("$pagecl,$pagenb");
+		}else{
+			$prj['logsshow'] = $logs->where("(type='更新' or type='添加') and uid=".$_SESSION['uinfo']['id'])->select("$pagecl,$pagenb");
+		}
+		//$logs_arr = $prj['logs'];
+		foreach($prj['logsshow'] as $key=>$value){
+			//print_r($value);
+			$userinfo = $user->where("id=$value[uid]")->find();
+			//print_r($userinfo);
+			$value['uid'] = $userinfo['urename'];
+			$prj['logsshow'][$key] = $value;
+			//$logs_arr[uid] = $userinfo['uname'];
+		}
+		//$prj['logs'] = $logs_arr; 
+		$mypages = $logs->pageint('',$pagenb,$pagekey,'','');
+		$prj['title'] = "操作记录-硕星系统";
+		$prj['logs'] = "<li><a href='".URL."/Purchase/Logs'>操作记录</a></li>";
+		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
+		$prj['mypages'] = $mypages;
+		$this->assign('prj',$prj);
+		$this->display();
+	}
 	public function Index(){
 		$userinfo = session('uinfo');
 		$departurl = getDepartment($userinfo['cid'],'url');
@@ -10,7 +66,10 @@ class SolutionC extends C{
 			$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
 			$prj['left'][] = array('name'=>'价格管理','url'=>URL."/$_GET[c]/PartPrice");
 			$prj['left'][] = array('name'=>'新增报价','url'=>URL."/$_GET[c]/AddPrice");
-			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+			if($userinfo['gid']==0){
+				$prj['left'][] = array('name'=>'操作日志','url'=>URL."/$_GET[c]/Logs");
+			}
+			$prj['left'][] = array('name'=>'返回功能区','url'=>URL);
 		}
 		$prj['myjs'] = "<script src='"._P_."/js/solution.js'></script>";
 		$prj['title']='方案部-硕星信息，西安硕星信息技术有限公司';
@@ -38,7 +97,7 @@ class SolutionC extends C{
 			$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
 			$prj['left'][] = array('name'=>'价格管理','url'=>URL."/$_GET[c]/PartPrice");
 			$prj['left'][] = array('name'=>'新增报价','url'=>URL."/$_GET[c]/AddPrice");
-			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+			$prj['left'][] = array('name'=>'返回功能区','url'=>URL);
 		}
 		$prj['myjs'] = "<script src='"._P_."/js/solution.js'></script>";
 		$prj['title']='方案部-硕星信息，西安硕星信息技术有限公司';
@@ -55,7 +114,10 @@ class SolutionC extends C{
 		$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
 		$prj['left'][] = array('name'=>'价格管理','url'=>URL."/$_GET[c]/PartPrice");
 		$prj['left'][] = array('name'=>'新增报价','url'=>URL."/$_GET[c]/AddPrice");
-		$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+		if($userinfo['gid']==0){
+			$prj['left'][] = array('name'=>'操作日志','url'=>URL."/$_GET[c]/Logs");
+		}
+		$prj['left'][] = array('name'=>'返回功能区','url'=>URL);
 		
 		$price = M('partprice');
 		$prj['mycpuprice'] = $price->where("cid=1")->select();
@@ -72,11 +134,14 @@ class SolutionC extends C{
 		$prj['mynetprice'] = $price->where("cid=14")->select();
 		$prj['myoprice'] = $price->where("cid=15")->select();
 		if($_POST[submit]){
+			$uid=$_SESSION[uinfo][id];
+			$logs = M('logs');
 			$varr = $_POST;
-			//print_r($varr);
 			foreach($varr as $key=>$val){
 				if($key!=='submit'){
 					$price->where("name='$key'")->update("price=$val");
+					$tmp_name = $_POST['submit'];
+					$logs->insert('id,type,count,date,uid,content,remark',"'','更新',1,'".date('Y-m-d H:i:s')."',$uid,'更新配件 $_POST[submit] 价格为 $_POST[$tmp_name]',''");
 					$this->url("更新成功！",'/Solution/PartPrice');
 				}
 			}
@@ -93,12 +158,15 @@ class SolutionC extends C{
 			$boardwhere;
 			$card;
 			$srqwhere;
+			$cityprice;
 			$srqcount;
 			$Multiple;
+			$boxprice;
 			$boxwhere;
 			$cpucount;
 			$serverprice;
 			$scount;
+			$citys;
 			$userinfo = session('uinfo');
 			$departurl = getDepartment($userinfo['cid'],'url');
 			if($departurl=='Sale'){
@@ -108,13 +176,35 @@ class SolutionC extends C{
 				$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
 				$prj['left'][] = array('name'=>'价格管理','url'=>URL."/$_GET[c]/PartPrice");
 				$prj['left'][] = array('name'=>'新增报价','url'=>URL."/$_GET[c]/AddPrice");
-				$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+				if($userinfo['gid']==0){
+					$prj['left'][] = array('name'=>'操作日志','url'=>URL."/$_GET[c]/Logs");
+				}
+				$prj['left'][] = array('name'=>'返回功能区','url'=>URL);
 			}
 			foreach($prices as $val){
 				$newprices[$val['name']]=$val;
 			}
 			if($_POST['product_type']=='s'){
-				$sprice; //售后服务单价
+				if($_POST['city'] == 0){
+					$cityprice = 2500;
+				}else{
+					$cityprice = 0;
+				}
+				$serverprice = 5000;
+				$Multiple=1.65;
+				$srqcount=2;
+				$cpucount=2;
+				$boardwhere="X10DRLI";
+				if($_POST['gamecount'] + $_POST['gcount'] >1 ){
+					$boardwhere = "X10DAI";
+				}
+				//$memprice = $newprices['D416G']['price']*8;
+				if($_POST['memcount']>8){
+					$boardwhere = "X10DAI";
+				}
+				$srqwhere="R17";
+				$boxprice = 800;
+				/*$sprice; //售后服务单价
 				if($_POST['city']==0){
 					$sprice = 1900;  //本地
 					if($_POST['count']>0){
@@ -141,7 +231,7 @@ class SolutionC extends C{
 				  
 				$scount = 3;    //售后服务年数
 				$serverprice = $sprice*$scount;  //售后服务收费
-				$Multiple=1.6;
+				$Multiple=1.5;
 				$srqcount=2;
 				$cpucount=2;
 				$boardwhere="X10DRLI";
@@ -157,9 +247,15 @@ class SolutionC extends C{
 					$boxwhere='LZ9K';
 				}else if($_POST['boxtype']==2){
 					$boxwhere='LZ4550';
-				}
+				}*/
 			}else if($_POST['product_type']=='p'){
-				$Multiple=1.6;
+				if($_POST['city'] == 0){
+					$cityprice = 2500;
+				}else{
+					$cityprice = 0;
+				}
+				$serverprice = 5000;
+				$Multiple=1.65;
 				$srqcount=1;
 				$cpucount=1;
 				if($_POST['cputype']=='i6600k' or $_POST['cputype']=='i6700k'){
@@ -169,27 +265,34 @@ class SolutionC extends C{
 					$boardwhere = "B150";
 					$srqwhere="XB400";
 				}
-				$boxwhere='GX900';
+				$boxprice = 400;
 			}else if($_POST['product_type']=='w'){
-				$Multiple=1.6;
+				if($_POST['city'] == 0){
+					$cityprice = 2500;
+				}else{
+					$cityprice = 0;
+				}
+				$serverprice = 5000;
+				$Multiple=1.65;
 				$srqcount=1;
 				$cpucount=1;
 				$boardwhere="X10SRA";
 				$srqwhere="R17";
-				if($_POST['boxtype']==1){
+				/*if($_POST['boxtype']==1){
 					$boxwhere='LZ9K';
 				}else if($_POST['boxtype']==2){
 					$boxwhere='LZ4550';
-				}
+				}*/
+				$boxprice = 600;
 			}
 			$board=$newprices[$boardwhere]['price'];
 			$srqprice = $srqcount*$newprices[$srqwhere]['price'];
-			$boxprice = $newprices[$boxwhere]['price'];
+			//$boxprice = $newprices[$boxwhere]['price'];
 			$dvdprice = $newprices['DVDRW']['price'];
 			
 			$pricecount=$newprices[$_POST['cputype']]['price']*$cpucount+$newprices[$_POST['memsize']]['price']*$_POST['memcount']+$newprices[$_POST['ssdsize']]['price']*$_POST['ssdcount']+$newprices[$_POST['hddsize']]['price']*$_POST['hddcount']+$newprices[$_POST['gamecard']]['price']*$_POST['gamecount']+$newprices[$_POST['gcard']]['price']*$_POST['gcount']+$newprices[$_POST['powerprice']]['price']+$boxprice+$board+$newprices[$_POST['disprice']]['price']+$newprices['UMOUSE']['price']+$dvdprice+$srqprice;
 			//print_r($_POST);
-			$prj['money']=($pricecount*$Multiple*$_POST['count'])+$_POST['city']+$serverprice;
+			$prj['money']=(($pricecount*1.1*$Multiple*$_POST['count'])+$serverprice)+$cityprice;
 			//echo $Multiple;
 			
 			
@@ -220,17 +323,20 @@ class SolutionC extends C{
 			}
 			$prj['price']['电源']=array("name"=>$newprices[$_POST['powerprice']]['info'],"count"=>1*$_POST['count'],'price'=>$newprices[$_POST['powerprice']]['price']);
 			
-			$prj['price']['机箱']=array("name"=>$newprices[$boxwhere]['info'],"count"=>1*$_POST['count'],"price"=>$newprices[$boxwhere]['price']);
+			$prj['price']['机箱']=array("name"=>'标配机箱',"count"=>1*$_POST['count'],"price"=>$boxprice);
 			
 			$prj['price']['键鼠']=array("name"=>$newprices['UMOUSE']['info'],"count"=>1*$_POST['count'],"price"=>$newprices['UMOUSE']['price']);
 			if(!$_POST['disprice']==0){
 				$prj['price']['显示器']=array("name"=>$newprices[$_POST['disprice']]['info'],"count"=>1*$_POST['count'],'price'=>$newprices[$_POST['disprice']]['price']);
 			}
 			$prj['price']['光驱']=array("name"=>"DVD-RW","count"=>1*$_POST['count'],"price"=>$newprices["DVDRW"]['price']);
-			$prj['price']['服务费'] = array("name"=>"售后费用","count"=>$scount,"price"=>$serverprice);
-			if(!$_POST['city']==0){
-				$prj['price']['其他'] = array("name"=>"安装","count"=>1,"price"=>$_POST['city']);
+			$prj['price']['服务费'] = array("name"=>"售后安装","count"=>$_POST['count'],"price"=>$serverprice);
+			if($_SESSION[uinfo][cid] == 4 or $_SESSION[uinfo][gid] == 0){
+				$prj['price']['统计'] = array("name"=>"硬件成本："."$pricecount","count"=>"系数：$Multiple","price"=>"税率:1.1");
 			}
+			/*if(!$_POST['city']==0){
+				$prj['price']['其他'] = array("name"=>"安装","count"=>1,"price"=>$_POST['city']);
+			}*/
 			//for($i=0;$i<count($prj['price']);$i++){
 				//if($userinfo['gid'] !=0 and $userinfo['cid'] != 7){
 					//$a['price'] = '***';
@@ -269,20 +375,27 @@ class SolutionC extends C{
 		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
 		$prj['subtype'] = '添加';
 		$class = M('class');
+		$uid = $_SESSION[uinfo][id];
+		$logs = M('logs');
 		$prj['myclass']=$class->select();
 		
 		$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
 		$prj['left'][] = array('name'=>'价格管理','url'=>URL."/$_GET[c]/PartPrice");
 		$prj['left'][] = array('name'=>'新增报价','url'=>URL."/$_GET[c]/AddPrice");
-		$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+		if($userinfo['gid']==0){
+			$prj['left'][] = array('name'=>'操作日志','url'=>URL."/$_GET[c]/Logs");
+		}
+		$prj['left'][] = array('name'=>'返回功能区','url'=>URL);
 		
 		if(isset($_POST['submit'])){
 			$return = $price->where("name='$_POST[name]'")->find();
 			if(!empty($return)){
 				$price->where("name='$_POST[name]'")->update("cid=$_POST[class],price=$_POST[price],info='$_POST[info]',`desc`='$_POST[desc]'");
+				$logs->insert('id,type,count,date,uid,content,remark',"'','更新',1,'".date('Y-m-d H:i:s')."',$uid,'更新配件 $_POST[name] 价格为 $_POST[price]',''");
 				$this->url('更新成功！');
 			}else{
 				$price->insert("'',$_POST[class],'$_POST[name]',$_POST[price],'$_POST[info]','$_POST[desc]'");
+				$logs->insert('id,type,count,date,uid,content,remark',"'','添加',1,'".date('Y-m-d H:i:s')."',$uid,'添加配件 $_POST[name] 价格为 $_POST[price]',''");
 				$this->url('添加成功！');
 			}
 		}

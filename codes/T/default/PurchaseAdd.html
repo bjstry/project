@@ -1,61 +1,94 @@
 			<div class='col col-12'>
 			<h3>硕星配件入库</h3>
 				<form action='{$smarty.const.URL}/{$smarty.get.c}/AddCheck' method='post'>
-					<div class='row'>
-						<div class='form-item col col-6'>
-							<label>类型:</label>
-							<select name='type'>
-								{foreach $prj.myclass as $value}
-									<option value={$value.cid}>{$value.cname}</option>
-								{/foreach}
-							</select>		
+					
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>类型</span>
+					            <select name='type'>
+						            {foreach $prj.myclass as $value}
+						            	<option value={$value.cid}>{$value.cname}</option>
+						            {/foreach}
+					            </select>
+					        </div>
 						</div>
 						<div class='form-item col col-12'>
-							<label>厂商:</label>
-								<input wdith=100% name='name' type='text'>
+						
+							<div class="prepend w50">
+					            <span>厂商</span>
+					            <input name='name' type='text'>
+					        </div>
+					        	
+							<!--	<label>厂商:</label><input wdith=100% name='name' type='text'>-->
 						</div>
-						<div class='form-item col col-12'>
-							<label>型号:</label>
-								<input name='model' type='text'>
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>型号</span>
+					            <input name='model' type='text'>
+					        </div>
 						</div>
-						<div class='form-item col col-12'>
-							<label>SN:</label>
-							<input name='sn' type='text'>
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>SN</span>
+					            <input name='sn' type='text'>
+					        </div>
 						</div>
-						<div class='form-item col col-12'>
-							<label>容量/主频/尺寸:</label>
-								<input name='cap' type='text'>
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>容量/主频/尺寸</span>
+					            <input name='cap' type='text'>
+					        </div>
 						</div>
-						<div class='form-item col col-12'>
-							<label>单位:</label>
-							<input name='cap_type' type='text'>
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>单位</span>
+					            <input name='cap_type' type='text'>
+					        </div>
 						</div>
-						<div class='form-item col col-12'>
-							<label>供货商:</label>
-							<input name='sup' type='text'>
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>供货商</span>
+					            <input name='sup' type='text'>
+					        </div>
 						</div>
-						<div class='form-item col col-12'>
-							<label>价格:</label>
-							<input name='price' type='text'>
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>价格</span>
+					            <input name='price' type='text'>
+					        </div>
 						</div>
-						<div class='form-item col col-12'>
-							<label>数量:</label>
-							<input name='count' type='number'>
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>数量</span>
+					            <input name='count' type='text'>
+					        </div>
 						</div>
-						<div class='form-item col col-12'>
-							<label>入库时间:</label>
-							<input name='indate' type='text'>
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>入库时间</span>
+					            <input name='indate' type='text'>
+					        </div>
 						</div>
-						<div class='form-item col col-12'>
-							<label>备注:</label>
-							<input name='remark' type='text'>
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>备注</span>
+					            <input name='remark' type='text'>
+					        </div>
 						</div>
-						<div class='form-item col col-12 text-right'>
+						<div class="form-item form-checkboxes">
+					        <label class="checkbox"><input type="radio" name='status' value='0'>已报销</label>
+					        <label class="checkbox"><input type="radio" name='status' checked value='1'>未报销</label>
+					    </div>
+					    <div class="form-item form-checkboxes">
+					        <label class="checkbox"><input type="radio" name='kpstatus' value='0'>无票</label>
+					        <label class="checkbox"><input type="radio" name='kpstatus' checked value='1'>有票</label>
+					    </div>
+						<div class='form-item'>
 							<br>
 							<a class='button small' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
-							<input class='button small primary' type='submit' name='add' value='提交'>
+							<input class='button small' type='submit' name='add' value='提交'>
 						</div>
-					</div>
+
 					
 				</form>
 			</div>

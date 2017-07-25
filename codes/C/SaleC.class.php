@@ -1,5 +1,10 @@
 <?php
 class SaleC extends C{
+	public function Speekinit(){
+		if(empty($_SESSION['uid'])){
+			$this->url('请登录','/index/login');
+		}
+	}
 	public function Index(){
 		$prj['title']='业务部-硕星信息，西安硕星信息技术有限公司';
 		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";

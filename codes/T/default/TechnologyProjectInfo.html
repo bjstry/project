@@ -1,6 +1,6 @@
 			<div class='row'>
 				<div class='col col-12'>
-					<h4>{$prj.myprj.prjname1}{$prj.myprj.prjcustomer} &nbsp;序列号: {$prj.myprj.sn}&nbsp;<small>项目开始时间: {$prj.myprj.prjstart} &nbsp; {$prj.edit} &nbsp;<a onClick=window.print() href=''>打印</small></a></h4>
+					<h4>{$prj.myprj.prjname1}{$prj.myprj.prjcustomer} &nbsp;序列号: {$prj.myprj.sn}&nbsp;<small>项目开始时间: {$prj.myprj.prjstart} &nbsp;项目结束时间: {$prj.myprj.prjfinish}&nbsp; {$prj.edit} &nbsp;<a onClick=window.print() href=''>打印</small></a></h4>
 				</div>
 				<div class='col col-3'>
 					目前状态: {$prj.myprj.prjstatus}
@@ -13,6 +13,9 @@
 				</div>
 				<div class='col col-3'>
 					项目负责人: {$prj.myprj.uid}
+				</div>
+				<div class='col col-3'>
+					物流单号: {$prj.myprj.prjkey}
 				</div>
 				<div class='col col-12'>
 					<br>
@@ -32,14 +35,14 @@
 					<br>
 					<h5>配件列表</h5>
 					<table class='table'>
-						<tr><td>物品编号</td><td>厂商</td><td>型号</td><td>序列号/SN</td><td>数量</td><td>出库人</td><td>出库时间</td><td>检测结果</td></tr>
+						<tr><td>编号</td><td>厂商</td><td>型号</td><td>SN</td><td>数量</td><td>领用人</td><td>出库时间</td><td>检测结果</td><td>操作</td></tr>
 						{foreach $prj.myparts as $val}
 						<form action='' method='post' class='form'>
-						<tr><td>{$val.id}<input type="hidden" name="id" value="{$val.id}"><input type="hidden" name="cid" value="{$val.cid}"></td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.sn}</td><td>{$val.count}</td><td>123</td><td>出库</td><td>合格</td></tr>
+						<tr><td>{$val.id}<input type="hidden" name="id" value="{$val.id}"><input type="hidden" name="cid" value="{$val.cid}"></td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.sn}</td><td>{$val.count}</td><td>{$val.incharge}</td><td>出库</td><td>合格</td><td>{if $smarty.session.uinfo.gid eq 1}返还{else}<a href='{$smarty.const.URL}/Technology/GetBack/pid/{$val.id}'>返还</a>{/if}</td></tr>
 						</form>
 						{/foreach}
 					</table>
-					<a class='button small' href='{$prj.backurl}'>返回</a>
+					<button class='button small' onclick="history.go(-1);">返回</button>
 				</div>
 			</div>
 		</div>

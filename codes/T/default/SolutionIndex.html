@@ -1,34 +1,33 @@
 
 		<form action='{$smarty.const.URL}/{$smarty.get.c}/GetPrice' method='post'>
-			<div class='row'>
-				
-				<div class='col col-3'>
 					<div class='form-item'>
+						<h5>请选择区域：</h5>
+						<div class='row w30'>
+							<div class='col col-6'><label><input type='radio' checked="checked" name='city' value=5000 />本地</label></div>
+							<div class='col col-6'><label><input type='radio' name='city' value=0 />外省</label></div>
+						</div>
+						<h5>请选择类型：</h5>
+						<div class='row w30'>
+							<div class='col col-6'><label><input type='radio' name='boxtype' value=1 />塔式</label></div>
+							<div class='col col-6'><label><input type='radio' checked="checked" name='boxtype' value=2 />机架式</label></div>
+						</div>
+					</div>
 
-						<label><input type='radio' checked="checked" name='city' value=0 />本地</label>
-						<label><input type='radio' name='city' value=1000 />外省</label>
+					<div class='form-item w50'>
+						<div class="prepend">
+							<span>台数</span>
+				            <input type='number' name='count' value=1 />
+				        </div>
 					</div>
-				</div>
-				<div class='col col-3'>
-					<div class='form-item'>
 
-						<label><input type='radio' name='boxtype' value=1 />塔式</label>
-						<label><input type='radio' checked="checked" name='boxtype' value=2 />机架式</label>
-					</div>
-				</div>
-				<div class='col col-3'>
-					<div class='form-item'>
-						
-						<label><input type='number' name='count' value=1 />台</label>
-					</div>
-				</div>
-				<div class='col col-12'>
-					
-					<div class='from-item'>
+			
+					<div class='from-item w50'>
 						<h5>请选择产品系列：</h5>
-						<label><input type='radio' name='product_type' value='p' />星蕴P系列</label>
-						<label><input type='radio' name='product_type' value='w' />星蕴W系列</label>
-						<label><input type='radio' checked="checked" name='product_type' value='s' />星蕴S系列</label>
+						<div class='row'>
+							<div class='col col-4'><label><input type='radio' name='product_type' value='p' />星蕴P系列</label></div>
+							<div class='col col-4'><label><input type='radio' name='product_type' value='w' />星蕴W系列</label></div>
+							<div class='col col-4'><label><input type='radio' checked="checked" name='product_type' value='s' />星蕴S系列</label></div>
+						</div>
 					</div>
 					<div id='cputype'>
 						{foreach $prj.scpu as $val}
@@ -59,100 +58,137 @@
 						</div>
 						{/foreach}
 					</div>
-				</div>
-				<div class='col col-6'>
+
 					<div id='pcmem' class='hidden form-item'>
-						<h5>请选择单条内存大小：</h5>
-						<label><input type='radio' name='memsize' value={$prj.prices.D44GPC.name} />{$prj.prices.D44GPC.info}</label>
-						<label><input type='radio' checked='checked' name='memsize' value={$prj.prices.D48GPC.name} />{$prj.prices.D48GPC.info}</label>
-						<label><input type='radio' name='memsize' value={$prj.prices.D416GPC.name} />{$prj.prices.D416GPC.info}</label>
+						<h5>请选择内存：</h5>
+						<div class='row w50'>
+							<div class='col col-4'><label><input type='radio' name='memsize' value={$prj.prices.D44GPC.name} />{$prj.prices.D44GPC.info}</label></div>
+							<div class='col col-4'><label><input type='radio' checked='checked' name='memsize' value={$prj.prices.D48GPC.name} />{$prj.prices.D48GPC.info}</label></div>
+							<div class='col col-4'><label><input type='radio' name='memsize' value={$prj.prices.D416GPC.name} />{$prj.prices.D416GPC.info}</label></div>
+						</div>
+					</div>
+					<div id='ssmem' class='hidden form-item'>
+						<h5>请选择内存：</h5>
+						<div class='row w50'>
+							<div class='col col-4'><label><input type='radio' name='memsize' value={$prj.prices.D48G.name} />{$prj.prices.D48G.info}</label></div>
+							<div class='col col-4'><label><input type='radio' checked='checked' name='memsize' value={$prj.prices.D416G.name} />{$prj.prices.D416G.info}</label></div>
+							<div class='col col-4'><label><input type='radio' name='memsize' value={$prj.prices.D432G.name} />{$prj.prices.D432G.info}</label></div>
+						</div>
 					</div>
 					<div id='memsize' class='form-item'>
-						<h5>请选择单条内存大小：</h5>
-						<label><input type='radio' name='memsize' value={$prj.prices.D48G.name} />{$prj.prices.D48G.info}</label>
-						<label><input type='radio' checked='checked' name='memsize' value={$prj.prices.D416G.name} />{$prj.prices.D416G.info}</label>
-						<label><input type='radio' name='memsize' value={$prj.prices.D432G.name} />{$prj.prices.D432G.info}</label>
+						<h5>请选择内存：</h5>
+						<div class='row w50'>
+							<div class='col col-4'><label><input type='radio' name='memsize' value={$prj.prices.D48G.name} />{$prj.prices.D48G.info}</label></div>
+							<div class='col col-4'><label><input type='radio' checked='checked' name='memsize' value={$prj.prices.D416G.name} />{$prj.prices.D416G.info}</label></div>
+							<div class='col col-4'><label><input type='radio' name='memsize' value={$prj.prices.D432G.name} />{$prj.prices.D432G.info}</label></div>
+						</div>
 					</div>
-				</div>
-				<div class='col col-6'>
+
 					<div id='memcount' class='form-item'>
-						<h5>数量：</h5>
-						<label><input type='number' name='memcount' value=1 />条</label>
+						<div class="prepend w50">
+							<span>数量</span>
+				            <input type='number' name='memcount' value=1 />
+				        </div>
 					</div>
-				</div>
-				<div class='col col-6'>
+
 					<div id='ssdsize'>
-						<h5>请选择固态硬盘大小：</h5>
-						<label><input type='radio' checked="checked" name='ssdsize' value=0 />不需要</label>
-						<label><input type='radio' name='ssdsize' value={$prj.prices.S128.name} />{$prj.prices.S128.info}</label>
-						<label><input type='radio' name='ssdsize' value={$prj.prices.S256.name} />{$prj.prices.S256.info}</label>
-						<label><input type='radio' name='ssdsize' value={$prj.prices.S512.name} />{$prj.prices.S512.info}</label>
-						<label><input type='radio' name='ssdsize' value={$prj.prices.S1T.name} />{$prj.prices.S1T.info}</label>
+						<h5>请选择固态硬盘：</h5>
+						<div class='row w65'>
+							<div class='col col-2'><label><input type='radio' checked="checked" name='ssdsize' value=0 />不需要</label></div>
+							<div class='col col-2'><label><input type='radio' name='ssdsize' value={$prj.prices.S128.name} />{$prj.prices.S128.info}</label></div>
+							<div class='col col-2'><label><input type='radio' name='ssdsize' value={$prj.prices.S256.name} />{$prj.prices.S256.info}</label></div>
+							<div class='col col-2'><label><input type='radio' name='ssdsize' value={$prj.prices.S512.name} />{$prj.prices.S512.info}</label></div>
+							<div class='col col-2'><label><input type='radio' name='ssdsize' value={$prj.prices.S1T.name} />{$prj.prices.S1T.info}</label></div>
+						</div>
 					</div>
-				</div>
-				<div class='col col-6'>
+
 					<div id='ssdcount' class='hidden'>
-						<h5>数量：</h5>
-						<label><input type='number' name='ssdcount' value=1 />块</label>
+						<div class="prepend w50">
+							<span>数量</span>
+				            <input type='number' name='ssdcount' value=1 />
+				        </div>
 					</div>
-				</div>
-				<div class='col col-12'>
+
 					<div id='hddtype'>
-						<h5>请选择机械硬盘类型：</h5>
-						<label><input type='radio' checked="checked" name='hddtype' value='1' />桌面级</label>
-						<label><input type='radio' name='hddtype' value='2' />企业级</label>
+						<h5>请选择机械硬盘：</h5>
+						<div class='row w30'>
+							<div class='col col-6'><label><input type='radio' checked="checked" name='hddtype' value='1' />桌面级</label></div>
+							<div class='col col-6'><label><input type='radio' name='hddtype' value='2' />企业级</label></div>
+						</div>
 					</div>
-				</div>
-				<div class='col col-6'>
+
 					<div id='hddtype1'>
-						<h5>请选择单块硬盘大小：</h5>
-						<label><input type='radio' name='hddsize' value={$prj.prices.H1T.name} />{$prj.prices.H1T.info}</label>
-						<label><input type='radio' checked="checked" name='hddsize' value={$prj.prices.H2T.name} />{$prj.prices.H2T.info}</label>
-						<label><input type='radio' name='hddsize' value={$prj.prices.H4T.name} />{$prj.prices.H4T.info}</label>
-						<label><input type='radio' name='hddsize' value='0' />不需要</label>
+						<h5>请选择单块硬盘：</h5>
+						<div class='row w50'>
+							<div class='col col-3'><label><input type='radio' name='hddsize' value={$prj.prices.H1T.name} />{$prj.prices.H1T.info}</label></div>
+							<div class='col col-3'><label><input type='radio' checked="checked" name='hddsize' value={$prj.prices.H2T.name} />{$prj.prices.H2T.info}</label></div>
+							<div class='col col-3'><label><input type='radio' name='hddsize' value={$prj.prices.H4T.name} />{$prj.prices.H4T.info}</label></div>
+							<div class='col col-3'><label><input type='radio' name='hddsize' value='0' />不需要</label></div>
+						</div>
 					</div>
 					<div id='hddtype2' class='hidden'>
-						<h5>请选择单块硬盘大小：</h5>
-						<label><input type='radio' name='hddsize' value={$prj.prices.E2T.name} />{$prj.prices.E2T.info}</label>
-						<label><input type='radio' name='hddsize' value={$prj.prices.E4T.name} />{$prj.prices.E4T.info}</label>
-						<label><input type='radio' name='hddsize' value='0' />不需要</label>
+						<h5>请选择硬盘容量：</h5>
+						<div class='row w50'>
+							<div class='col col-4'><label><input type='radio' name='hddsize' value={$prj.prices.E2T.name} />{$prj.prices.E2T.info}</label></div>
+							<div class='col col-4'><label><input type='radio' name='hddsize' value={$prj.prices.E4T.name} />{$prj.prices.E4T.info}</label></div>
+							<div class='col col-4'><label><input type='radio' name='hddsize' value='0' />不需要</label></div>
+						</div>
 					</div>
-				</div>	
-				<div class='col col-6'>
+
 					<div id='hddcount'>
-						<h5>数量：</h5>
-						<label><input type='number' name='hddcount' value=1 />块</label>
+						<div class="prepend w50">
+							<span>数量</span>
+				            <input type='number' name='hddcount' value=1 />
+				        </div>
 					</div>
-				</div>
-				<div class='col col-6'>
-					<div id='gametype' class='from-item'>
-						<label>请选择显卡:</label>
+
+					<div id='gametype' class='from-item w50'>
+						<h5>请选择显卡:</h5>
 						<select name='gamecard' class='gamecard'>
 							<option value=0 >集显</option>
+							<!--<option value={$prj.prices.GT710.name} >{$prj.prices.GT710.info}</option>
+							-->
 							<option value={$prj.prices.GT740.name} >{$prj.prices.GT740.info}</option>
-							<option value={$prj.prices.RX470.name} >{$prj.prices.RX470.info}</option>
+							<option value={$prj.prices.GT1030.name} >{$prj.prices.GT1030.info}</option>
+							<option value={$prj.prices.GTX1050.name} >{$prj.prices.GTX1050.info}</option>
+							<option value={$prj.prices.GTX1050TI.name} >{$prj.prices.GTX1050TI.info}</option>
 							<option value={$prj.prices.GTX1060.name} >{$prj.prices.GTX1060.info}</option>
 							<option value={$prj.prices.GTX1070.name} >{$prj.prices.GTX1070.info}</option>
 							<option value={$prj.prices.GTX1080.name} >{$prj.prices.GTX1080.info}</option>
+							<option value={$prj.prices.GTX1080TI.name} >{$prj.prices.GTX1080TI.info}</option>
+							<!--
+							<option value={$prj.prices.RX470.name} >{$prj.prices.RX470.info}</option>
+							<option value={$prj.prices.RX480.name} >{$prj.prices.RX480.info}</option>
+							-->
 						</select>
 					</div>
-				</div>
-				<div class='col col-6'>
+
 					<div id='gamecount' class='from-item'>
-						<h5>数量：</h5>
-						<label><input type='number' value=1 name='gamecount'  />块</label>
+						<div class="prepend w50">
+							<span>数量</span>
+				            <input type='number' name='gamecount' value=1 />
+				        </div>
 					</div>
-				</div>
-				<div class='col col-6'>
-					<div id='gtype' class='form-item'>
+
+					<div id='gtype' class='form-item w50'>
 						<h5>请选择图形卡：</h5>
 						<select name='gcard' class='gcard'>
 							<option value=0 >无</option>
+							<option value={$prj.prices.K420.name} >{$prj.prices.K420.info}</option>
 							<option value={$prj.prices.K620.name} >{$prj.prices.K620.info}</option>
 							<option value={$prj.prices.K1200.name} >{$prj.prices.K1200.info}</option>
 							<option value={$prj.prices.K2200.name} >{$prj.prices.K2200.info}</option>
 							<option value={$prj.prices.K6000.name} >{$prj.prices.K6000.info}</option>
+							<option value={$prj.prices.K2200.name} >{$prj.prices.M2000.info}</option>
+							<option value={$prj.prices.M4000.name} >{$prj.prices.M4000.info}</option>
 							<option value={$prj.prices.M6000.name} >{$prj.prices.M6000.info}</option>
+							<option value={$prj.prices.P400.name} >{$prj.prices.P400.info}</option>
+							<option value={$prj.prices.P600.name} >{$prj.prices.P600.info}</option>
+							<option value={$prj.prices.P1000.name} >{$prj.prices.P1000.info}</option>
+							<option value={$prj.prices.P2000.name} >{$prj.prices.P2000.info}</option>
+							<option value={$prj.prices.P4000.name} >{$prj.prices.P4000.info}</option>
+							<option value={$prj.prices.P5000.name} >{$prj.prices.P5000.info}</option>
+							<option value={$prj.prices.P6000.name} >{$prj.prices.P6000.info}</option>
 						</select>
 						<!--<label><input type='radio' checked="checked" name='gcard' value=0 />不需要</label>
 						<label><input type='radio' name='gcard' value={$prj.prices.K620.name} />{$prj.prices.K620.info}</label>
@@ -160,14 +196,14 @@
 						<label><input type='radio' name='gcard' value={$prj.prices.K6000.name} />{$prj.prices.K6000.info}</label>
 						<label><input type='radio' name='gcard' value={$prj.prices.M6000.name} />{$prj.prices.M6000.info}</label>-->
 					</div>
-				</div>
-				<div class='col col-6'>
+
 					<div id='gcount' class=''>
-						<h5>数量：</h5>
-						<label><input type='number' value=1 name='gcount' />块</label>
+						<div class="prepend w50">
+							<span>数量</span>
+				            <input type='number' name='gcount' value=1 />
+				        </div>
 					</div>
-				</div>
-				<div class='col col-12'>
+
 					<!--<div id='cgtype'>
 						<h5>请选择计算卡：</h5>
 						<label><input type='radio' checked="checked" name='ccard' value=0 />不需要</label>
@@ -181,22 +217,29 @@
 						<label><input type='number' name='ccount' />块</label>
 					</div>-->
 					<div id='powertype'>
-						<h5>请选择电源大小：</h5>
-						<label><input type='radio' checked="checked" name='powerprice' value={$prj.prices.W500.name} />{$prj.prices.W500.info}</label>
-						<label><input type='radio' name='powerprice' value={$prj.prices.W750.name} />{$prj.prices.W750.info}</label>
-						<label><input type='radio' name='powerprice' value={$prj.prices.W1000.name} />{$prj.prices.W1000.info}</label>
-						<label><input type='radio' name='powerprice' value={$prj.prices.W1250.name} />{$prj.prices.W1250.info}</label>
+						<h5>请选择电源：</h5>
+						<div class='row'>
+							<div class='col col-2'><label><input type='radio' checked="checked" name='powerprice' value={$prj.prices.W500.name} />{$prj.prices.W500.info}</label></div>
+							<div class='col col-2'><label><input type='radio' name='powerprice' value={$prj.prices.W600.name} />{$prj.prices.W600.info}</label></div>
+							<div class='col col-2'><label><input type='radio' name='powerprice' value={$prj.prices.W700.name} />{$prj.prices.W700.info}</label></div>
+							<div class='col col-2'><label><input type='radio' name='powerprice' value={$prj.prices.W1000.name} />{$prj.prices.W1000.info}</label></div>
+							<div class='col col-2'><label><input type='radio' name='powerprice' value={$prj.prices.W1250.name} />{$prj.prices.W1250.info}</label></div>
+							<div class='col col-2'><label><input type='radio' name='powerprice' value={$prj.prices.W1600.name} />{$prj.prices.W1600.info}</label></div>
+						</div>
 					</div>
 					<div id='displaytype'>
 						<h5>请选择显示器：</h5>
-						<label><input type='radio' name='disprice' value=0 />无</label>
-						<label><input type='radio' checked="checked" name='disprice' value={$prj.prices.IN23.name} />{$prj.prices.IN23.info}</label>
-						<label><input type='radio' name='disprice' value={$prj.prices.IN27.name} />{$prj.prices.IN27.info}</label>
+						<div class='row w50'>
+							<div class='col col-2'><label><input type='radio' name='disprice' value=0 />无</label></div>
+							<div class='col col-2'><label><input type='radio' checked="checked" name='disprice' value={$prj.prices.IN23.name} />{$prj.prices.IN23.info}</label></div>
+							<div class='col col-2'><label><input type='radio' checked="checked" name='disprice' value={$prj.prices.IN23Q.name} />{$prj.prices.IN23Q.info}</label></div>
+							<div class='col col-2'><label><input type='radio' name='disprice' value={$prj.prices.IN27.name} />{$prj.prices.IN27.info}</label></div>
+							<div class='col col-2'><label><input type='radio' name='disprice' value={$prj.prices.IN27Q.name} />{$prj.prices.IN27Q.info}</label></div>
+						</div>
 					</div>
 					<input class='button small primary' type='submit' name='submit' value='计算价格'>
 					<a class='button small' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
-				</div>
-			</div>
+
 		</form>
 	</div>
 </div>

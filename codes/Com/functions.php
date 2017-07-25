@@ -9,7 +9,11 @@ function getDepartment($cid,$key,$field){
 	if($cid==0){
 		$row = $depart->select();
 	}else{
-		$where = "id=$cid or fid=$cid";
+		if($_SESSION['uinfo']['gid']==0){
+			$where = "id=$cid or fid=$cid";
+		}else{
+			$where = "id=$cid";
+		}
 		$row = $depart->where($where)->select();
 	}
 	if(empty($key)){
@@ -27,11 +31,11 @@ function getDepartment($cid,$key,$field){
 	}
 	return $return;
 }
-function getFieldValue($table,$key,$rekey){
+/*function getFieldValue($table,$key,$rekey){
 	$tablerow = M($table);
 	$return = $tablerow->where("$key[0]='$key[1]'")->find($rekey);
 	return $return[$rekey];
-}
+}*/
 function getClass($cid,$key){
 	//echo $cid.'--'.$key.'<br>';
 	$myclass = M('class');
@@ -54,7 +58,7 @@ function getRename($id){
 function getProject($pid){
 	$return;
 	if($pid==0){
-		$return = '未分配';
+		$return = '领用';
 	}else{
 		$prjs = M('projects');
 		$row = $prjs->where("id=$pid")->find();
@@ -158,4 +162,18 @@ function getSN($pid){
 	}
 	return $sn;
 }
+/*(function getArr($key){
+	if(is_array($key)){
+		$array = M("$key[0]")1;
+		$return = $array->where("$key[1] = '$key[2]'")->find();
+		if($key[3]){
+			return $return["$key[3]"];
+		}else{
+			return $return;
+		}
+	}else{
+		die('参数错误！ --function getArr');
+	}
+	
+}*/
 ?>

@@ -16,13 +16,24 @@ class FinanceC extends C{
 		$this->display();
 	}
 	public function Email(){
-		$server = "{jinsong.f3322.net}"; //邮件服务器  
-		$mailbox = "inbox"; //收件箱  
+		//$server = "jinsong.f3322.net"; //邮件服务器  
+		//$mailLink = "{{$server}:143}inbox";
+		$mailLink = "{jinsong.f3322.net:143/ssl}";
 		$mailaccount="baijinsong";//用户名  
 		$mailpasswd="bjs56233one"; //密码  
-		$stream =  imap_open($server.$mailbox,$mailaccount,$mailpasswd);//打开IMAP 连结  
-		$mail_number = imap_num_msg($stream);//信件的个数  
-		echo 'steep 1';
+		$mbox =  imap_open($mailLink,$mailaccount,$mailpasswd);//打开IMAP 连结  
+		$totalrows = imap_num_msg($mbox);//信件的个数  
+		echo "steep 1<br>";
+		$mailboxes = imap_list($mbox, $mailLink, '*');
+		$mailboxes = str_replace($mailLink, '', $mailboxes);
+		print_r($mailboxes);
+		//echo $totalrows;
+		//for ($i=1;$i<$totalrows;$i++){
+		 //   echo $headers = imap_fetchheader($mbox, $i); //获取信件标头
+		//    echo $headArr = matchMailHead($headers); //匹配信件标头
+		//    echo $mailBody = imap_fetchbody($mbox, $i, 1); //获取信件正文
+		//}
+		echo "steep 2<br>";
 		/*if($mail_number < 1) { echo "No Message for $email"; }//如果信件数为0,显示信息  
 		  
 		  echo 'steep 2';

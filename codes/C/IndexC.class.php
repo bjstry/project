@@ -1,6 +1,6 @@
 <?php
 class IndexC extends C{
-	protected $_arrinit = ['Login','LoginCheck'];
+	protected $_arrinit = array('Login','LoginCheck');
 	public function Speekinit(){
 		if(empty($_SESSION['uid'])){
 			$this->url('请登录','/index/login');

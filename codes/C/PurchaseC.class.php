@@ -1,4 +1,5 @@
 <?php
+
 class PurchaseC extends C{
 	/*
 	parts表 status 表示配件状态，1 为未报销  0 为已报销  2 为报销中
@@ -98,6 +99,8 @@ class PurchaseC extends C{
 		if($_POST['outgo']){
 			if(empty($_POST['outcount'])){
 				exit('请输入正确的数量！');
+			}else if($_POST['outcount']<=0){
+				exit('请输入正确的数量！');
 			}
 			$userinfo = session('uinfo');
 			$departid = 4;
@@ -129,17 +132,17 @@ class PurchaseC extends C{
 									$this->url('出库成功！','/Purchase/Outgo');
 								}
 							}else{
-								echo '更新存库数量出错了！';
+								die('更新存库数量出错了！');
 							}
 						}else{
-							echo '更新配件数量出错了！';
+							die('更新配件数量出错了！');
 						}
 					}
 				}else{
-					echo '没有那么多库存！';
+					die('没有那么多库存！');
 				}
 			}else{
-				echo '没有找到该物品';
+				die('没有找到该物品');
 			}
 		}
 		$prj['logs'] = "<li><a href='".URL."/Purchase/Logs'>操作记录</a></li>";

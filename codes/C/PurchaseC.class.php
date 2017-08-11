@@ -60,7 +60,7 @@ class PurchaseC extends C{
 			$logs = M('logs');
 			if($parts->insert('id,cid,name,model,sn,cap,cap_type,supplier,price,indate,count,remark,location,incharge,status,kpstatus',"'',$_POST[type],'$_POST[name]','$_POST[model]','$_POST[sn]',$_POST[cap],'$_POST[cap_type]','$_POST[sup]',$_POST[price],'$_POST[indate]',$_POST[count],'$_POST[remark]',$departid,$userinfo[id],$_POST[status],$_POST[kpstatus]")){
 				if($class->where("cid=$_POST[type]")->update("count=count+$_POST[count]")){
-					if($logs->insert('id,type,count,date,uid,content,remark',"'','入库',$_POST[count],'".date('Y-m-d H:i:s')."',$_SESSION[uid],'$_POST[name] $_POST[model] $_POST[cap]$_POST[cap_type] SN:$_POST[sn]',''")){
+					if($logs->insert('id,type,count,date,uid,content,remark',"'','入库',$_POST[count],'".date('Y-m-d H:i:s')."',$_SESSION[uid],'$_POST[name] $_POST[model] 价格:$_POST[price] $_POST[cap] SN:$_POST[sn]',''")){
 						$this->url('入库成功！','/Purchase/Index');
 					}
 				}else{

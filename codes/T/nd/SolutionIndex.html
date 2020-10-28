@@ -1,0 +1,313 @@
+
+
+	<form action='{$smarty.const.URL}/{$smarty.get.c}/GetPrice' id='getprice' method='post'  data-kube='mymodule'>
+					<div class='form-item form-checkboxes'>
+						<h5>请选择区域：</h5>
+
+							<label class='is-checkbox'><input type='radio' checked="checked" name='city' value=1 />本地</label>
+							<label class='is-checkbox'><input type='radio' name='city' value=2 />外省</label>
+
+					</div>
+					<div class='form-item form-checkboxes'>
+						<h5>请选择设备类型：</h5>
+
+							<label class='is-checkbox'><input type='radio' checked="checked" name='devtype' value=1 />计算节点</label>
+							<label class='is-checkbox'><input type='radio' name='devtype' value=2 />管理节点</label>
+							<label class='is-checkbox'><input type='radio' name='devtype' value=3 />存储节点</label>
+							<label class='is-checkbox'><input type='radio' name='devtype' value=4 />管理+存储节点</label>
+							<label class='is-checkbox'><input type='radio' name='devtype' value=5 />管理+计算节点</label>
+							<label class='is-checkbox'><input type='radio' name='devtype' value=6 />计算+存储节点</label>
+
+					</div>
+					<div class='form-item'>
+
+							<span>台数</span>
+				            <input type='number' name='count' value=1 />
+
+					</div>
+
+			
+					<div class='from-item form-checkboxes'>
+						<h5>请选择产品系列：</h5>
+
+							{foreach $prj.series as $val}
+								<label class='is-checkbox'><input type='radio' name='product_type' value='{$val.cname}' />{$val.rname}</label>
+							{/foreach}
+							<!--<div class='col col-2'><label><input type='radio' name='product_type' value='p' />星蕴P系列</label></div>
+							<div class='col col-2'><label><input type='radio' name='product_type' value='w' />星蕴W系列</label></div>
+							<div class='col col-2'><label><input type='radio' checked="checked" name='product_type' value='s' />星蕴S系列</label></div>
+							<div class='col col-2'><label><input type='radio' name='product_type' value='aw' />星蕴AW系列</label></div>
+							<div class='col col-2'><label><input type='radio' name='product_type' value='as' />星蕴AS系列</label></div>
+							<div class='col col-2'><label><input type='radio' name='product_type' value='ns' />星蕴NS系列</label></div>-->
+
+					</div>
+					<div id='cputype'>
+					</div>
+					<div id='pccpu' class='hidden'>
+						{foreach $prj.pccpu as $val}
+
+							<label><input type='radio' name='cputype' value='{$val.id}' />{$val.info}</label> 
+
+						{/foreach}
+					</div>
+					
+					<div id='wcpu' class='hidden'>
+						{foreach $prj.isingle as $val}
+
+							<label><input type='radio' name='cputype' value='{$val.id}' />{$val.info}</label> 
+
+						{/foreach}
+					</div>
+					<div id='scpu' class='hidden'>
+						{foreach $prj.idouble as $val}
+	
+							<label><input type='radio' name='cputype' value='{$val.id}' />{$val.info}</label> 
+		
+						{/foreach}
+					</div>
+					
+					<div id='awcpu' class='hidden'>
+						{foreach $prj.asingle as $val}
+			
+							<label><input type='radio' name='cputype' value='{$val.id}' />{$val.info}</label> 
+		
+						{/foreach}
+					</div>
+					
+					<div id='ascpu' class='hidden'>
+						{foreach $prj.adouble as $val}
+			
+							<label><input type='radio' name='cputype' value='{$val.id}' />{$val.info}</label> 
+			
+						{/foreach}
+					</div>
+					<div id='nscpu' class='hidden'>
+						{foreach $prj.ifour as $val}
+			
+							<label><input type='radio' name='cputype' value='{$val.id}' />{$val.info}</label> 
+		
+						{/foreach}
+					</div>
+					
+					<div id='cpucount' class='form-item'>
+		
+							<span>CPU数量</span>
+				            <input type='number' data-type="cpu-count" name='cpucount' />
+
+					</div>
+					<div class='form-item form-checkboxes'>
+		
+							<h5>请选择平台：</h5>
+							<label class='is-checkbox'><input type='radio' checked="checked" name='boardtype' value=1 />系统自动分配</label>
+							<label class='is-checkbox'><input type='radio' name='boardtype' value=2 />小主板</label>
+							<label class='is-checkbox'><input type='radio' name='boardtype' value=3 />大主板</label>
+
+
+					</div>
+					
+					<div id='pcmem' class='hidden form-item form-checkboxes'>
+						<h5>请选择内存：</h5>
+		
+							{foreach $prj.pcmem as $val}
+								<label class='is-checkbox'><input type='radio' name='memsize' value={$val.id} />{$val.info}</label>
+							{/foreach}
+	
+					</div>
+					<div id='ssmem' class='hidden form-item form-checkboxes'>
+						<h5>请选择内存：</h5>
+	
+							{foreach $prj.servermem as $val}
+								<label class='is-checkbox'><input type='radio' name='memsize' value={$val.id} />{$val.info}</label>
+							{/foreach}
+
+					</div>
+					<div id='memsize' class='form-item form-checkboxes'>
+						<h5>请选择内存：</h5>
+
+
+					</div>
+
+					<div id='memcount' class='form-item'>
+	
+							<span>数量</span>
+				            <input type='number' name='memcount' value=1 />
+		
+					</div>
+					
+					<!--<div id='memskcount' class='form-item'>
+		
+							<span>插槽数量</span>
+				            <input data-type='memsock-count' type='number' name='memskcount' />
+			
+					</div>-->
+
+					<div id='ssdsize' class='form-item form-checkboxes'>
+						<h5>请选择固态硬盘：</h5>
+			
+							<label class='is-checkbox'><input type='radio' checked="checked" name='ssdsize' value=0 />不需要</label>
+							{foreach $prj.ssd as $val}
+								<label class='is-checkbox'><input type='radio' name='ssdsize' value={$val.id} />{$val.info}</label>
+							{/foreach}
+
+					</div>
+
+					<div id='ssdcount' class='hidden'>
+		
+							<span>数量</span>
+				            <input type='number' name='ssdcount' value=1 />
+			
+					</div>
+
+					<div id='hddtype' class='form-item form-checkboxes'>
+						<h5>请选择机械硬盘：</h5>
+			
+						<label class='is-checkbox'><input type='radio' checked="checked" name='hddtype' value='1' />桌面级</label>
+						<label class='is-checkbox'><input type='radio' name='hddtype' value='2' />企业级</label>
+			
+					</div>
+
+					<div id='hddtype1' class='form-item form-checkboxes'>
+						<h5>请选择单块硬盘：</h5>
+
+							{foreach $prj.hdd as $val}
+							<label class='is-checkbox'><input type='radio' name='hddsize' value={$val.id} />{$val.info}</label>
+							{/foreach}
+							<label class='is-checkbox'><input type='radio' name='hddsize' value='0' />不需要</label>
+
+					</div>
+					<div id='hddtype2' class='hidden form-item form-checkboxes'>
+						<h5>请选择硬盘容量：</h5>
+		
+							{foreach $prj.ehdd as $val}
+							<label class='is-checkbox'><input type='radio' name='hddsize' value={$val.id} />{$val.info}</label>
+							{/foreach}
+						<label class='is-checkbox'><input type='radio' name='hddsize' value='0' />不需要</label>
+		
+					</div>
+
+					<div id='hddcount'>
+	
+							<span>数量</span>
+				            <input type='number' name='hddcount' value=1 />
+		
+					</div>
+
+					<div id='gametype' class='from-item'>
+						<h5>请选择显卡:</h5>
+						<select name='gamecard' class='gamecard'>
+							<option value=0 >集显</option>
+							<!--<option value={$prj.prices.GT710.name} >{$prj.prices.GT710.info}</option>
+							-->
+							{foreach $prj.geforce as $val}
+								<option value={$val.id} >{$val.info}</option>
+							{/foreach}
+							
+							<!--<option value={$prj.prices.GT740.name} >{$prj.prices.GT740.info}</option>
+							<option value={$prj.prices.GT1030.name} >{$prj.prices.GT1030.info}</option>
+							<option value={$prj.prices.GTX1050.name} >{$prj.prices.GTX1050.info}</option>
+							<option value={$prj.prices.GTX1050TI.name} >{$prj.prices.GTX1050TI.info}</option>
+							<option value={$prj.prices.GTX1060.name} >{$prj.prices.GTX1060.info}</option>
+							<option value={$prj.prices.GTX1070.name} >{$prj.prices.GTX1070.info}</option>
+							<option value={$prj.prices.GTX1080.name} >{$prj.prices.GTX1080.info}</option>
+							<option value={$prj.prices.GTX1080TI.name} >{$prj.prices.GTX1080TI.info}</option>
+							-->
+							<!--
+							<option value={$prj.prices.RX470.name} >{$prj.prices.RX470.info}</option>
+							<option value={$prj.prices.RX480.name} >{$prj.prices.RX480.info}</option>
+							-->
+						</select>
+					</div>
+
+					<div id='gamecount' class='from-item'>
+			
+							<span>数量</span>
+				            <input type='number' name='gamecount' value=1 />
+				
+					</div>
+
+					<div id='gtype' class='form-item'>
+						<h5>请选择图形卡：</h5>
+						<select name='gcard' class='gcard'>
+							<option value=0 >无</option>
+							{foreach $prj.quadro as $val}
+								<option value={$val.id} >{$val.info}</option>
+							{/foreach}
+							<!--
+							<option value={$prj.prices.K420.name} >{$prj.prices.K420.info}</option>
+							<option value={$prj.prices.K620.name} >{$prj.prices.K620.info}</option>
+							<option value={$prj.prices.K1200.name} >{$prj.prices.K1200.info}</option>
+							<option value={$prj.prices.K2200.name} >{$prj.prices.K2200.info}</option>
+							<option value={$prj.prices.K6000.name} >{$prj.prices.K6000.info}</option>
+							<option value={$prj.prices.K2200.name} >{$prj.prices.M2000.info}</option>
+							<option value={$prj.prices.M4000.name} >{$prj.prices.M4000.info}</option>
+							<option value={$prj.prices.M6000.name} >{$prj.prices.M6000.info}</option>
+							<option value={$prj.prices.P400.name} >{$prj.prices.P400.info}</option>
+							<option value={$prj.prices.P600.name} >{$prj.prices.P600.info}</option>
+							<option value={$prj.prices.P1000.name} >{$prj.prices.P1000.info}</option>
+							<option value={$prj.prices.P2000.name} >{$prj.prices.P2000.info}</option>
+							<option value={$prj.prices.P4000.name} >{$prj.prices.P4000.info}</option>
+							<option value={$prj.prices.P5000.name} >{$prj.prices.P5000.info}</option>
+							<option value={$prj.prices.P6000.name} >{$prj.prices.P6000.info}</option>-->
+						</select>
+						<!--<label><input type='radio' checked="checked" name='gcard' value=0 />不需要</label>
+						<label><input type='radio' name='gcard' value={$prj.prices.K620.name} />{$prj.prices.K620.info}</label>
+						<label><input type='radio' name='gcard' value={$prj.prices.K2200.name} />{$prj.prices.K2200.info}</label>
+						<label><input type='radio' name='gcard' value={$prj.prices.K6000.name} />{$prj.prices.K6000.info}</label>
+						<label><input type='radio' name='gcard' value={$prj.prices.M6000.name} />{$prj.prices.M6000.info}</label>-->
+					</div>
+
+					<div id='gcount' class=''>
+	
+							<span>数量</span>
+				            <input type='number' name='gcount' value=1 />
+		
+					</div>
+
+					<!--<div id='cgtype'>
+						<h5>请选择计算卡：</h5>
+						<label><input type='radio' checked="checked" name='ccard' value=0 />不需要</label>
+						<label><input type='radio' name='ccard' value={$prj.prices.K20.name} />{$prj.prices.K20.info}</label>
+						<label><input type='radio' name='ccard' value={$prj.prices.K40.name} />{$prj.prices.k40.info}</label>
+						<label><input type='radio' name='ccard' value={$prj.prices.K80.name} />{$prj.prices.K80.info}</label>
+						<label><input type='radio' name='ccard' value={$prj.prices.P100.name} />{$prj.prices.P100.info}</label>
+					</div>
+					<div id='ccount' class='hidden'>
+						<h5>数量：</h5>
+						<label><input type='number' name='ccount' />块</label>
+					</div>-->
+					<div id='powertype' class='form-item form-checkboxes'>
+						<h5>请选择电源：</h5>
+	
+							{foreach $prj.power as $val}
+								<label class='is-checkbox'><input type='radio' name='powerprice' value={$val.id} />{$val.info}</label>						
+							{/foreach}
+							
+	
+					</div>
+					<div id='displaytype' class='form-item form-checkboxes'>
+						<h5>请选择显示器：</h5>
+			
+							{foreach $prj.display as $val}
+								<label class='is-checkbox'><input type='radio' name='disprice' value={$val.id} />{$val.info}</label>						
+							{/foreach}
+							<!--
+							<div class='col col-2'><label><input type='radio' name='disprice' value=0 />无</label></div>
+							<div class='col col-2'><label><input type='radio' checked="checked" name='disprice' value={$prj.prices.IN23.name} />{$prj.prices.IN23.info}</label></div>
+							<div class='col col-2'><label><input type='radio' checked="checked" name='disprice' value={$prj.prices.IN23Q.name} />{$prj.prices.IN23Q.info}</label></div>
+							<div class='col col-2'><label><input type='radio' name='disprice' value={$prj.prices.IN27.name} />{$prj.prices.IN27.info}</label></div>
+							<div class='col col-2'><label><input type='radio' name='disprice' value={$prj.prices.IN27Q.name} />{$prj.prices.IN27Q.info}</label></div>-->
+	
+					</div>
+					<div id='otherprice' class='form-item'>
+					
+							<span>其他费用</span>
+				            <input type='number' name='otherprice' />
+				  
+					</div>
+					<input class='button is-10' type='submit' name='submit' value='确定'>
+					<a class='button is-10' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
+
+		</form>
+		</div>
+				</main>
+

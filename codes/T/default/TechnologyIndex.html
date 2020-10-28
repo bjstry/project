@@ -1,10 +1,20 @@
 				<div class='row'>
 					<div class='col col-12'>
-						<h4>未分配配件</h4>
+								<form action='{$smarty.const.URL}/{$smarty.get.c}/SearchList' method='post'>
+									<div class='form-item'>
+										<div class='append w50'>
+											<input type='text' name='search_sn' placeholder='请输入要搜索的项目 学校/客户/SN'>
+											<button type='submit' class='button' name='search_sb'>搜索</button>
+										</div>
+									</div>
+								</form>
+
+								<h4>未分配配件</h4>
+
 					</div>
 					{foreach $prj.myclass as $val}
 					<div class='col col-3'>
-						<p>{$val.cname} :<a href='{$smarty.const.URL}/{$smarty.get.c}/View/type/0/val/{$val.cid}'>{$val.count}</a></p>
+						<p>{$val.rname} :<a href='{$smarty.const.URL}/{$smarty.get.c}/View/type/0/val/{$val.cid}'>{$val.count}</a></p>
 					</div>
 					{/foreach}
 					<div class='col col-12 down-hr'>
@@ -15,7 +25,7 @@
 					</div>
 					{foreach $prj.myunclass as $val}
 					<div class='col col-3'>
-						<p>{$val.cname} :<a href='{$smarty.const.URL}/{$smarty.get.c}/View/type/1/val/{$val.cid}'>{$val.count}</a></p>
+						<p>{$val.rname} :<a href='{$smarty.const.URL}/{$smarty.get.c}/View/type/1/val/{$val.cid}'>{$val.count}</a></p>
 					</div>
 					{/foreach}
 				</div>

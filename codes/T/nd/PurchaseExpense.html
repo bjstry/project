@@ -1,0 +1,54 @@
+	<div class='is-100'>
+		<nav class="tabs" data-kube="tabs">
+	
+		        <a class='is-active' href="#tab1">待报配件</a>
+		        <a href="#tab2">待报项目</a>
+		        <a href="#tab3">报销申请</a>
+		</nav>
+		<div id="tab1">
+			<table class="unstyled">
+				<tr>
+					<td>ID</td><td>类型</td><td>厂商</td><td>型号</td><td>数量</td><td>价格</td><td>购买时间</td><td>操作</td>
+				</tr>
+				{foreach $prj.parts as $val}
+				<tr>
+					<td>{$val.id}</td><td>{$val.cid}</td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.count}</td><td>{$val.price}</td><td>{$val.indate}</td><td  data-kube="showbxform"><a href='{$smarty.const.URL}/Purchase/Exping/pid/{$val.id}'>报销</a></td>
+				</tr>
+				{/foreach}
+			</table>
+			
+		</div>
+		<div id="tab2">
+			<table class="unstyled">
+				<tr>
+					<td>名目</td><td>状态</td><td>金额</td><td>实报金额</td><td>提交时间</td><td>实报时间</td><td>操作</td>
+				</tr>
+				{foreach $prj.explist as $val}
+				<tr>
+					<td><a href='{$smarty.const.URL}/Purchase/Expview/eid/{$val.id}'>{$val.name}</a></td><td>{$val.statustr}</td><td>{$val.price} 元</td><td>{$val.finprice} 元</td><td>{$val.idate}</td><td>{$val.fdate}</td><td><a href='{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/eid/{$val.id}'>刷新</a>{if ($smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1) and $val.status eq 1} <a href='{$smarty.const.URL}/{$smarty.get.c}/ExpviewTest/eid/{$val.id}'> <font color=red>报销</font></a>{else if ($smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1) and $val.status eq 0}<a href='{$smarty.const.URL}/{$smarty.get.c}/ExpviewTV/eid/{$val.id}'> <font color=green>查看</font></a>{/if}</td>
+				</tr>
+				{/foreach}
+			</table>
+			
+		</div>
+		<div id="tab3" >
+			<form action='' method='post'>
+				<div class='form-item'>
+					<label>名目：<input type='text' name='name' value=''></label>
+				</div>
+				<div class='form-item'>
+					<input class='button' type='submit' name='cexp' value='创建'>
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
+				</main>
+
+
+
+
+
+
+
+

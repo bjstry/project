@@ -1,0 +1,17 @@
+<html>  
+    <head>
+            <title>文件上传</title>
+    </head>  
+    <body>   
+             <form action="{$smarty.const.URL}/{$smarty.get.c}/Prj_upcheck"  method="post" enctype="multipart/form-data">    
+             <input type="file" name='camera' accept="image/*" capture="camera">
+             <input type="file" name='camcorder' accept="video/*" capture="camcorder">
+    		 <input type="file" name='microphone' accept="audio/*" capture="microphone">
+              <input type="hidden" name="MAX_FILE_SIZE" value="1000000">      
+              选择文件：<input type="file" name="file">       
+             <input type="submit" name='upfile' value="上传文件">     
+             </form>   
+    </body> 
+</html>
+</div>
+				</main>

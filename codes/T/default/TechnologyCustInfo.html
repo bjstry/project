@@ -1,0 +1,40 @@
+			<div class='row'>	
+				<div class='col col-12'>
+					<h4>{$prj.mcustserv.name} &nbsp;&nbsp;<small>售后提交时间: {$prj.mcustserv.startdate} &nbsp;售后完成时间: {$prj.mcustserv.enddate}&nbsp; {$prj.edit} &nbsp;{if $smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1}<a href='{$smarty.const.URL}/{$smarty.get.c}/CustAdd/sid/{$prj.mcustserv.id}'>编辑</a>{else}{/if} <a onClick=window.print() href=''>打印</small></a></h4>
+				</div>
+				<div class='col col-3'>
+					目前状态: {$prj.mcustserv.servstat}
+				</div>
+				<div class='col col-3'>
+					负责业务: {$prj.mcustserv.saleman}
+				</div>
+				<div class='col col-3'>
+					负责技术: {$prj.mcustserv.techman}
+				</div>
+				<div class='col col-3'>
+					{if $smarty.session.uinfo.cid eq 2}技术{else}业务{/if}电话: {$prj.mcustserv.keyphone}
+				</div>
+				<div class='col col-12'>
+					<h5>客户联系方式:</h5>
+					{$prj.mcustserv.ctinfo}
+				</div>
+				<div class='col col-12'>
+					<h5>售后情况:</h5>
+					{$prj.mcustserv.servcont}
+				</div>
+				<div class='col col-12'>
+					<br>
+					<h5>处理记录 <small>{$prj.actionadd}</small></h5>
+					<table class='flat'>
+						<tr>
+							<th>处理时间</th><th>处理记录</th><th>处理人</td>
+						</tr>
+						{foreach $prj.actions as $val}
+						<tr>
+							<td>{$val.adate}</td><td>{$val.avalue}</td><td>{$val.uid}</td>
+						</tr>
+						{/foreach}
+					</table>
+					<button class='button small' onclick="history.go(-1);">返回</button>
+				</div>
+			</div>

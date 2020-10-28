@@ -1,0 +1,10 @@
+<form method="post" action="" class="form">
+    <div class="form-item">
+        {foreach $prj.explist as $val}
+        <label class="checkbox"><input type="radio" name='eid' value='{$val.id}'> {$val.name}</label>
+        {/foreach}
+    </div>
+    <div class='form-item'>
+    	<input type='submit' class='button is-10' name='submit' value='选择'>
+    </div>
+</form>		

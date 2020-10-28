@@ -2,11 +2,11 @@
 		<div class='col col-12'>
 		<table id='small-font' class="show-print">
 			<tr>
-				<td>类型</td><td>厂商</td><td>型号</td><td>数量</td><td>价格</td><td>发票</td><td>购买时间</td><td>项目</td>
+				<td id='pevtd'>型号</td><td id='pevtd'>类型</td><td id='pevtd'>厂商</td><td id='pevtd'>价格</td><td id='pevtd'>数量</td><td id='pevtd'>票</td><td id='pevtd'>购买日期</td><td id='pevtd'>入库日期</td><td id='pevtd'>项目</td>
 			</tr>
 			{foreach $prj.exparts as $val}
 			<tr>
-				<td>{$val.cid}</td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.count}</td><td>{$val.price}</td><td>{$val.kpstatus}</td><td>{$val.indate}</td><td>{if $val.project != 0}<a href='{$smarty.const.URL}/Technology/ProjectInfo/pid/{$val.project}'>{$val.project}</a>{else}库存{/if}</td>
+				<td id='pevtd'><a href='{$smarty.const.URL}/Purchase/viewdetail/pid/{$val.id}'>{$val.model}</a></td><td id='pevtd'>{$val.cid}</td><td id='pevtd'>{$val.name}</td><td id='pevtd'>{$val.price}</td><td id='pevtd'>{$val.count}</td><td id='pevtd'>{$val.kpstatus}</td><td id='pevtd'>{$val.indate}</td><td id='pevtd'>{$val.bydate}</td><td id='pevtd'>{if $val.project != 0}<a href='{$smarty.const.URL}/Technology/ProjectInfo/pid/{$val.project}'>{$val.project}</a>{else}库存{/if}</td>
 			</tr>
 			{/foreach}
 		</table>

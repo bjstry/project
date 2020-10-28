@@ -1,18 +1,19 @@
 <?php
 class FinanceC extends C{
 	public function Speekinit(){
-		if(empty($_SESSION['uid'])){
+		if(empty($_SESSION['jspjuid'])){
 			$this->url('请登录','/index/login');
 		}
+		$this->prj['webwidth'] = 80;
 	}
 	public function Index(){
 		$departid=9;
-		$prj['title']='财务部-硕星信息，西安硕星信息技术有限公司';
-		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
-		$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
-		$prj['left'][] = array('name'=>'报销审批','url'=>URL."/Solution");
-		$prj['left'][] = array('name'=>'返回首页','url'=>URL);
-		$this->assign('prj',$prj);
+		$this->prj['title']='财务部-硕星信息，西安硕星信息技术有限公司';
+		$this->prj['mycss'] = "<link rel='stylesheet' type='text/css' href='"._P_."/main.css'>";
+		$this->prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
+		$this->prj['left'][] = array('name'=>'报销审批','url'=>URL."/Solution");
+		$this->prj['left'][] = array('name'=>'返回首页','url'=>URL);
+		$this->assign('prj',$this->prj);
 		$this->display();
 	}
 	public function Email(){

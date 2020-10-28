@@ -1,0 +1,21 @@
+			<div class='is-100'>
+				<h3>硕星配件编辑</h3>
+				<form action='{$smarty.const.URL}/{$smarty.get.c}/Editdetail/id/{$prj.edid}' method='post'>
+
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>SN</span>
+					            <input name='sn' type='text' value="{$prj.oldsn}">
+					        </div>
+						</div>
+						<div class='form-item'>
+							<br>
+							<a class='button is-30' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
+							<input class='button is-30' type='submit' name='edit' value='提交'>
+						</div>
+
+					
+				</form>
+			</div>
+			</div>
+				</main>

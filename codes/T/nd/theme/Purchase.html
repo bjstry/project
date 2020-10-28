@@ -1,0 +1,28 @@
+
+
+			<header class='header is-stack-20'>
+				<div class='is-text-center'>
+					<h3 class='depart-title hide-on-print'>硕星内部系统-采购部</h3>
+	
+				</div>
+			</header>
+			<main class='main is-container'>
+				<div class='main-sidebar  is-25 is-shadow-1'>
+					<div id="my-collapse" class='collapse'>
+						<ul>
+							{foreach $prj.left as $val}
+								<li><a href='{$val.url}'>{$val.name}</a></li>
+							{/foreach}
+							<li><a href='{$smarty.const.URL}/{$smarty.get.c}'>首页</a></li>
+							<li><a href='{$smarty.const.URL}/{$smarty.get.c}/Dengji'>采购登记</a></li>
+							<li><a href='{$smarty.const.URL}/{$smarty.get.c}/Fpindex'>采购发票</a></li>
+							<li><a href='{$smarty.const.URL}/{$smarty.get.c}/Kucun'>库存浏览</a></li>
+							<!--<li><a href='{$smarty.const.URL}/{$smarty.get.c}/Outgo'>配件出库</a></li>-->
+							<li><a href='{$smarty.const.URL}/{$smarty.get.c}/Expense'>部门报销</a></li>
+							{$prj.logs}
+							<li><a href='{$smarty.const.URL}'>返回功能区</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class='main-content is-75 is-shadow-1'>
+			

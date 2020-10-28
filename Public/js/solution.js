@@ -3,7 +3,7 @@ $(function(){
 	var gamecounthtml = $("div#gamecount").html();
 	$("div#gcount").html("");
 	$("div#gamecount").html("");
-	$("input[value='p']").click(function(){
+	$("input[value='XYP']").click(function(){
 
 		var pchtml = $("div#pccpu").html();
 		$("#cputype").html(pchtml);
@@ -12,13 +12,39 @@ $(function(){
 		$('#memsize').html(pcmem);
 
 	});
-	$("input[value='w']").click(function(){
+	$("input[value='XYW']").click(function(){
 		var whtml = $("div#wcpu").html();
 		$("#cputype").html(whtml);
 		
 		var ssmem = $("div#ssmem").html();
 		$('#memsize').html(ssmem);
 
+	});
+	$("input[value='XYS']").click(function(){
+		var shtml = $("div#scpu").html();
+		$("#cputype").html(shtml);
+		var ssmem = $("div#ssmem").html();
+		$('#memsize').html(ssmem);
+	});
+	$("input[value='XYAW']").click(function(){
+		var awhtml = $("div#awcpu").html();
+		$("#cputype").html(awhtml);
+		var ssmem = $("div#ssmem").html();
+		$('#memsize').html(ssmem);
+	});
+	
+	$("input[value='XYAS']").click(function(){
+		var ashtml = $("div#ascpu").html();
+		$("#cputype").html(ashtml);
+		var ssmem = $("div#ssmem").html();
+		$('#memsize').html(ssmem);
+	});
+	
+	$("input[value='XYNS']").click(function(){
+		var nshtml = $("div#nscpu").html();
+		$("#cputype").html(nshtml);
+		var ssmem = $("div#ssmem").html();
+		$('#memsize').html(ssmem);
 	});
 	$("input[name='hddsize'][value='0']").click(function(){
 		$("div#hddtype").hide();
@@ -82,10 +108,66 @@ $(function(){
 	$("input[name='ccard'][value!=0]").click(function(){
 		$("div#ccount").show();
 	});
-	$("input[value='s']").click(function(){
-		var whtml = $("div#scpu").html();
-		$("#cputype").html(whtml);
-		var ssmem = $("div#ssmem").html();
-		$('#memsize').html(ssmem);
-	});
+});
+$('form#getprice').submit(function(){
+	//var cardcount = this.gamecount.value  +  this.gcount.value;
+	//alert(this.gamecount.value);
+	//let cardcount = this.gamecount.value;
+	if(this.gamecount){
+		if(this.gamecount.value > 4){
+			alert('显卡最多支持四张!');
+			return false;
+		}
+		if(this.gcount){
+			//alert(Number(this.gamecount.value) + Number(this.gcount.value));
+			if(Number(this.gamecount.value) + Number(this.gcount.value) > 4){
+				alert('显卡最多支持四张!');
+				return false;
+			}
+		}
+	}
+
+	if(!this.cputype.value){
+		alert('请选择CPU!');
+		return false;
+	}
+	
+	if(this.cpucount.value > 2){
+		alert('CPU数量超过上限!');
+		return false;
+	}
+
+	if(!this.memsize.value){
+		alert('请选择内存!');
+		return false;
+	}
+	
+	if(this.memcount.value > 16){
+		alert('内存数量超过限制!');
+		return false;
+	}
+	
+	
+	
+	if(!this.hddsize.value){
+		alert('请选择硬盘!');
+		return false; 
+	}
+	
+	if(!this.powerprice.value){
+		alert('请选择电源!');
+		return false;
+	}
+	
+	
+	/*if((this.gamecount.value  +  this.gcount.value) > 4){
+		alert('显卡最多支持三张');
+		return false;
+	}/*
+	/*if(!this.disprice.value){
+		alert('请选择显示器！');
+		return false;
+	}*/
+	return true;
+	
 });

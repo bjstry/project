@@ -1,0 +1,35 @@
+				<div class='row'>
+					<div class='col col-4'>
+						<form action='' method='post'>
+							<select name='class'>
+								{foreach $prj.myclass as $val}
+								<option value='{$val.cid}' {$val.select}>{$val.rname}</option>
+								{/foreach}
+								<input class='col col-12' type='text' name='name' value='{$prj.myclass.price.name}' placeholder='请输入型号'>
+								<input class='col col-12' type='text' name='price' value='{$prj.myclass.price.price}' placeholder='请输入价格'>
+								<input class='col col-12' type='text' name='info' value='{$prj.myclass.price.info}' placeholder='请输入描述'>
+								<input class='col col-12' type='text' name='desc' value='{$prj.myclass.price.desc}' placeholder='请输入方案信息'>
+								<input class='col col-12' type='text' name='visible' value='{$prj.myclass.price.visible}' placeholder='排序'>
+								<input class='col col-12' type='text' name='level' value='{$prj.myclass.price.level}' placeholder='等级'>
+								<div>
+									<input class='button primary small' type='submit' name='submit' value='{$prj.subtype}'>
+									{$prj.myclass.price.back}
+								</div>
+							</select>
+						</form>
+					</div>
+					<div class='col col-8'>
+						<p>说明:</p>
+						<p>intel系列酷睿CPU使用i前缀，例如i7 6770k的型号应该是i6770k,i3 6100的型号是i6100,志强系列使用E前缀，例如E5 2650 V4,型号为E2650V4，E3 1230 V5型号为E1230V5，注意区分大小写。</p>
+						<p>排序指的显示顺序，0则不在系统显示。</p>
+						<p>等级指所需配件规格等级，例如 E5 V4 CPU等级为1，最新系列等级为2，根据等级确定主板</p>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+				</main>

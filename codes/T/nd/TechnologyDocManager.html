@@ -1,0 +1,18 @@
+			<div class='is-100'>
+				<nav class="pager">
+					<a class='is-prev' href="{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/page/{$prj.mypages.pre.url}"></a>
+		                        	{foreach $prj.mypages.con as $value}
+		                        		<a class='{$value.0}' href="{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/page/{$value.1}">{$value.1}</a>
+		                        	{/foreach}
+		            <a class='is-next' href="{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/page/{$prj.mypages.nex.url}"></a>
+				</nav>
+				<table class='table'>
+									<tr><td>编号</td><td>项目名称</td><td>学院/系</td><td>客户姓名</td><td>业务姓名</td><td>业务电话</td><td>项目负责人</td><td>状态</td></tr>
+									{foreach $prj.myprojects as $val}
+									<tr><td>{$val.id}</td><td>{$val.prjname1}{$val.prjcustomer}</td><td>{$val.prjname2}</td><td>{$val.prjcustomer}</td><td>{$val.prjsaleman}</td><td>{$val.prjsalephone}</td><d><td>{$val.uid}</td><td><a href='{$smarty.const.URL}/{$smarty.get.c}/ProjectInfo/pid/{$val.id}'>{$val.prjstatus}</a></td></tr>
+									{/foreach}
+				</table>
+				<a class='button small' href='{$prj.backurl}'>返回</a>
+			</div>
+</div>
+				</main>

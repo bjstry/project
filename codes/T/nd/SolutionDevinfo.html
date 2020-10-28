@@ -1,0 +1,13 @@
+<table>
+	<thead>
+		<th>配件</th><th>型号</th><th>数量</th><th>单价(元)</th>
+	</thead>
+	<tbody>
+		{foreach $prj.dev_info as $val}
+		<tr><td>{$val.cname}</td><td>{$val.info}</td><td>{$val.count}</td><td>{$val.price}</td></tr>
+		{/foreach}
+	</tbody>
+</table>
+<a class='button is-10' href='{$smarty.const.URL}/{$smarty.get.c}/Generate'>返回</a>
+</div>
+				</main>

@@ -1,0 +1,16 @@
+
+				<table class='table'>
+									<tr><td>编号</td><td>项目名称</td><td>学院/系</td><td>客户姓名</td><td>业务姓名</td><td>业务电话</td><td>项目负责人</td><td>状态</td></tr>
+									{foreach $prj.myprojects as $val}
+									<tr><td>{$val.id}</td><td><a href='{$smarty.const.URL}/{$smarty.get.c}/ProjectInfoTest/pid/{$val.id}'>{$val.prjname1}{$val.prjcustomer}</a></td><td>{$val.prjname2}</td><td>{$val.prjcustomer}</td><td>{$val.prjsaleman}</td><td>{$val.prjsalephone}</td><d><td>{$val.uid}</td><td>{$val.prjstatus}</td>
+									</tr>
+									<!--<tr><td>{$val.id}</td><td>{$val.prjname1}{$val.prjcustomer}</td><td>{$val.prjname2}</td><td>{$val.prjcustomer}</td><td>{$val.prjsaleman}</td><td>{$val.prjsalephone}</td><d><td>{$val.uid}</td><td><a href='{$smarty.const.URL}/{$smarty.get.c}/ProjectInfo/pid/{$val.id}'>{$val.prjstatus}</a></td>
+									</tr>-->
+									{/foreach}
+								</table>
+								<a class='button small' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

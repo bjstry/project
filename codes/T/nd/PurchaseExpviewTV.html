@@ -1,0 +1,22 @@
+
+		<div class='col col-12'>
+			<table id='small-font' class="show-print">
+				<tr>
+					<td id='pevtd'>型号</td><td id='pevtd'>厂商</td><td id='pevtd'>类型</td><td id='pevtd'>价格</td><td id='pevtd'>数量</td><td id='pevtd'>票</td><td id='pevtd'>购买日期</td><td id='pevtd'>入库日期</td><td id='pevtd'>项目</td><td id='pevtd'>实报金额</td>
+				</tr>
+				{foreach $prj.exparts as $val}
+				<tr>
+					<td id='pevtd'><a href='{$smarty.const.URL}/Purchase/viewdetail/pid/{$val.id}'>{$val.model}</a></td><td id='pevtd'>{$val.name}</td><td id='pevtd'>{$val.cid}</td><td id='pevtd'>{$val.price}</td><td id='pevtd'>{$val.count}</td><td id='pevtd'>{$val.kpstatus}</td><td id='pevtd'>{$val.indate}</td><td id='pevtd'>{$val.bydate}</td><td id='pevtd'>{if $val.project != 0}<a href='{$smarty.const.URL}/Technology/ProjectInfo/pid/{$val.project}'>{$val.project}</a>{else}库存{/if}</td><td>{$val.finprice}</td>
+				</tr>
+				{/foreach}
+			</table>
+			 
+			其他金额: {$prj.expinfo.othprice}
+			说明: {$prj.expinfo.remark}
+			<hr>
+			合计: {$prj.expinfo.finprice}
+			<br>
+			<a class='button secondary outline' href='{$smarty.const.URL}/Purchase/Expense'>返回</a>
+		</div>
+		</div>
+				</main>

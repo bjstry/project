@@ -1,0 +1,49 @@
+	<div class='is-100'>
+		<nav class="tabs" data-kube="tabs">
+	
+		        <a class='is-active' href="#tab1">最近采购配件</a>
+		        <a href="#tab2">采购未到配件</a>
+		        <a href="#tab3">采购未到发票</a>
+		</nav>
+		<div id="tab1">
+			<table class="unstyled">
+				<tr>
+					<td>ID</td><td>厂商</td><td>型号</td><td>数量</td><td>购买时间</td><td>入库</td><td>发票</td><td>操作</td>
+				</tr>
+				{foreach $prj.parts as $val}
+				<tr>
+					<td><a href='{$smarty.const.URL}/Purchase/viewdetail/pid/{$val.id}'>{$val.id}</td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.count}</td><td>{$val.indate}</td><td>{if $val.location eq 8}<font color=red>未入库</font>{else}<font color=green>已入库</font>{/if}</td><td>{if $val.kpstatus eq 0}<font color=green>无发票</font>{else if $val.kpstatus neq 2}<font color=green>已到</font>{/if}{if $val.kpstatus eq 2}<font color=red>未到</font>{/if}</td><td><a href='{$smarty.const.URL}/Purchase/GetBack/pid/{$val.id}'>删除</td>
+				</tr>
+				{/foreach}
+			</table>
+			
+		</div>
+		<div id="tab2">
+			<table class="unstyled">
+				<tr>
+					<td>ID</td><td>厂商</td><td>型号</td><td>供货商</td><td>数量</td><td>购买日期</td><td>操作</td>
+				</tr>
+				{foreach $prj.wdparts as $val}
+				<tr>
+					<td><a href='{$smarty.const.URL}/Purchase/Ruku/id/{$val.id}'>{$val.id}</td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.supplier}</td><td>{$val.count}</td><td>{$val.indate}</td><td>{if $val.count eq 1}无{else}<a href='{$smarty.const.URL}/Purchase/chaifen/id/{$val.id}'>拆分{/if}</a></td>
+				</tr>
+				{/foreach}
+			</table>
+			
+		</div>
+		<div id="tab3" >
+			<table class="unstyled">
+				<tr>
+					<td>ID</td><td>厂商</td><td>型号</td><td>供货商</td><td>数量</td><td>购买日期</td>
+				</tr>
+				{foreach $prj.wpparts as $val}
+				<tr>
+					<td><a href='{$smarty.const.URL}/Purchase/Fapiao/id/{$val.id}'>{$val.id}</td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.supplier}</td><td>{$val.count}</td><td>{$val.indate}</td>
+				</tr>
+				{/foreach}
+			</table>
+		</div>
+	</div>
+
+</div>
+				</main>

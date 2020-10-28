@@ -1,0 +1,48 @@
+
+				<div class='is-100'>
+					<h4>{$prj.myprj.prjname1}{$prj.myprj.prjcustomer} &nbsp;序列号: {$prj.myprj.sn}&nbsp;<small>项目开始时间: {$prj.myprj.prjstart} &nbsp;项目结束时间: {$prj.myprj.prjfinish}&nbsp; {$prj.edit} &nbsp;<a onClick=window.print() href=''>打印</small></a></h4>
+				</div>
+				<div class='is-25'>
+					目前状态: {$prj.myprj.prjstatus}
+				</div>
+				<div class='is-25'>
+					业务姓名: {$prj.myprj.prjsaleman}
+				</div>
+				<div class='is-25'>
+					联系电话: {$prj.myprj.prjsalephone}
+				</div>
+				<div class='is-25'>
+					项目负责人: {$prj.myprj.uid}
+				</div>
+				<div class='is-25'>
+					物流单号: {$prj.myprj.prjkey}
+				</div>
+				<div class='is-100'>
+					<br>
+					<h5>操作记录 <small>{$prj.actionadd}</small></h5>
+					<table class='flat'>
+						<tr>
+							<th>操作时间</th><th>操作记录</th><th>操作事故</th><th>操作人</td>
+						</tr>
+						{foreach $prj.actions as $val}
+						<tr>
+							<td>{$val.adate}</td><td>{$val.avalue}</td><td>{$val.remark}</td><td>{$val.uid}</td>
+						</tr>
+						{/foreach}
+					</table>
+				</div>
+				<div class='is-100'>
+					<br>
+					<h5>配件列表</h5>
+					<table class='table'>
+						<tr><td>编号</td><td>厂商</td><td>型号</td><td>SN</td><td>数量</td><td>领用人</td><td>购买时间</td><td>说明</td><td>发票ID</td><td>操作</td></tr>
+						{foreach $prj.myparts as $val}
+						<form action='' method='post' class='form'>
+						<tr><td>{if $prj.uinfo.cid eq 2}{$val.id}{else}<a href='{$smarty.const.URL}/Purchase/viewdetail/pid/{$val.id}'>{$val.id}</a>{/if}</td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.sn}</td><td>{$val.count}</td><td>{$val.incharge}</td><td>{$val.indate}</td><td>合格</td><td>{if $prj.uinfo.cid eq 2}{$val.kpstatus}{else}<a href='{$smarty.const.URL}/Purchase/Fpdetail/id/{$val.kpstatus}'>{$val.kpstatus}</a>{/if}</td><td>{if $smarty.session.uinfo.gid eq 1}返还{else}<a href='{$smarty.const.URL}/Technology/GetBack/pid/{$val.id}'>返还</a>{/if}</td></tr>
+						</form>
+						{/foreach}
+					</table>
+					<button class='button small' onclick="history.go(-1);">返回</button>
+				</div>
+</div>
+				</main>

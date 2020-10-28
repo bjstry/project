@@ -7,7 +7,7 @@
 					            <span>类型</span>
 					            <select name='type'>
 						            {foreach $prj.myclass as $value}
-						            	<option value={$value.cid}>{$value.cname}</option>
+						            	<option value={$value.cid}>{$value.rname}</option>
 						            {/foreach}
 					            </select>
 					        </div>
@@ -65,7 +65,7 @@
 						</div>
 						<div class='form-item'>
 							<div class="prepend w50">
-					            <span>入库时间</span>
+					            <span>购买日期</span>
 					            <input name='indate' type='text'>
 					        </div>
 						</div>

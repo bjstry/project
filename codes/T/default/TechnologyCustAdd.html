@@ -1,0 +1,52 @@
+<form action='{$smarty.const.URL}/{$smarty.get.c}/CustAddCheck' method=post>
+	<div class='form-item'>
+		<input type='hidden' name='id' value='{$prj.mcustserv.id}'>	
+	</div>
+	<div class='form-item'>
+		<label>售后名称:</label>
+		<input type='text' name='name' value='{$prj.mcustserv.name}' placeholder='例:某某学校某某'>	
+	</div>
+	<div class='form-item'>
+		<label>售后说明:</label>
+		<input type='text' name='servcont' value='{$prj.mcustserv.servcont}' placeholder='例:服务器无法开机、设备显示器黑屏、服务器无法连接网络等'>	
+	</div>
+	<div class='form-item'>
+		<label>联系方式:</label>
+		<input type='text' name='ctinfo' value='{$prj.mcustserv.ctinfo}' placeholder='例:学生电话xxxxxxxx，微信xxxxxxx'>	
+	</div>
+	{if ($smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1) and $smarty.get.sid neq 0}
+	<div class='form-item'>
+		<label>售后状态:(0:未分配 1:处理中 2:已完成 3:已删除)</label>
+		<input type='text' name='servstat' value='{$prj.mcustserv.servstat}' placeholder='售后状态:(0:未分配 1:处理中 2:已完成 3:已删除)'>	
+	</div>
+	<div class='form-item'>
+		<label>提交业务:</label>
+		<input type='text' name='saleman' value='{$prj.mcustserv.saleman}' placeholder='请输入业务名字'>	
+	</div>
+	<div class='form-item'>
+		<label>处理技术:</label>
+		<input type='text' name='techman' value='{$prj.mcustserv.techman}' placeholder='请输入技术名字'>	
+	</div>
+	{else}
+	{/if}
+	<div class='form-item'>
+		<label>提交时间:</label>
+		<input type='text' name='startdate' value='{$prj.mcustserv.startdate}' placeholder='例:20190926'>	
+	</div>
+	{if ($smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1) and $smarty.get.sid neq 0}
+
+	<div class='form-item'>
+		<label>完成时间:</label>
+		<input type='text' name='enddate' value='{$prj.mcustserv.enddate}' placeholder='请输入完成时间'>	
+	</div>
+	<div class='form-item'>
+		<input type='submit' class='button' name='submit' value='修改'>
+		
+	</div>
+	{else}
+	<div class='form-item'>
+		<input type='submit' class='button' name='submit' value='提交'>
+		
+	</div>
+	{/if}
+</form>

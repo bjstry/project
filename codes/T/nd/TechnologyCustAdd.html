@@ -1,0 +1,74 @@
+
+<form action='{$smarty.const.URL}/{$smarty.get.c}/CustAddCheck' method=post>
+	<div class='form-item'>
+		<input type='hidden' name='id' value='{$prj.mcustserv.id}'>	
+	</div>
+	<div class='form-item'>
+		<label>售后名称:</label>
+		<input type='text' name='name' value='{$prj.mcustserv.name}' placeholder='例:某某学校某某'>	
+	</div>
+	<div class='form-item'>
+		<label>售后说明:</label>
+		<input type='text' name='servcont' value='{$prj.mcustserv.servcont}' placeholder='例:服务器无法开机、设备显示器黑屏、服务器无法连接网络等'>	
+	</div>
+	<div class='form-item'>
+		<label>联系方式:</label>
+		<input type='text' name='ctinfo' value='{$prj.mcustserv.ctinfo}' placeholder='例:学生电话xxxxxxxx，微信xxxxxxx'>	
+	</div>
+	{if ($smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1) and $smarty.get.sid neq 0}
+	<div class='form-item'>
+		<label>售后状态:(0:未分配 1:处理中 2:已完成 3:已删除)</label>
+		<input type='text' name='servstat' value='{$prj.mcustserv.servstat}' placeholder='售后状态:(0:未分配 1:处理中 2:已完成 3:已删除)'>	
+	</div>
+	<div class='form-item'>
+		<label>提交业务: {$prj.mcustserv.saleman}</label>
+	</div>
+	<div class='form-item'>
+		<label>处理技术: {$prj.mcustserv.techman}</label>
+	</div>
+	<div class='form-item'>
+		<label>分配技术:</label>
+		<select name='tmen'>
+			<option value=0>默认</option>
+			{foreach $prj.tmen as $val }
+			<option value={$val.id}>{$val.urename}</option>
+			{/foreach}
+		</select>
+	</div>
+	{else}
+	{/if}
+	<div class='form-item'>
+		<label>相关业务:</label>
+		<select name='smen'>
+			<option value=0>默认</option>
+			{foreach $prj.smen as $val }
+			<option value={$val.id}>{$val.urename}</option>
+			{/foreach}
+		</select>
+	</div>
+	
+
+	
+	<div class='form-item'>
+		<label>提交时间:</label>
+		<input name='startdate' data-kube="datepicker" value='{$prj.mcustserv.startdate}' type='text'>
+	</div>
+	{if ($smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1) and $smarty.get.sid neq 0}
+
+	<div class='form-item'>
+		<label>完成时间:</label>
+		<input name='enddate' data-kube="datepicker" value='{$prj.mcustserv.enddate}' type='text'>
+	</div>
+	<div class='form-item'>
+		<input type='submit' class='button is-10' name='submit' value='修改'>
+		
+	</div>
+	{else}
+	<div class='form-item'>
+		<input type='submit' class='button is-10' name='submit' value='提交'>
+		
+	</div>
+	{/if}
+</form>
+</div>
+				</main>

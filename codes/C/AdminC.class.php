@@ -1,34 +1,48 @@
 <?php
 class AdminC extends C{
-	public function Index(){
-		$prj['title']='后台管理-硕星信息，西安硕星信息技术有限公司';
-		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
-		
 	
-		$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
-		$prj['left'][] = array('name'=>'部门管理','url'=>URL."/$_GET[c]/Department");
-		$prj['left'][] = array('name'=>'用户管理','url'=>URL."/$_GET[c]/User");
-		$prj['left'][] = array('name'=>'分类管理','url'=>URL."/$_GET[c]/Pclass");
-		$prj['left'][] = array('name'=>'返回首页','url'=>URL);
+	public $prj;  //定义输出
+	public $userinfo; //定义用户信息
+	public $departurl; //定义部门链接
+	public $logs; //定义日志类
+	public $user; //定义用户类
+	public $partclass; //定于分类类
+	public $partprice; //定义配件价格类
+	public $pagenb;   //定义每页日志条数
+	public $pagekey;  //定义翻页关键字
+	
+	public function Speekinit(){
+		if(empty($_SESSION['jspjuid'])){
+			$this->url('请登录','/index/login');
+		}else{
+			//print_r(session('jspjuid'));
+		}
+		
+		$this->user = M('user');
+		$this->prj['title']='后台管理-硕星信息，西安硕星信息技术有限公司';
+		$this->prj['mycss'] = "<link rel='stylesheet' type='text/css' href='"._P_."/main.css'>";
+		$this->prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
+		$this->prj['left'][] = array('name'=>'部门管理','url'=>URL."/$_GET[c]/Department");
+		$this->prj['left'][] = array('name'=>'用户管理','url'=>URL."/$_GET[c]/User");
+		$this->prj['left'][] = array('name'=>'分类管理','url'=>URL."/$_GET[c]/Pclass");
+		$this->prj['left'][] = array('name'=>'返回首页','url'=>URL);
 
 		
-		$this->assign('prj',$prj);
+		$this->prj['webwidth'] = 80;
+	}
+	public function Index(){
+		$this->assign('prj',$this->prj);
 		$this->display();
 	}
 	public function Pclass(){
 		if(!VerifySession('gid',0)){
 			$class = M('class');
 			$myclass = $class->select();
-			$prj['title'] = "分类管理，硕星系统，西安硕星信息技术有限公司";
-			$prj['myclass'] = $myclass;
-			$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
-			$prj['mangertitle'] = '分类管理';
-			$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
-			$prj['left'][] = array('name'=>'部门管理','url'=>URL."/$_GET[c]/Department");
-			$prj['left'][] = array('name'=>'用户管理','url'=>URL."/$_GET[c]/User");
-			$prj['left'][] = array('name'=>'分类管理','url'=>URL."/$_GET[c]/Pclass");
-			$prj['left'][] = array('name'=>'返回首页','url'=>URL);
-			$this->assign('prj',$prj);
+			$this->prj['title'] = "分类管理，硕星系统，西安硕星信息技术有限公司";
+			$this->prj['myclass'] = $myclass;
+			$this->prj['mycss'] = "<link rel='stylesheet' type='text/css' href='"._P_."/main.css'>";
+			$this->prj['mangertitle'] = '分类管理';
+			$this->assign('prj',$this->prj);
 			$this->display();
 			if($_POST['edit']){
 				echo 'edit<br>';
@@ -54,7 +68,7 @@ class AdminC extends C{
 		if(!VerifySession('gid',0)){
 			if(isset($_POST['submit'])){
 				$class = M('class');
-				if($class->insert('`cid`,`fid`,`gid`,`cname`',"'',$_POST[fid],$_POST[gid],'$_POST[cname]'")){
+				if($class->insert('`cid`,`fid`,`gid`,`cname`,`rname`,`visible`',"'',$_POST[fid],$_POST[gid],'$_POST[cname]','$_POST[rname]','$_POST[visible]'")){
 					$this->url('创建分类成功！','/Admin/Pclass');
 				}else{
 					print_r($_POST);
@@ -73,23 +87,18 @@ class AdminC extends C{
 	public function User(){
 		$user = M('User');
 		$departs = M('Departs');
-		$prj['users'] = $user->select();
-		$prj['departs'] = $departs->select();
-		$prj['mangertitle'] = '用户管理';
-		$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
-		$prj['left'][] = array('name'=>'部门管理','url'=>URL."/$_GET[c]/Department");
-		$prj['left'][] = array('name'=>'用户管理','url'=>URL."/$_GET[c]/User");
-		$prj['left'][] = array('name'=>'分类管理','url'=>URL."/$_GET[c]/Pclass");
-		$prj['left'][] = array('name'=>'返回首页','url'=>URL);
-		
+		$this->prj['users'] = $user->where("gid!=9")->select();
+		$this->prj['quitusers'] = $user->where("gid=9")->select();
+		$this->prj['departs'] = $departs->select();
+		$this->prj['mangertitle'] = '用户管理';
 		if($_POST['submit']){
 			$user->insert("'',$_POST[udepart],$_POST[ulevel],'$_POST[uname]','".md5($_POST['upass'])."','$_POST[uemail]',$_POST[uphone],'$_POST[urename]'");
 			$this->url('添加成功！','/Admin/User');
 		}
 		
-		$prj['title']='用户管理-硕星信息，西安硕星信息技术有限公司';
-		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
-		$this->assign('prj',$prj);
+		$this->prj['title']='用户管理-硕星信息，西安硕星信息技术有限公司';
+		$this->prj['mycss'] = "<link rel='stylesheet' type='text/css' href='"._P_."/main.css'>";
+		$this->assign('prj',$this->prj);
 		$this->display();
 	}
 	public function UserChange(){
@@ -97,9 +106,9 @@ class AdminC extends C{
 			$uid = $_GET['uid'];
 			$myuser = M('User');
 			$user = $myuser->where("id=$uid")->find();
-			$prj['user'] = $user;
+			$this->prj['user'] = $user;
 			if(isset($_POST['submit'])){
-				if(md5($_POST['oldupass']) == $user['upass']){
+				//if(md5($_POST['oldupass']) == $user['upass']){
 					if($_POST['newupass'] == $_POST['newreupass']){
 						if($_POST['newupass'] != $_POST['oldupass']){
 							$myuser->where("id=$uid")->update("upass='".md5($_POST['newupass'])."',umail='$_POST[uemail]',uphone=$_POST[uphone],urename='$_POST[urename]'");
@@ -110,34 +119,28 @@ class AdminC extends C{
 					}else{
 						$this->url('两次密码不一致！');
 					}
-				}else{
-					$this->url('密码错误!');
-				}
+				//}else{
+				//	$this->url('密码错误!');
+				//}
 			}
 		}else{
 			exit('非法访问!');
 		}
-		$prj['title']='用户管理-硕星信息，西安硕星信息技术有限公司';
-		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
-		$this->assign('prj',$prj);
+		$this->prj['title']='用户管理-硕星信息，西安硕星信息技术有限公司';
+		$this->prj['mycss'] = "<link rel='stylesheet' type='text/css' href='"._P_."/main.css'>";
+		$this->assign('prj',$this->prj);
 		$this->display();
 	}
 	public function Department(){
-		$prj['title']='部门管理-硕星信息，西安硕星信息技术有限公司';
-		$prj['mycss'] = "<link rel='stylesheet' type='text/css' href='".ROOT."/Public/main.css'>";
-		$prj['myjs'] = "<script type='text/javascript' src='".ROOT."/Public/default/admin.js'></script>";
+		$this->prj['title']='部门管理-硕星信息，西安硕星信息技术有限公司';
+		$this->prj['mycss'] = "<link rel='stylesheet' type='text/css' href='"._P_."/main.css'>";
+		$this->prj['myjs'] = "<script type='text/javascript' src='".ROOT."/Public/default/admin.js'></script>";
 		
 		$myextend = M('de_extend');
-	
-		$prj['left'][] = array('name'=>'主页','url'=>URL."/$_GET[c]");
-		$prj['left'][] = array('name'=>'部门管理','url'=>URL."/$_GET[c]/Department");
-		$prj['left'][] = array('name'=>'用户管理','url'=>URL."/$_GET[c]/User");
-		$prj['left'][] = array('name'=>'分类管理','url'=>URL."/$_GET[c]/Pclass");
-		$prj['left'][] = array('name'=>'返回首页','url'=>URL);
 		$departs = M('departs');
 		$row = $departs->select();
-		$prj['depart']['action'][] = array("action"=>"edit","name"=>"编辑");
-		$prj['depart']['action'][] = array("action"=>"delete","name"=>"删除");
+		$this->prj['depart']['action'][] = array("action"=>"edit","name"=>"编辑");
+		$this->prj['depart']['action'][] = array("action"=>"delete","name"=>"删除");
 		for($i=0;$i<count($row);$i++){
 			$row[$i]['fname']=getDepartment($row[$i]['fid'],'name');
 			$did=$row[$i][id];
@@ -149,18 +152,18 @@ class AdminC extends C{
 			}
 		}
 		if($_GET['action']=='edit'){
-			$prj['depart']['edit']='部门编辑';
-			$prj['depart']['type']='提交';
+			$this->prj['depart']['edit']='部门编辑';
+			$this->prj['depart']['type']='提交';
 			$departrow = $departs->where("id=$_GET[id]")->find();
-			$prj['depart']['editrow'] = $departrow;
+			$this->prj['depart']['editrow'] = $departrow;
 			if(isset($_POST['departedit'])){
 				$departs->where("id=$_GET[id]")->update("name='$_POST[dename]',url='$_POST[deurl]',fid=$_POST[defid]");
 				print_r($_POST['departedit']);
 				//$this->url('修改成功！','/Admin/Department');
 			}
 		}else{
-			$prj['depart']['edit']='部门添加';
-			$prj['depart']['type']='添加';
+			$this->prj['depart']['edit']='部门添加';
+			$this->prj['depart']['type']='添加';
 			if(isset($_POST['departedit'])){
 				$departs->insert("id,fid,name,url","'',$_POST[defid],'$_POST[dename]','$_POST[deurl]'");
 				$this->url('添加成功!','/Admin/Department');
@@ -170,9 +173,15 @@ class AdminC extends C{
 				$this->url('删除成功！','/Admin/Department');
 			}
 		}
-		$prj['departs'] = $row;
-		$this->assign('prj',$prj);
+		$this->prj['departs'] = $row;
+		$this->assign('prj',$this->prj);
 		$this->display();
 		//print_r($row);
+	}
+	public function Quit(){
+	
+		$id = $_GET['uid'];
+		$this->user->where("id=$id")->update("gid=9");
+		$this->url('操作成功！');
 	}
 }

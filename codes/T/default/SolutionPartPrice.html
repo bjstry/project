@@ -1,6 +1,6 @@
 
 				<div class='row'>
-					<div class='col col-12'>
+					<!--<div class='col col-12'>
 						CPU
 					</div>
 					{foreach $prj.mycpuprice as $val}
@@ -98,7 +98,161 @@
 					<div class='col col-1'>
 						<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
 					</div>
-					{/foreach}
+					{/foreach} -->
+					<div class='col col-12'>
+						<nav class="tabs" data-component="tabs">
+						    <ul>
+						        <li class="active"><a href="#tab1">CPU</a></li>
+						        <li><a href="#tab2">主板、内存</a></li>
+						        <li><a href="#tab3">显卡</a></li>
+						        <li><a href="#tab4">硬盘电源</a></li>
+						        <li><a href="#tab5">机箱显示器</a></li>
+						        <li><a href="#tab6">其他配件</a></li>
+						    </ul>
+						</nav>
+						
+						<div id="tab1">
+							<div class='row'>
+								<div class='col col-12'><p>PC:</p></div>
+								{foreach $prj.mypccpuprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								<div class='col col-12'><p>intel单路:</p></div>
+								{foreach $prj.myiscpuprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								<div class='col col-12'><p>intel多路:</p></div>
+								{foreach $prj.myidcpuprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								<div class='col col-12'><p>AMD系列:</p></div>
+								{foreach $prj.myamdcpuprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+							</div>
+						</div>
+						<div id="tab2">
+							<div class='row'>
+								<div class='col col-12'><p>主板:</p></div>
+								{foreach $prj.myboardprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								
+								<div class='col col-12'><p>PC内存:</p></div>
+								{foreach $prj.mypcmemprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								<div class='col col-12'><p>ECC内存:</p></div>
+								{foreach $prj.mysememprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+							</div>
+						</div>
+						<div id="tab3">
+							<div class='row'>
+								<div class='col col-12'><p>消费级:</p></div>
+								{foreach $prj.mygecardprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								<div class='col col-12'><p>专业级:</p></div>
+								{foreach $prj.myqucardprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								<div class='col col-12'><p>计算级:</p></div>
+								{foreach $prj.mytecardprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+							</div>
+						</div>
+						<div id="tab4">
+							<div class='row'>
+								<div class='col col-12'><p>硬盘:</p></div>
+								{foreach $prj.mydiskprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								
+								<div class='col col-12'><p>电源:</p></div>
+								{foreach $prj.mypowerprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+							</div>
+						</div>
+						<div id="tab5">
+							<div class='row'>
+								<div class='col col-12'><p>机箱:</p></div>
+								{foreach $prj.myboxprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								<div class='col col-12'><p>显示器:</p></div>
+								{foreach $prj.myvgaprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+							</div>
+						</div>
+						<div id="tab6">
+							<div class='row'>
+								<div class='col col-12'><p>散热器:</p></div>
+								{foreach $prj.mysrqprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								
+								<div class='col col-12'><p>键鼠:</p></div>
+								{foreach $prj.mymouseprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								<div class='col col-12'><p>光驱:</p></div>
+								{foreach $prj.mydvdprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								<div class='col col-12'><p>网络配件:</p></div>
+								{foreach $prj.mynetprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+								<div class='col col-12'><p>其他配件:</p></div>
+								{foreach $prj.myoprice as $val}
+								<div class='col col-1'>
+									<form action='' method='post'><input class='text-center' type='submit' value="{$val.name}" name='submit'><input type='text' value="{$val.price}" name="{$val.name}"><div class='partinfo'>{$val.info}<br>{$val.desc}<br><a href='{$smarty.const.URL}/{$smarty.get.c}/AddPrice/id/{$val.id}'>更多</a></div></form>
+								</div>
+								{/foreach}
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

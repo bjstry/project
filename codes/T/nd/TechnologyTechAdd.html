@@ -1,0 +1,38 @@
+
+<form action='{$smarty.const.URL}/{$smarty.get.c}/TechAddCheck' method=post>
+	<div class='form-item'>
+		<input type='hidden' name='id' value='{$prj.mcustserv.id}'>	
+	</div>
+	<div class='form-item'>
+		<label>售后名称:</label>
+		<input type='text' name='name' value='{$prj.mcustserv.name}' placeholder='例:某某学校某某'>	
+	</div>
+	<div class='form-item'>
+		<label>售后说明:</label>
+		<input type='text' name='servcont' value='{$prj.mcustserv.servcont}' placeholder='例:服务器无法开机、设备显示器黑屏、服务器无法连接网络等'>	
+	</div>
+	<div class='form-item'>
+		<label>联系方式:</label>
+		<input type='text' name='ctinfo' value='{$prj.mcustserv.ctinfo}' placeholder='例:学生电话xxxxxxxx，微信xxxxxxx'>	
+	</div>
+	<div class='form-item'>
+		<label>负责业务:</label>
+		<select name='saleman'>
+			<option>业务一</option>
+			<option>业务一</option>
+			<option>业务一</option>
+			<option>业务一</option>
+		</select>
+	</div>
+	<div class='form-item'>
+		<label>提交时间:</label>
+		<input type='text' name='startdate' value='{$prj.mcustserv.startdate}' placeholder='例:20190926'>	
+	</div>
+
+	<div class='form-item'>
+		<input type='submit' class='button is-10' name='submit' value='提交'>
+		
+	</div>
+</form>
+</div>
+				</main>

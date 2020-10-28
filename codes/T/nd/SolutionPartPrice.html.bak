@@ -1,0 +1,147 @@
+				<div class='row' id='price'>
+					<div class='col col-12'>
+						<h5 class='text-center'>CPU报价</h5>
+					</div>
+					<div class='col col-3'>
+						<p class='text-center'>酷睿系列</p>
+						6100:<input class='col col-3' type='text' name='e2620' value=''> 6500:<input class='col col-3' type='text' name='e2620' value=''>
+					</div>
+					<div class='col col-3'>
+						<p class='text-center'>志强E5 1600系列</p>
+						1620:<input class='col col-3' type='text' name='e2620' value=''> 1660:<input class='col col-3' type='text' name='e2620' value=''>
+					</div>
+					<div class='col col-3'>
+						<p class='text-center'>志强E5 2600系列</p>
+						2620:<input class='col col-3' type='text' name='e2620' value=''> 2650:<input class='col col-3' type='text' name='e2620' value=''>
+					</div>
+					<div class='col col-3'>
+						<p class='text-center'>志强E5 2600系列</p>
+						2680:<input class='col col-3' type='text' name='e2620' value=''> 2690:<input class='col col-3' type='text' name='e2620' value=''>
+					</div>
+					<div class='col col-3'>
+						6300:<input class='col col-3' type='text' name='e2620' value=''> 6600:<input class='col col-3' type='text' name='e2620' value=''>
+					</div>
+					<div class='col col-3'>
+						1630:<input class='col col-3' type='text' name='e2620' value=''> 1680:<input class='col col-3' type='text' name='e2620' value=''>
+					</div>
+					<div class='col col-3'>
+						2630:<input class='col col-3' type='text' name='e2620' value=''> 2660:<input class='col col-3' type='text' name='e2620' value=''>
+					</div>
+					<div class='col col-3'>
+						2683:<input class='col col-3' type='text' name='e2620' value=''> 2695:<input class='col col-3' type='text' name='e2620' value=''>
+					</div>
+					<div class='col col-3'>
+						6400:<input class='col col-3' type='text' name='e2620' value=''> 6700:<input class='col col-3' type='text' name='e2620' value=''>
+					</div>
+					<div class='col col-3'>
+						1650:<input class='col col-3' type='text' name='e2620' value=''> 
+					</div>
+					<div class='col col-3'>
+						2640:<input class='col col-3' type='text' name='e2620' value=''> 2667:<input class='col col-3' type='text' name='e2620' value=''>
+					</div>
+					<div class='col col-3'>
+						2687W:<input class='col col-3' type='text' name='e2620' value=''> 2697:<input class='col col-3' type='text' name='e2620' value=''>
+					</div>
+					<div class='col col-3 offset-9'>
+						2698:<input class='col col-3' type='text' name='e2620' value=''> 2699:<input class='col col-3' type='text' name='e2620' value=''>
+					</div>
+					<div class='col col-12'>
+						<br>
+						<hr>
+						<h5 class='text-center'>内存报价</h5>
+					</div>
+					<div class='col col-6'>
+						<p class='text-center'>PC内存</p>
+						8G: <input class='col col-1' type='text' name='8G' value=''>
+						16G: <input class='col col-2' type='text' name='8G' value=''>
+						32G: <input class='col col-2' type='text' name='8G' value=''>
+						64G: <input class='col col-2' type='text' name='8G' value=''>
+					</div>
+					<div class='col col-6'>
+						<p class='text-center'>服务器内存</p>
+						64G: <input class='col col-1' type='text' name='8G' value=''>
+						128G: <input class='col col-2' type='text' name='8G' value=''>
+						256G: <input class='col col-2' type='text' name='8G' value=''>
+						512G: <input class='col col-1' type='text' name='8G' value=''>
+					</div>
+					<div class='col col-12'>
+						<br>
+						<hr>
+						<h5 class='text-center'>硬盘报价</h5>
+					</div>
+					<div class='col col-6'>
+						<p class='text-center'>机械硬盘</p>
+						2T: <input class='col col-1' type='text' name='8G' value=''>
+						4TG: <input class='col col-2' type='text' name='8G' value=''>
+						2TE: <input class='col col-2' type='text' name='8G' value=''>
+						4TE: <input class='col col-2' type='text' name='8G' value=''>
+					</div>
+					<div class='col col-6'>
+						<p class='text-center'>固态硬盘</p>
+						128G: <input class='col col-1' type='text' name='8G' value=''>
+						256G: <input class='col col-2' type='text' name='8G' value=''>
+						512G: <input class='col col-2' type='text' name='8G' value=''>
+						1T: <input class='col col-1' type='text' name='8G' value=''>
+					</div>
+					<div class='col col-12'>
+						<br>
+						<hr>
+						<h5 class='text-center'>显卡报价</h5>
+					</div>
+					<div class='col col-4'>
+						<p class='text-center'>消费级显卡</p>
+						740: <input class='col col-2' type='text' name='8G' value=''>
+						1060: <input class='col col-2' type='text' name='8G' value=''>
+						1070: <input class='col col-2' type='text' name='8G' value=''>
+						1080: <input class='col col-2' type='text' name='8G' value=''>
+					</div>
+					<div class='col col-4'>
+						<p class='text-center'>图形卡</p>
+						k620: <input class='col col-3' type='text' name='8G' value=''>
+						k2200: <input class='col col-3' type='text' name='8G' value=''>
+						K6000: <input class='col col-3' type='text' name='8G' value=''>
+						M6000: <input class='col col-3' type='text' name='8G' value=''>
+					</div>
+					<div class='col col-4'>
+						<p class='text-center'>计算卡</p>
+						<p class='text-center small'>暂无</p>
+					</div>
+					<div class='col col-12'>
+						<br>
+						<hr>
+						<h5 class='text-center'>电源报价</h5>
+					</div>
+					<div class='col col-6'>
+						<p class='text-center'>低功耗</p>
+						500W: <input class='col col-4' type='text' name='8G' value=''>
+						750W: <input class='col col-4' type='text' name='8G' value=''>
+					</div>
+					<div class='col col-6'>
+						<p class='text-center'>高功耗</p>
+						1000W: <input class='col col-4' type='text' name='8G' value=''>
+						1200W: <input class='col col-4' type='text' name='8G' value=''>
+					</div>
+					<div class='col col-12'>
+						<br>
+						<hr>
+						<h5 class='text-center'>机箱报价</h5>
+					</div>
+					<div class='col col-6'>
+						<p class='text-center'>塔式</p>
+						低端: <input class='col col-2' type='text' name='8G' value=''>
+						中端: <input class='col col-2' type='text' name='8G' value=''>
+						高端: <input class='col col-2' type='text' name='8G' value=''>
+					</div>
+					<div class='col col-6'>
+						<p class='text-center'>机架</p>
+						低端: <input class='col col-2' type='text' name='8G' value=''>
+						中端: <input class='col col-2' type='text' name='8G' value=''>
+						高端: <input class='col col-2' type='text' name='8G' value=''>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+				</main>

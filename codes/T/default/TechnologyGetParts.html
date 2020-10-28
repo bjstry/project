@@ -3,7 +3,7 @@
 						
 						{foreach $prj.myprojects as $val}
 						<div>
-							<label><input type='radio' name='pjid' value='{$val.id}' /> {$val.prjname1}{$val.prjcustomer} 负责人:{$val.uid} 开始时间:{$val.prjstart}</label> 
+							<label><input type='radio' name='pjid' value='{$val.id}' /> {$val.prjname1} {$val.prjname2} {$val.prjcustomer} - 负责人:{$val.uid} 开始时间:{$val.prjstart}</label> 
 						</div>
 						{/foreach}
 						<div>

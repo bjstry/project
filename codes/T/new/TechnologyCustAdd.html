@@ -1,0 +1,37 @@
+<form action='{$smarty.const.URL}/{$smarty.get.c}/CustAddCheck' method=post>
+	<div class='form-item'>
+		<input type='hidden' name='id' value='{$prj.mcustserv.id}'>	
+	</div>
+	<div class='form-item'>
+		<label>售后名称:</label>
+		<input type='text' name='name' value='{$prj.mcustserv.name}' placeholder='请输入名称'>	
+	</div>
+	<div class='form-item'>
+		<label>售后说明:</label>
+		<input type='text' name='servcont' value='{$prj.mcustserv.servcont}' placeholder='请输入售后说明'>	
+	</div>
+	<div class='form-item'>
+		<label>售后状态:</label>
+		<input type='text' name='servstat' value='{$prj.mcustserv.servstat}' placeholder='请输入状态'>	
+	</div>
+	<div class='form-item'>
+		<label>负责人:</label>
+		<input type='text' name='techman' value='{$prj.mcustserv.techman}' placeholder='请输入负责人'>	
+	</div>
+	<div class='form-item'>
+		<label>电话:</label>
+		<input type='number' name='techphone' value='{$prj.mcustserv.techphone}' placeholder='请输入电话'>	
+	</div>
+	<div class='form-item'>
+		<label>提交时间:</label>
+		<input type='text' data-kube="datepicker" name='startdate' value='{$prj.mcustserv.startdate}' placeholder='请输入提交时间'>	
+	</div>
+	<div class='form-item'>
+		<label>完成时间:</label>
+		<input type='text' data-kube="datepicker" name='enddate' value='{$prj.mcustserv.enddate}' placeholder='请输入完成时间'>	
+	</div>
+	<div class='form-item'>
+		<input type='submit' class='button' name='submit' value='提交'>
+	</div>
+</form>
+</div>

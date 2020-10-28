@@ -1,0 +1,56 @@
+	<div class='is-100'>
+		<nav class="tabs" data-kube="tabs">
+	
+		        <a class='is-active' href="#tab1">采购发票登记</a>
+		        <a href="#tab2">采购已到发票</a>
+
+		</nav>
+		<div id="tab1">
+			<h3>硕星发票登记</h3>
+				<form action='{$smarty.const.URL}/{$smarty.get.c}/Fpindex' method='post'>
+
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>发票号码(必填)</span>
+					            <input name='val' type='text'>
+					        </div>
+						</div>
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>所属项目ID(可选)</span>
+					            <input name='pid' type='number'>
+					        </div>
+						</div>
+						<div class='form-item'>
+							<div class="prepend w50">
+					            <span>备注(可选)</span>
+					            <textarea name='remark' rows="6"></textarea>
+					        </div>
+						</div>	
+						<div class='form-item'>
+							<br>
+							<a class='button is-30' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
+							<input class='button is-30' type='submit' name='tjfp' value='提交'>
+						</div>
+
+					
+				</form>
+			
+		</div>
+		<div id="tab2">
+			<table class="unstyled">
+				<tr>
+					<td>ID</td><td>发票号码</td><td>项目</td><td>操作</td>
+				</tr>
+				{foreach $prj.fapiao_arr as $val}
+				<tr>
+					<td><a href='{$smarty.const.URL}/Purchase/Fpdetail/id/{$val.id}'>{$val.id}</td><td>{$val.value}</td><td><a href="{$smarty.const.URL}/Technology/ProjectInfo/pid/{$val.pid}">{$val.pid}</a></td><td><a href='{$smarty.const.URL}/Purchase/Fpguixiang/id/{$val.id}'><font color=blue>归项</font> <a href='{$smarty.const.URL}/Purchase/Fpindex/delete/{$val.id}'><font color=red>移除</font></td></td>
+				</tr>
+				{/foreach}
+			</table>
+			
+		</div>
+
+	</div>
+	</div>
+				</main>

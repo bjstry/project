@@ -10,11 +10,11 @@
 	<div id="tab1">
 		<table class="unstyled">
 			<tr>
-				<td>名目</td><td>金额</td><td>实报金额</td><td>提交时间</td><td>实报时间</td><td>操作</td>
+				<td>名目</td><td>状态</td><td>金额</td><td>实报金额</td><td>提交时间</td><td>实报时间</td><td>操作</td>
 			</tr>
 			{foreach $prj.explist as $val}
 			<tr>
-				<td><a href='{$smarty.const.URL}/Purchase/Expview/eid/{$val.id}'>{$val.name}</a></td><td>{$val.price} 元</td><td> 元</td><td>{$val.idate}</td><td>{$val.fdate}</td><td><a href='{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/eid/{$val.id}'>刷新</a></td>
+				<td><a href='{$smarty.const.URL}/Purchase/Expview/eid/{$val.id}'>{$val.name}</a></td><td>{$val.statustr}</td><td>{$val.price} 元</td><td>{$val.finprice} 元</td><td>{$val.idate}</td><td>{$val.fdate}</td><td><a href='{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/eid/{$val.id}'>刷新</a>{if ($smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1) and $val.status eq 1} <a href='{$smarty.const.URL}/{$smarty.get.c}/ExpviewTest/eid/{$val.id}'> <font color=red>报销</font></a>{else if ($smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1) and $val.status eq 0}<a href='{$smarty.const.URL}/{$smarty.get.c}/ExpviewTV/eid/{$val.id}'> <font color=green>查看</font></a>{/if}</td>
 			</tr>
 			{/foreach}
 		</table>

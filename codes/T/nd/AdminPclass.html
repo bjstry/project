@@ -1,0 +1,61 @@
+
+			<div class='is-100'>
+				<div id='tabs' class='tabs' data-kube="tabs">
+					<a class='is-active' href='#manager'>管理</a>
+					<a href='#add'>添加</a>
+				</div>
+				<div id='manager'>
+					<table>
+						<div class='is-row'>
+							
+						
+							<tr><td class='is-30'>分类名称</td><td colspan=2 class='is-10'><center>操作</center></td></tr>
+							{foreach $prj.myclass as $value}
+							<form action='' method='post' class='form'>
+							<tr><td>{$value.rname}<input type="hidden" name="cid" value="{$value.cid}"></td><td><!--<input name='edit' value='编辑' type='submit' class='button small outline'/></td><td>--><input name='delete' value='删除' type='submit' class='button small primary'/></td></tr>
+							</form>
+							{/foreach}
+						</div>
+					</table>
+				</div>
+				<div id='add'>
+					<form  class='form' method='post' action='{$smarty.const.URL}/Admin/CreateCheck'>
+						<div class='form-item'>
+							<label for='fclass'>父类</label>
+							<select name='fid'>
+								<option value=0>无父类</option>
+								{foreach $prj.myclass as $value}
+									<option value={$value.cid}>{$value.rname}</option>
+								{/foreach}
+							</select>
+						</div>
+						<div class='form-item'>
+							<label for='cname'>分类名称</label>
+							<input type='text' id='cname' name='cname'>
+						</div>
+						<div class='form-item'>
+							<label for='cname'>显示名称</label>
+							<input type='text' id='rname' name='rname'>
+						</div>
+						<div class='form-item'>
+							<label for='cname'>显示</label>
+							<input type='text' id='visible' name='visible' value=1>
+						</div>
+						<div class='form-item'>
+							<label for='department'>部门</label>
+							<select name='gid'>
+								<option value=1>采购部门</option>
+								<option value=2>行政部门</option>
+							</select>
+						</div>
+						<div class='form-item end'>
+							<input class='button small primary' type='submit' name='submit' value='添加分类'>
+						</div>
+					</form>
+					<form action='' method='post'>
+						<input class='button outline' type='submit' name='index' value='返回'>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>

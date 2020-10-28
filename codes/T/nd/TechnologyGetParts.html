@@ -1,0 +1,15 @@
+
+					<form action='' method='post'>
+						
+						{foreach $prj.myprojects as $val}
+						<div>
+							<label><input type='radio' name='pjid' value='{$val.id}' /> {$val.prjname1} {$val.prjname2} {$val.prjcustomer} - 负责人:{$val.uid} 开始时间:{$val.prjstart}</label> 
+						</div>
+						{/foreach}
+						<div>
+						<input class='button is-10' type='submit' name='submit' value='提交'>
+						<a class='button is-10' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
+						</div>
+					</form>
+</div>
+				</main>

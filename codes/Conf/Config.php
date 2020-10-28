@@ -5,5 +5,6 @@ return array(
 	'db_user'=>'root',
 	'db_pass'=>'SFbjs56233one',
 	'db_prefix'=>'js_',
+	'dt_theme'=>'nd',
 );
 ?>

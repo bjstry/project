@@ -1,0 +1,51 @@
+				<div class='is-100'>
+
+					<nav class="tabs" data-kube="tabs">
+					        <a class='is-active' href="#tab1">待处理售后</a>
+					        <a href="#tab2">处理中售后</a>
+					        <a href="#tab3">已完成售后</a>
+					</nav>
+					
+					<div id="tab1">
+						<table class='is-responsive'>
+							<thead>
+								<tr><th>提交时间</th><th>售后名称</th><th>售后说明</th><th>业务</th><th>操作</th>
+							</thead>
+							<tbody>
+								{foreach $prj.noserv as $val}
+								<tr><td data-label="提交时间">{$val.startdate}</td><td data-label="售后名称">{$val.name}</td><td data-label="售后说明">{$val.servcont}</td><td data-label="业务">{$val.keyman}</td><td data-label="操作">{if $smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1}<a href='{$smarty.const.URL}/{$smarty.get.c}/CustPick/sid/{$val.id}'>处理</a> <a href='{$smarty.const.URL}/{$smarty.get.c}/CustDel/sid/{$val.id}'><font color=red>删除</font></a>{else if $smarty.session.uinfo.cid eq 2}无{else}<a href='{$smarty.const.URL}/{$smarty.get.c}/CustPick/sid/{$val.id}'>处理</a>{/if}</td>
+								</tr>
+								{/foreach}
+							</tbody>
+						</table>
+					</div>
+					<div id="tab2">
+						<table class='is-responsive'>
+							<thead>
+							<tr><th>提交时间</th><th>售后名称</th><th>状态</th><th>{if $smarty.session.uinfo.cid eq 2}技术{else}业务{/if}</th><th>电话</th><th>完成时间</th><th>操作</th>
+							</thead>
+							<tbody>
+								{foreach $prj.myserv as $val}
+								<tr><td data-label="提交时间">{$val.startdate}</td><td data-label="售后名称"><a href='{$smarty.const.URL}/{$smarty.get.c}/CustInfo/cid/{$val.id}'>{$val.name}</a></td><td data-label="状态">{$val.servstat}</td><td data-label="{if $smarty.session.uinfo.cid eq 2}技术{else}业务{/if}">{$val.keyman}</td><td data-label="电话">{$val.keyphone}</td><td data-label="完成时间">{$val.enddate} .</td><td data-label="操作">{if $smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1}<a href='{$smarty.const.URL}/{$smarty.get.c}/CustFinish/sid/{$val.id}'><font color=green>完成</font></a> <a href='{$smarty.const.URL}/{$smarty.get.c}/CustDel/sid/{$val.id}'><font color=red>删除</font> {else if $smarty.session.uinfo.cid eq 4} <a href='{$smarty.const.URL}/{$smarty.get.c}/CustFinish/sid/{$val.id}'><font color=green>完成</font></a>{else}无{/if}</a></td>
+								</tr>
+								{/foreach}
+							</tbody>
+						</table>
+					</div>
+					<div id="tab3">
+						<table class='is-responsive'>
+							<thead>
+								<tr><th>提交时间</th><th>售后名称</th><th>状态</th><th>{if $smarty.session.uinfo.cid eq 2}技术{else}业务{/if}</th><th>电话</th><th>完成时间</th><th>操作</th>
+							<thead>
+							<tbody>
+								{foreach $prj.fsserv as $val}
+								<tr><td data-label="提交时间">{$val.startdate}</td><td data-label="售后名称"><a href='{$smarty.const.URL}/{$smarty.get.c}/CustInfo/cid/{$val.id}'>{$val.name}</a></td><td data-label="状态">{$val.servstat}</td><td data-label="{if $smarty.session.uinfo.cid eq 2}技术{else}业务{/if}">{$val.keyman}</td><td data-label="电话">{$val.keyphone}</td><td data-label="完成时间">{$val.enddate}</td><td data-label="操作">{if $smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1}<a href='{$smarty.const.URL}/{$smarty.get.c}/CustDel/sid/{$val.id}'><font color=red>删除</font>{else}无{/if}</td>
+								</tr>
+								{/foreach}
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+</div>
+				</main>

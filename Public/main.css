@@ -37,9 +37,88 @@ form:hover div.partinfo{
 	display:none;
 }
 #ptable td{
-	border:1px solid #999;
+	border:1px solid #000;
 	padding:12px;
 }
 #ptable td.title{
 	background:#999;
 }
+td#pevtd{
+	padding-right:0;
+	padding-left:0;
+}
+div.so-item p{
+	font-size:16px;
+	margin:16px;
+}
+div.so-item{
+	text-align:center;
+	background-color:#999;
+	color:#fff;
+	border:1px solid #999;
+	border-bottom:1px solid #fff;
+}
+div.so-itct{
+	//text-align:center;
+	background:#fff;
+	border:1px solid #999;
+}
+div.so-itct h4,p{
+	margin:16px;
+}
+div.so-itti{
+	text-align:center;
+	border:1px solid #999;
+
+}
+div.so-vertical p{
+	//width:16px;
+}
+th,td{
+	text-align:center;
+	vertical-align:middle;
+}
+td.nva{
+	text-align:left;
+}
+table.mycontent tr th{
+	font-size:18px;
+}
+table.mycontent tr th.title{
+	font-size:28px;
+}
+table tr td.tbleft{
+	text-align:left;
+}
+table tr td.tbright{
+	text-align:right;
+}
+
+
+div.page{
+	padding:24px;
+}
+div.main-content{
+	padding:20px;
+	margin-left:20px;
+}
+
+/**  for print
+table.mycontent tr th{
+	font-size:14px;
+}
+table.mycontent tr th.title{
+	font-size:18px;
+}
+pre, td, th, tr{
+	padding:0.5rem;
+	
+}
+table tr td{
+	font-size:12px;
+	line-height:16px;
+}
+table tr td p{
+	font-size:12px;
+	padding:-5px;
+}*/

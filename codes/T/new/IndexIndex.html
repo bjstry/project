@@ -1,0 +1,17 @@
+<div class='page is-70 is-center'>
+
+		<p>{$prj.info}</p>
+		<p>你好，{$prj.user.urename} ! &nbsp;&nbsp;请选择功能区：</p>
+		{foreach $prj.departs as $value}
+		<a class='button' href="{$smarty.const.URL}/{$value.url}">{$value.name}</a>
+		{/foreach}
+		<br><br>
+		<a class='button small' href='{$smarty.const.URL}/Index/SetThemedt'>主题切换</a>
+		<a class='button secondary outline small' href='{$smarty.const.URL}/Index/LoginOut'>注销</a>
+			{$prj.manager}
+			<div data-kube="mymodule">
+				<button data-type="show">show</button>
+				<button data-type="show-md">show</button>
+			</div>
+			<div id='mymodal' class="is-hidden">123</div>
+		<main>

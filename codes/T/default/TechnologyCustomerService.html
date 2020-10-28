@@ -1,0 +1,44 @@
+
+				<div class='col col-12'>
+					<nav class="tabs" data-component="tabs">
+					    <ul>
+					        <li class="active"><a href="#tab1">待处理售后</a></li>
+					        <li><a href="#tab2">处理中售后</a></li>
+					        <li><a href="#tab3">已完成售后</a></li>
+					    </ul>
+					</nav>
+					
+					<div id="tab1">
+						<table class='table'>
+							<tr><td>提交时间</td><td>售后名称</td><td>售后说明</td><td>业务</td><td>操作</td>
+							{foreach $prj.noserv as $val}
+							<tr><td>{$val.startdate}</td><td>{$val.name}</td><td>{$val.servcont}</td><td>{$val.keyman}</td><td>{if $smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1}<a href='{$smarty.const.URL}/{$smarty.get.c}/CustPick/sid/{$val.id}'>处理</a> <a href='{$smarty.const.URL}/{$smarty.get.c}/CustDel/sid/{$val.id}'><font color=red>删除</font></a>{else if $smarty.session.uinfo.cid eq 2}无{else}<a href='{$smarty.const.URL}/{$smarty.get.c}/CustPick/sid/{$val.id}'>处理</a>{/if}</td>
+							</tr>
+							{/foreach}
+						</table>
+					</div>
+					<div id="tab2">
+						<table class='table'>
+							<tr><td>提交时间</td><td>售后名称</td><td>状态</td><td>{if $smarty.session.uinfo.cid eq 2}技术{else}业务{/if}</td><td>电话</td><td>完成时间</td><td>操作</td>
+							{foreach $prj.myserv as $val}
+							<tr><td>{$val.startdate}</td><td><a href='{$smarty.const.URL}/{$smarty.get.c}/CustInfo/cid/{$val.id}'>{$val.name}</a></td><td>{$val.servstat}</td><td>{$val.keyman}</td><td>{$val.keyphone}</td><td>{$val.enddate}</td><td>{if $smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1}<a href='{$smarty.const.URL}/{$smarty.get.c}/CustFinish/sid/{$val.id}'><font color=green>完成</font></a> <a href='{$smarty.const.URL}/{$smarty.get.c}/CustDel/sid/{$val.id}'><font color=red>删除</font> {else if $smarty.session.uinfo.cid eq 4} <a href='{$smarty.const.URL}/{$smarty.get.c}/CustFinish/sid/{$val.id}'><font color=green>完成</font></a>{else}无{/if}</a></td>
+							</tr>
+							{/foreach}
+						</table>
+					</div>
+					<div id="tab3">
+						<table class='table'>
+							<tr><td>提交时间</td><td>售后名称</td><td>状态</td><td>{if $smarty.session.uinfo.cid eq 2}技术{else}业务{/if}</td><td>电话</td><td>完成时间</td><td>操作</td>
+							{foreach $prj.fsserv as $val}
+							<tr><td>{$val.startdate}</td><td><a href='{$smarty.const.URL}/{$smarty.get.c}/CustInfo/cid/{$val.id}'>{$val.name}</a></td><td>{$val.servstat}</td><td>{$val.keyman}</td><td>{$val.keyphone}</td><td>{$val.enddate}</td><td>{if $smarty.session.uinfo.id eq 2 or $smarty.session.uinfo.id eq 1}<a href='{$smarty.const.URL}/{$smarty.get.c}/CustDel/sid/{$val.id}'><font color=red>删除</font>{else}无{/if}</td>
+							</tr>
+							{/foreach}
+						</table>
+					</div>
+				</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

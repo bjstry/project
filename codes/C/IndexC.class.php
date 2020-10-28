@@ -1,29 +1,39 @@
 <?php
 class IndexC extends C{
-	protected $_arrinit = array('Login','LoginCheck');
 	public function Speekinit(){
-		if(empty($_SESSION['uid'])){
-			$this->url('请登录','/index/login');
-		}
+		$this->prj['webwidth'] = 70;
 	}
 	public function Index(){
 		if(!file_exists(PATH.'/install.sock')){
 			$this->url('尚未安装','/Install/Index');
 		}else{
-			if(empty($_SESSION['uid'])){
+			if(empty($_SESSION['jspjuid'])){
 				$this->url('请登陆','/index/login');
 			}else{
 				$user = $_SESSION['uinfo'];
-				$prj['title'] = "硕星系统，西安硕星信息技术有限公司";
-				$prj['user'] = $user;
-				$prj['departs'] = getDepartment($user[cid]);
+				$this->prj['title'] = "硕星系统，西安硕星信息技术有限公司";
+				$this->prj['user'] = $user;
+				$this->prj['departs'] = getDepartment($user[cid]);
 				if($user[gid]==0 && $user[cid]==0){
-					$prj['manager'] = "<a class='button primary small' href='".URL."/Admin/Index'>管理</a>";
+					$this->prj['manager'] = "<a class='button primary small' href='".URL."/Admin/Index'>管理</a>";
 				}
-				$this->assign('prj',$prj);
+				
+				
+				
+				$this->assign('prj',$this->prj);
 				$this->display();
 			}
 		}
+	}
+	public function SetTheme(){
+		//print_r(C(''));
+		session('dttheme','new');
+		$this->url('成功!');
+	}
+	public function SetThemedt(){
+		//print_r(C(''));
+		session('dttheme','default');
+		$this->url('成功!');
 	}
 	//public function getbox($id,$level){
 		//$v_arr;
@@ -54,12 +64,13 @@ class IndexC extends C{
 		//print_r($Key);
 	//}
 	public function Login(){
-		$prj['title'] = "登陆，硕星系统，西安硕星信息技术有限公司";
-		$this->assign('prj',$prj);
+		$this->prj['title'] = "登陆，硕星系统，西安硕星信息技术有限公司";
+		$this->assign('prj',$this->prj);
 		$this->display();
 	}
 	public function LoginOut(){
-		session('clean','all');
+		session('jspjuid','null');
+		session('dttheme','null');
 		$this->url('注销成功！','/Index/Login');
 	}
 	public function LoginCheck(){
@@ -69,19 +80,19 @@ class IndexC extends C{
 			if(empty($return)){
 				print_r(md5($_POST['upass']));
 				$this->url('用户名不存在!','/Index/Login');
-				session('uid','null');
+				session('jspjuid','null');
 				session('key','null');
 				session('uinfo','null');
 			}else{
 				if($return['upass'] == md5($_POST['upass'])){
-					session('uid',$return['id']);
+					session('jspjuid',$return['id']);
 					session('key',$return['upass']);
 					session('uinfo',$return);
 					$this->url('登录成功！','/Index/Index');
 				}else{
 					print_r(md5($_POST['upass']));
 					$this->url('密码错误!','/Index/Login');
-					session('uid','null');
+					session('jspjuid','null');
 					session('key','null');
 					session('uinfo','null');
 				}

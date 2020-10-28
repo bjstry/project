@@ -1,0 +1,19 @@
+
+				<table class='table'>
+									<tr><td>编号</td><td>厂商</td><td>型号</td><td>序列号/SN</td><td>供货商</td><td>价格</td><td>发票</td><td>报销</td><td>购买时间</td></tr>
+									{foreach $prj.myparts as $val}
+									<form action='{$smarty.const.URL}/{$smarty.get.c}/Outgo' method='post' class='form'>
+									<tr><td>{$val.id}<input type="hidden" name="id" value="{$val.id}"><input type="hidden" name="cid" value="{$val.cid}"></td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.sn}</td><td>{$val.supplier}</td><td>{if $smarty.session.uinfo.cid eq 0 or $smarty.session.uinfo.gid eq 0}{$val.price}{else}*{/if}</td><td><a href='{$smarty.const.URL}/Purchase/Fpdetail/id/{$val.kpstatus}'>{$val.kpstatus}</a></td><td>{$val.status}</td><td>{$val.indate}</td></tr>
+									</form>
+									{/foreach}
+				</table>
+				<p>{$val.remark}</p>
+					<a href='{$smarty.const.URL}/Purchase/chaifen/id/{$val.id}'>拆分</a>&nbsp;&nbsp;		
+					<a class='button small' href="{$smarty.const.URL}/Purchase/Editdetail/id/{$val.id}">编辑</a>&nbsp;&nbsp;
+					<a class='button small' onClick="javascript :history.go(-1);">返回</a>
+	
+				{foreach $prj.mylogs as $val}
+				<p>{$val.date} {$val.uid} {$val.type} {$val.count} 个 {$val.content} </p>
+				{/foreach}
+</div>
+				</main>

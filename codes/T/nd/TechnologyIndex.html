@@ -1,0 +1,34 @@
+
+				
+								<form action='{$smarty.const.URL}/{$smarty.get.c}/SearchList' method='post'>
+									<div class='form-item'>
+										<div class='is-append is-50'>
+											<input class='is-search' type='text' name='search_sn' placeholder='请输入要搜索的项目 学校/客户/SN'>
+											<button type='submit' class='button' name='search_sb'>搜索</button>
+										</div>
+									</div>
+								</form>
+
+								<h4>未分配配件</h4>
+
+	
+					<div class='is-row'>
+						{foreach $prj.myclass as $val}
+						<div class='is-col is-25'>
+							<p>{$val.rname} :<a href='{$smarty.const.URL}/{$smarty.get.c}/View/type/0/val/{$val.cid}'>{$val.count}</a></p>
+						</div>
+						{/foreach}
+						<div class='is-col is-100 down-hr'>
+							<hr>
+						</div>
+						<div class='is-col is-100'>
+							<h4>已分配配件</h4>
+						</div>
+						{foreach $prj.myunclass as $val}
+						<div class='is-col is-25'>
+							<p>{$val.rname} :<a href='{$smarty.const.URL}/{$smarty.get.c}/View/type/1/val/{$val.cid}'>{$val.count}</a></p>
+						</div>
+						{/foreach}
+					</div>
+</div>
+				</main>

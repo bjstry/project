@@ -1,0 +1,18 @@
+
+				<table class='table'>
+									<tr><td>编号</td><td>厂商</td><td>型号</td><td>序列号/SN</td><td>供货商</td><td>库存数</td><td>出库数</td><td>操作</td></tr>
+									{foreach $prj.myparts as $val}
+									<form action='{$smarty.const.URL}/{$smarty.get.c}/Outgo' method='post' class='form'>
+									<tr><td><a href='{$smarty.const.URL}/{$smarty.get.c}/viewdetail/pid/{$val.id}'>{$val.id}</a><input type="hidden" name="id" value="{$val.id}"><input type="hidden" name="cid" value="{$val.cid}"></td><td>{$val.name}</td><td>{$val.model}</td><td>{$val.sn}</td><td>{$val.supplier}</td><td>{$val.count}</td><td><input type='number' name='outcount'/></td><td><input class='button small' type='submit' name='outgo' value='出库'> <a href='{$smarty.const.URL}/Purchase/GetBack/pid/{$val.id}'>撤销</a></td></tr>
+									</form>
+									{/foreach}
+								</table>
+								<button class='button small' onclick="history.go(-1);">返回</button>
+								<!--<a class='button small' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>-->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+				</main>

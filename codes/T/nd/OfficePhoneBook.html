@@ -1,0 +1,15 @@
+					<table class='flat'>
+						<tbody>
+							<tr><th>姓名</th><th>电话</th><th>邮箱</th><th>操作</th></tr>
+							{foreach $prj.users as $val}
+							<tr><td>{$val.urename}</td><td>{$val.uphone}</td><td>{$val.umail}</td><td><a href='{$smarty.const.URL}/Office/PhoneBookEdit/uid/{$val.id}'>编辑</a> <a href='{$smarty.const.URL}/Office/PhoneBookDell/uid/{$val.id}'><font color=red>删除</font></a></td></tr>
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+				</main>

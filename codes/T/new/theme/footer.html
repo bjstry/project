@@ -1,0 +1,63 @@
+			</main>
+			<footer>
+				
+			</footer>
+		</div>
+		<!--<script type='text/javascript' src='{$smarty.const._P_}/jquery.min.js'></script>-->
+		<script type='text/javascript' src='{$smarty.const._P_}/kube/js/kube.min.js'></script>
+		<script type='text/javascript' src='{$smarty.const._P_}/kube/addons/kube-addons.min.js'></script>
+		{$prj.myjs}
+		<script>
+			(function($K)
+			{
+			    $K.add('module', 'mymodule', {
+			        init: function(app, context)
+			        {
+			            this.app = app;
+			
+			            // define service
+			            this.message = app.message;
+			            
+			            this.modal = app.modal;
+			        },
+			        // events
+			        onclick: function(e, element, type)
+			        {
+			            e.preventDefault();
+			            if (type === 'show')
+			            {
+			                this.message.show({ message: '你有新消息，请注意查收',type: 'is-success',position:'line'});
+			            }
+			            else if (type === 'show-error')
+			            {
+			                this.message.show({
+			                    message: 'My error message',
+			                    type: 'is-error',
+			                    position: 'left'
+			                });
+			            }
+			            else if(type==='show-md')
+			            {
+			            	this.modal.open({
+			            		url: '/index.php',
+			            		title:'提示信息',
+			            		width:'50%'
+			            	})
+			            }
+			        },
+			        onmessage:{
+			        	message:{
+			        		closed:function(sender)
+			        		{
+			        			alert('Message is closed.');
+			        		}
+			        	}
+			        },
+			    });
+			})(Kube);
+			$K.init();
+			
+		</script>
+		
+	</body>
+</html>

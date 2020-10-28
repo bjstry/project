@@ -5,8 +5,8 @@
 								<tr>
 									<th>配件</th><th>型号</th><th>数量</th><th>单价(元)</th><th>合计(元)</th>
 								</tr>
-								{foreach $prj.price as $key=>$val}
-								<tr><td>{$key}</td><td>{$val.name}</td><td>{$val.count}</td><td>{if $smarty.session.uinfo.gid eq 0 or $smarty.session.uinfo.cid eq 7 or $smarty.session.uinfo.cid eq 4}{$val.price}{else}***{/if}</td><td>{if $smarty.session.uinfo.gid eq 0 or $smarty.session.uinfo.cid eq 7 or $smarty.session.uinfo.cid eq 4}{$val.price*$val.count}{else}***{/if}</td></tr>
+								{foreach $prj.price as $val}
+								<tr><td>{$val.key}</td><td>{$val.name}</td><td>{$val.count}</td><td>{if $smarty.session.uinfo.gid eq 0 or $smarty.session.uinfo.cid eq 7 or $smarty.session.uinfo.cid eq 4}{$val.price}{else}***{/if}</td><td>{if $smarty.session.uinfo.gid eq 0 or $smarty.session.uinfo.cid eq 7 or $smarty.session.uinfo.cid eq 4}{$val.price*$val.count}{else}***{/if}</td></tr>
 								{/foreach}
 							</table>
 						</div>
@@ -25,8 +25,10 @@
 					</div>
 					<div class='col col-12'>
 						<br>
-						<a class='button small' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
+						<a class='button small uk-button-primary' href='#'>生成方案(开发中)</a>&nbsp; &nbsp;<a class='button small' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
+						
 					</div>
+			
 				</div>
 			</div>
 		</div>

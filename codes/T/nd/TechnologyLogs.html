@@ -1,0 +1,31 @@
+
+				
+		
+					<table>
+						<thead>
+							<tr><th>操作人</th><th>时间</th><th>类型</th><th>数量</th><th>详细</th></tr>
+						</thead>
+						<tbody>
+							
+							{foreach $prj.logsshow as $value}
+							<tr><td>{$value.uid} </td><td>{$value.date} </td><td>{$value.type} </td><td>{$value.count} </td><td>{$value.content}</td></tr>
+							{/foreach}
+						</tbody>
+					</table>
+				<div class='is-width-small is-center'>
+					<nav class="pager">
+						<a class='is-prev' href="{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/page/{$prj.mypages.pre.url}"></a>
+		            
+		              
+		                        	{foreach $prj.mypages.con as $value}
+		                        		<a class='{$value.0}' href="{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/page/{$value.1}">{$value.1}</a>
+		                        	{/foreach}
+	
+		         		<a class='is-next' href="{$smarty.const.URL}/{$smarty.get.c}/{$smarty.get.m}/page/{$prj.mypages.nex.url}"></a>
+		 
+		 
+		            </nav>
+				</div>
+		
+</div>
+				</main>

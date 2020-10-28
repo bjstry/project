@@ -1,0 +1,41 @@
+				<div class='is-row'>
+					<div class='is-col is-100'>
+							<table class='talbe'>
+								<tr>
+									<th>配件</th><th>型号</th><th>数量</th><th>单价(元)</th><th>合计(元)</th>
+								</tr>
+								{foreach $prj.price as $val}
+								<tr><td>{$val.key}</td><td>{$val.name}</td><td>{$val.count}</td><td>{if $smarty.session.uinfo.gid eq 0 or $smarty.session.uinfo.cid eq 7 or $smarty.session.uinfo.cid eq 4}{$val.price}{else}***{/if}</td><td>{if $smarty.session.uinfo.gid eq 0 or $smarty.session.uinfo.cid eq 7 or $smarty.session.uinfo.cid eq 4}{$val.price*$val.count}{else}***{/if}</td></tr>
+								{/foreach}
+							</table>
+					</div>
+					<div class='is-col is-25'>
+						方案价: {$prj.money} 元
+					</div>
+					<div class='is-col is-25'>
+						九折价: {$prj.money*0.9} 元
+					</div>
+					<div class='is-col is-25'>
+						八折价: {$prj.money*0.8} 元
+					</div>
+					<div class='is-col is-25  is-stack-20'>
+						七五折: {$prj.money*0.75} 元
+					</div>
+					<div class='is-col is-100'>
+						<button class='button small' onclick="history.go(-1);">返回</button>
+					</div>	
+				</div>
+				<div id="auto-solu" class="is-hidden">
+					<form action='' method='post'>
+						<div class='form-item'>
+							<label>请选择研究方向：</label>
+							<input type='text' name='researchtype'>
+						</div>
+						<div class='form-item'>
+							<label>请输入客户信息：</label>
+							<input type='text' name='researchtype'>
+						</div>
+					</form>
+				</div>
+				</div>
+				</main>

@@ -1,0 +1,65 @@
+
+
+<form action='' method='post'>
+	<div class='is-row'>
+	<div class='form-item is-col is-50'>
+		<label>客户信息:</label>
+		<input data-type='showcust' type='text' name='cname' placeholder='XX学校XX学院XX老师'>
+	</div>
+	<div class='form-item is-col is-50'>
+		<label>研究方向:</label>
+		<select data-type='showretype' name='rtype'>
+			<option value='1'>无具体方向</option>
+			<option value='2'>分子动力学模拟</option>
+			<option value='3'>地理信息模拟</option>
+			<option value='4'>流体力学模拟计算</option>
+		</select>
+	</div>
+	<div class='form-item is-col is-50'>
+		<label>网络环境:</label>
+		<select data-type='nettype' name='rtype'>
+			<option value='1'>千兆有线局域网</option>
+			<option value='2'>万兆有线局域网</option>
+			<option value='3'>Infiniband高速</option>
+		</select>
+	</div>
+	<div class='form-item is-col is-50'>
+		<label>是否组建集群:</label>
+		<select data-type='custmer' name='rtype'>
+			<option value='1'>否</option>
+			<option value='2'>是</option>
+		</select>
+	</div>
+	<div class='form-item is-col is-100'>
+		<label>当前选择设备:</label>
+			<table>
+				<thead>
+					
+						<th>设备名称</th><th>数量</th><th>成本价</th><th>说明</th><th>操作</th>
+				
+				</thead>
+				<tbody>
+					<!--<tr><td data-type='info' ><a >星蕴S系列设备</a></td><td>2</td><td>25000</td><td>计算节点</td><td><a class='button is-small is-secondary'>删除</a></td></tr>
+					<tr><td><a >星蕴P系列设备</a></td><td>1</td><td>8000</td><td>管理节点</td><td><a class='button is-small is-secondary'>删除</a></td></tr>-->
+					{foreach $prj.devices as $key => $val}
+						<tr><td><a href='{$smarty.const.URL}/{$smarty.get.c}/devinfo/sid/{$key}'>{$val.0}</a></td><td>{$val.2}</td><td>{$val.1}</td><td>{$val.3}</td><td><a class='button is-small is-secondary' href='{$smarty.const.URL}/{$smarty.get.c}/Generate/del_device/{$key}'>删除</a></td></tr>
+					{/foreach}
+					<!--<tr><td>统计</td><td>2</td><td>90000</td><td>九折</td><td>80000</td></tr>-->
+				</tbody>
+			</table>
+	</div>
+	<div class='form-item is-col is-100'>
+		<table>
+			<tbody>
+				<tr><td><a class='button is-small is-secondary' href='{$smarty.const.URL}/{$smarty.get.c}/Ctprice'>+添加</a> &nbsp;&nbsp;{$prj.priceout}</td><td><div class="is-append is-10"><input type="text" id='disc'><span>折</span></div></td><td><div class="is-append is-10"><input id='discprice' type="text"><span>元</span></div></td></tr>
+			</tbody>
+		</table>
+	</div>
+	<hr>
+	<div class='form-item is-col is-100'>
+		<input class='button is-20' type='submit' name='generate' value='计算价格'>  <input class="button is-20" type='submit' name='getsolu' value='生成方案'>
+	</div>
+	</div>
+</form>
+</div>
+				</main>

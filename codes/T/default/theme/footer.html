@@ -1,5 +1,43 @@
 		<script type='text/javascript' src='{$smarty.const._P_}/jquery.min.js'></script>
 		<script type='text/javascript' src='{$smarty.const._P_}/kube.min.js'></script>
+		<!--
+		<script type='text/javascript' src='{$smarty.const._P_}/kube/js/kube.min.js'></script>
+		<script type='text/javascript' src='{$smarty.const._P_}/kube/addons/kube-addons.min.js'></script>
+		-->
 		{$prj.myjs}
+		<script type='text/javascript'>
+				var fpriArr = new Array();
+				$("input#exprice").each(function(){
+					fpriArr.push($(this).val());	
+					//alert($("td.expcount").html());
+				});
+				var fprictArr = new Array();
+				$("td.expcount").each(function(){
+					fprictArr.push($(this).html());
+				});
+				for(var i=0;i<fprictArr.length;i++){
+					fpriArr[i] = fpriArr[i]*fprictArr[i];
+				}
+				
+				$("input#ctprice").val(eval(fpriArr.join('+')));
+			
+			$("input#exprice").change(function(){
+				var priArr = new Array();
+				$("input#exprice").each(function(){
+					priArr.push($(this).val());	
+					//alert($("td.expcount").html());
+				});
+				var prictArr = new Array();
+				$("td.expcount").each(function(){
+					prictArr.push($(this).html());
+				});
+				for(var i=0;i<prictArr.length;i++){
+					priArr[i] = priArr[i]*prictArr[i];
+				}
+				
+				$("input#ctprice").val(eval(priArr.join('+')));
+			});
+			
+		</script>
 	</body>
 </html>

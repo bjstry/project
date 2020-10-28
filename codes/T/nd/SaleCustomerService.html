@@ -1,0 +1,16 @@
+
+				<table class='table'>
+									<tr><td>提交时间</td><td>售后名称</td><td>基本情况</td><td>售后状态</td><td>负责人</td><td>电话</td><td>完成时间</td>
+									{foreach $prj.myserv as $val}
+									<tr><td>{$val.startdate}</td><td>{$val.name}</td><td>{$val.servcont}</td><td>{$val.servstat}</td><td>{$val.techman}</td><td>{$val.techphone}</td><td>{$val.enddate}</td>
+									</tr>
+									{/foreach}
+								</table>
+								<a class='button small' href='#' onclick='history.go(-1);'>返回</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+				</main>

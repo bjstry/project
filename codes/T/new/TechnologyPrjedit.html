@@ -1,0 +1,32 @@
+				<div class='col col-12'>
+					<h4>编辑项目</h4>
+				</div>
+				<form action='' method='post'>
+					<input type='text' name='sn' value='{$prj.myprjs.sn}' placeholder='请输入序列号'>
+					<input type='text' name='prjname1' value='{$prj.myprjs.prjname1}' placeholder='请输入学校/单位名称'>
+					<input type='text' name='prjname2' value='{$prj.myprjs.prjname2}' placeholder='请输入院系/部门'>
+					<input type='text' name='prjcustomer' value='{$prj.myprjs.prjcustomer}' placeholder='请输入客户名称'>
+					<input type='text' name='prjsaleman' value='{$prj.myprjs.prjsaleman}' placeholder='请输入业务姓名'>
+					<input type='number' name='prjsalephone' value='{$prj.myprjs.prjsalephone}' placeholder='请输入业务电话'>
+					<input type='text' name='prjstart' value='{$prj.myprjs.prjstart}' placeholder='项目开始时间'>
+					<input type='text' name='prjfinish' value='{$prj.myprjs.prjfinish}' placeholder='项目结束时间'>
+					<input type='text' name='prjkey' placeholder='物流单号'>
+					
+					<select class='col col-5' name='prjstatus'>
+						<option value=1>缺配件</option>
+						<option value=2>组装中</option>
+						<option value=3>系统软件安装</option>
+						<option value=4>测试</option>
+						<option value=5>待发货</option>
+						<option value=6>物流运输中</option>
+						<option value=7>已签收</option>
+						<option value=0>废弃</option>
+					</select>
+					状态设置“待发货”会自动生成产品序列号，请注意务必在所有配件分配完成后执行。<br>
+					<input class='button small primary' type='submit' name='submit' value='修改'>
+					<a class='button small' href='{$smarty.const.URL}/{$smarty.get.c}'>返回</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

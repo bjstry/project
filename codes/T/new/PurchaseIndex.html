@@ -1,0 +1,30 @@
+
+						<div class='is-100'>
+							<form action='' method='post'>
+							
+								<div class='col col-4'>
+									<div class='form-item'>
+										<h4 style='display:inline-block;'>配件库存情况</h4> <input class='button small' name='refresh' type='submit' value='刷新'>
+									</div>
+								</div>
+								<div class='col col-6'>
+									<div class='form-item'>
+										<div class='append'>
+											<input type='text' name='pid' placeholder='请输入要搜索的配件编号'>
+											<button type='submit' class='button' name='search_pid'>搜索</button>
+										</div>
+									</div>
+								</div>
+							
+							</form>
+
+					
+						{foreach $prj.myclass as $val}
+						<div class='is-col is-25'>
+							<p>{$val.rname} :<a href='{$smarty.const.URL}/{$smarty.get.c}/View/type/{$val.cid}'>{$val.count}</a></p>
+						</div>
+						{/foreach}
+						<div class='is-col is-100 down-hr'>
+							<hr>
+						</div>
+					</div>
